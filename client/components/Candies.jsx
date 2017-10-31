@@ -2,10 +2,16 @@ import React, { Component } from "react";
 //import PropTypes from 'prop-types'
 import { connect } from "react-redux";
 import { withRouter, NavLink, Link } from "react-router-dom";
+import store from "../store"
+import { fetchCandies } from "../store/candies.js"
 
 class Candies extends Component {
   constructor(props) {
     super(props);
+  }
+
+  componentDidMount(){
+    this.props.allCandiesFetch();
   }
 
   render() {
@@ -48,11 +54,12 @@ class Candies extends Component {
         categoryId: 1
       },
     ];
+    console.log(this.props)
 
     return (
       <div>
         <h1>All Candy</h1>
-        {dumbyCandy.map(candy => (
+        {this.props.allCandies.map(candy => (
           <div className="all-candies" key={candy.id}>
             <NavLink to={`/candies/${candy.id}`}>
               <h2>{candy.name}</h2>
@@ -70,20 +77,18 @@ class Candies extends Component {
 /**
    * CONTAINER
    */
-// const mapState = (state) => {
-//   return {
-//     isLoggedIn: !!state.user.id
-//   }
-// }
+const mapStateToProps = (state) => {
+  return {
+    allCandies: state.candies
+  }
+}
 
-// const mapDispatch = (dispatch) => {
-//   return {
-//     handleClick () {
-//       dispatch(logout())
-//     }
-//   }
-// }
+const mapDispatchToProps = (dispatch) => {
+  return {
+    allCandiesFetch: () => dispatch(fetchCandies())
+  }
+}
 
 // The `withRouter` wrapper makes sure that updates are not blocked
 // when the url changes
-export default withRouter(connect()(Candies));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Candies));
