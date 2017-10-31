@@ -18,7 +18,25 @@ const Category = require('./category');
  * for example, we can say: const {User} = require('../db/models')
  * instead of: const User = require('../db/models/user')
  */
+User.hasMany(Order, { onDelete: 'CASCADE', hooks: true });
+Order.belongsTo(User, { foreignKey: { allowNull: false }, onDelete: 'CASCADE' });
+
+User.hasMany(Review, { onDelete: 'CASCADE', hooks: true });
+Review.belongsTo(User, { foreignKey: { allowNull: false }, onDelete: 'CASCADE' });
+
+Candy.hasMany(Review, { onDelete: 'CASCADE', hooks: true });
+Review.belongsTo(Candy, { foreignKey: { allowNull: false }, onDelete: 'CASCADE' });
+
+Candy.belongsToMany(Order, { through: OrderCandy });
+
+Candy.belongsToMany(Category, { through: 'candy_category' });
+
 
 module.exports = {
-  User
+  User,
+  Candy,
+  Category,
+  Order,
+  OrderCandy,
+  Review
 }
