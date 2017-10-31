@@ -23,6 +23,15 @@ class PutCategory extends Component {
     this.props.putCategory(categoryObj, this.props.ownProps.history);
   }
 
+  grabCategory(table) {
+    const id = Number(this.props.match.params.id);
+    const filter = table.filter(row => {
+      return row.id === id;
+    });
+    const row = filter[0];
+    return row;
+  }
+
   render() {
     return (
       <div>
