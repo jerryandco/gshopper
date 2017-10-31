@@ -6,6 +6,7 @@ import PropTypes from 'prop-types'
 import history from './history'
 import {Main, Login, Signup, UserHome} from './components'
 import {me} from './store'
+import Candies from './components/Candies.jsx'
 
 /**
  * COMPONENT
@@ -33,7 +34,8 @@ class Routes extends Component {
                 </Switch>
             }
             {/* Displays our Login component as a fallback */}
-            <Route component={Login} />
+            {/* <Route component={Login} /> */}
+            <Route component={Candies} />
           </Switch>
         </Main>
       </Router>
