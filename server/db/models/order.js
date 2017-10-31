@@ -15,7 +15,8 @@ const Order = db.define('order', {
         defaultValue: 'Created'
     },
     Date: {
-        type: Sequelize.NOW
+        type: Sequelize.DATE,
+        defaultValue : Sequelize.NOW
     }
 },
     {
