@@ -1,73 +1,68 @@
-import Users from "./users.js";
-import Candy from "./candy.js";
-import Order from "./order.js";
-import Reviews from "./reviews.js";
-import Category from "./category.js";
 
-const users = [
+ const userData = [
   {
-    firstname: "Mitch",
-    lastname: "Hedburg",
+    firstName: "Mitch",
+    lastName: "Hedburg",
     email: "mitch@thing.com",
     password: "whatever"
   },
   {
-    firstname: "Choi",
-    lastname: "MackingAllTheTime",
+    firstName: "Choi",
+    lastName: "MackingAllTheTime",
     email: "choi@thing.com",
     password: "whatever"
   },
   {
-    firstname: "Danny",
-    lastname: "Crocodolistic",
+    firstName: "Danny",
+    lastName: "Crocodolistic",
     email: "danny@thing.com",
     password: "whatever"
   },
   {
-    firstname: "Dan",
-    lastname: "GlassesInYourFace",
+    firstName: "Dan",
+    lastName: "GlassesInYourFace",
     email: "dan@thing.com",
     password: "whatever"
   },
   {
-    firstname: "Cat",
-    lastname: "Meow",
+    firstName: "Cat",
+    lastName: "Meow",
     email: "cat@thing.com",
     password: "whatever"
   },
   {
-    firstname: "Dog",
-    lastname: "Woof",
+    firstName: "Dog",
+    lastName: "Woof",
     email: "dog@thing.com",
     password: "whatever"
   },
   {
-    firstname: "Lizard",
-    lastname: "Swissly",
+    firstName: "Lizard",
+    lastName: "Swissly",
     email: "lizard@thing.com",
     password: "whatever"
   },
   {
-    firstname: "Elephant",
-    lastname: "BigMan",
+    firstName: "Elephant",
+    lastName: "BigMan",
     email: "elephant@thing.com",
     password: "otherwhatever"
   },
   {
-    firstname: "Crocodolistic",
-    lastname: "thegymntistic",
+    firstName: "Crocodolistic",
+    lastName: "thegymntistic",
     email: "crocodile@thing.com",
     password: "othernotwhatever"
   },
   {
-    firstname: "Mexico",
-    lastname: "Hola",
+    firstName: "Mexico",
+    lastName: "Hola",
     email: "mexico@thing.com",
     password: "notwhatever"
   }
 ];
 
-const candy = [
+ const candyData = [
   {
     name: "Cavendish Drops",
     price: 3,
@@ -290,7 +285,7 @@ const candy = [
   }
 ];
 
-const reviews = [
+ const reviewsData = [
   {
     userId: 1,
     candyId: 1,
@@ -299,35 +294,26 @@ const reviews = [
   }
 ];
 
-const categories = [
+ const categoriesData = [
   {
     name: "Hard Candy",
     description: "Yeaa baby!"
   }
 ];
 
-const orders = [
+ const ordersData = [
   {
-    status: "false",
-    address: "112 Valhalla Drive, Zimbabwe"
+    address: "112 Valhalla Drive, Zimbabwe",
+    status: 'Created',
+
   }
 ];
 
-db
-  .sync({ force: true })
-  .then(() => {
-    return Category.bulkCreate(categories);
-  })
-  .then(function() {
-    return Order.bulkCreate(orders);
-  })
-  .then(function() {
-    return Users.bulkCreate(users);
-  })
-  .then(function() {
-    return Candy.bulkCreate(candy);
-  })
-  .then(() => {
-    console.log("finished inserting data");
-  })
-  .catch(console.error);
+
+module.exports = {
+  userData,
+  candyData,
+  reviewsData,
+  categoriesData,
+  ordersData
+}
