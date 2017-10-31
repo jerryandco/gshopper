@@ -1,6 +1,7 @@
 const Sequelize = require('sequelize');
 const db = require('../db');
 const User = require('./user');
+const OrderCandy = require('./orderCandy');
 
 const Order = db.define('order', {
     address: {
@@ -16,7 +17,10 @@ const Order = db.define('order', {
     },
     date: {
         type: Sequelize.DATE,
-        defaultValue : Sequelize.NOW
+        defaultValue: Sequelize.NOW
+    },
+    Price: {
+        type: Sequelize.DOUBLE
     }
 },
     {
@@ -24,5 +28,13 @@ const Order = db.define('order', {
             include: [User]
         }
     });
+
+Order.prototype.findMyCandy = function () {
+    return OrderCandy.findAll({
+        where: {
+            orderId: this.id
+        }
+    });
+}
 
 module.exports = Order;

@@ -33,7 +33,7 @@ const Candy = db.define('candy', {
         validate: {
             min: 0
         }
-    },
+    }
 });
 
 module.exports = Candy;
