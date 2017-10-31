@@ -16,7 +16,10 @@ const Order = db.define('order', {
     },
     Date: {
         type: Sequelize.DATE,
-        defaultValue : Sequelize.NOW
+        defaultValue: Sequelize.NOW
+    },
+    Price: {
+        type: Sequelize.DOUBLE
     }
 },
     {
