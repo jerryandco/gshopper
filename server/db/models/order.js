@@ -13,6 +13,10 @@ const Order = db.define('order', {
     status: {
         type: Sequelize.ENUM(['Created', 'Processing', 'Cancelled', 'Completed']),
         defaultValue: 'Created'
+    },
+    Date: {
+        type: Sequelize.DATE,
+        defaultValue : Sequelize.NOW
     }
 },
     {
