@@ -1,9 +1,9 @@
 const router = require('express').Router()
-const {User} = require('../db/models')
+const {Category} = require('../db/models')
 module.exports = router
 
 router.get('/', (req, res, next) => {
-  User.findAll()
-    .then(users => res.json(users))
+  Category.findAll()
+    .then(categories => res.json(categories))
     .catch(next)
 })
