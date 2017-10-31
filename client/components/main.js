@@ -12,10 +12,10 @@ import {logout} from '../store'
  */
 const Main = (props) => {
   const {children, handleClick, isLoggedIn} = props
-
+  console.log(children, handleClick, isLoggedIn)
   return (
     <div>
-      <h1>BOILERMAKER</h1>
+      <h1>Welcome to the Candy Shop</h1>
       <nav>
         {
           isLoggedIn
