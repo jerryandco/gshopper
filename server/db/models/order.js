@@ -19,7 +19,7 @@ const Order = db.define('order', {
         type: Sequelize.DATE,
         defaultValue: Sequelize.NOW
     },
-    Price: {
+    price: {
         type: Sequelize.DOUBLE
     }
 },
@@ -28,13 +28,5 @@ const Order = db.define('order', {
             include: [User]
         }
     });
-
-Order.prototype.findMyCandy = function () {
-    return OrderCandy.findAll({
-        where: {
-            orderId: this.id
-        }
-    });
-}
 
 module.exports = Order;

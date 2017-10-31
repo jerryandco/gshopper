@@ -28,6 +28,7 @@ Candy.hasMany(Review, { onDelete: 'CASCADE', hooks: true });
 Review.belongsTo(Candy, { foreignKey: { allowNull: false }, onDelete: 'CASCADE' });
 
 Candy.belongsToMany(Order, { through: OrderCandy });
+Order.belongsToMany(Candy, { through: OrderCandy });
 
 Candy.belongsToMany(Category, { through: 'candy_category' });
 
