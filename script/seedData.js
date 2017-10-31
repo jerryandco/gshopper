@@ -304,7 +304,7 @@
  const ordersData = [
   {
     address: "112 Valhalla Drive, Zimbabwe",
-    status: 'Created',
+    status: 'Created'
 
   }
 ];

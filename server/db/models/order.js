@@ -3,7 +3,7 @@ const db = require('../db');
 const User = require('./user');
 
 const Order = db.define('order', {
-    Address: {
+    address: {
         type: Sequelize.STRING,
         allowNull: false,
         validate: {
@@ -14,7 +14,7 @@ const Order = db.define('order', {
         type: Sequelize.ENUM(['Created', 'Processing', 'Cancelled', 'Completed']),
         defaultValue: 'Created'
     },
-    Date: {
+    date: {
         type: Sequelize.DATE,
         defaultValue : Sequelize.NOW
     }

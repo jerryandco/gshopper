@@ -11,21 +11,34 @@
  * Now that you've got the main idea, check it out in practice below!
  */
 const db = require('../server/db')
-const {User} = require('../server/db/models')
+const {User,
+  Candy,
+  Category,
+  Order,
+  OrderCandy,
+  Review } = require('../server/db/models')
 const { userData, candyData, reviewsData, categoriesData, ordersData} = require('./seedData.js')
 
 async function seed () {
   await db.sync({force: true})
   console.log('db synced!')
-  console.log(userData)
+
   // Whoa! Because we `await` the promise that db.sync returns, the next line will not be
   // executed until that promise resolves!
 
   const users = await User.bulkCreate(userData)
-
+  const candies = await Candy.bulkCreate(candyData)
+  const categories = await Category.bulkCreate(categoriesData)
+  const orders = await Order.bulkCreate(ordersData)
+  const reviews = await Review.bulkCreate(reviewsData)
   // Wowzers! We can even `await` on the right-hand side of the assignment operator
   // and store the result that the promise resolves to in a variable! This is nice!
   console.log(`seeded ${users.length} users`)
+  console.log(`seeded ${candies.length} candies`)
+  console.log(`seeded ${categories.length} categories`)
+  console.log(`seeded ${orders.length} orders`)
+  console.log(`seeded ${reviews.length} reviews`)
+
   console.log(`seeded successfully`)
 }
 
