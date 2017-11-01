@@ -63,7 +63,7 @@ class Candies extends Component {
           <div className="all-candies" key={candy.id}>
             <NavLink to={`/candies/${candy.id}`}>
               <h2>{candy.name}</h2>
-              <img src={candy.image} />
+              <img src={candy.image} className="candy-image" />
               <h3>{candy.description}</h3>
               <h3>Stock: {candy.quantity}</h3>
             </NavLink>
