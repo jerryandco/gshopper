@@ -10,11 +10,12 @@ class Candies extends Component {
     super(props);
   }
 
-  componentDidMount(){
+  componentDidMount() {
     this.props.allCandiesFetch();
   }
 
   render() {
+
 
     return (
       <div>
