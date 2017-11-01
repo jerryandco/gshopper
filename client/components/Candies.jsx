@@ -10,7 +10,7 @@ class Candies extends Component {
     super(props);
   }
 
-  componentDidMount(){
+  componentDidMount() {
     this.props.allCandiesFetch();
   }
 
@@ -30,7 +30,7 @@ class Candies extends Component {
         name: "Chewy Candy Mix",
         price: 3,
         description:
-          "A mix of sweet, tart, little colored things of absolute taste perfection",
+        "A mix of sweet, tart, little colored things of absolute taste perfection",
         image: "./images/chewycandymix.jpg",
         quantity: 20,
         categoryId: 10
