@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { NavLink, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { putProductThunk } from "../store/products.js";
+import { createOptions } from "./Admin.js";
 
 class AddProduct extends Component {
   constructor(props) {
@@ -10,12 +11,16 @@ class AddProduct extends Component {
   }
   handleSubmit(event) {
     event.preventDefault();
-    let name = event.target.name.value;
-    let price = +event.target.price.value;
-    let image = event.target.image.value;
-    let quantity = +event.target.quantity.value;
-    let description = event.target.description.value;
-    const productObj = {};
+    let id = +this.props.match.params.id,
+      name = event.target.name.value,
+      price = +event.target.price.value,
+      image = event.target.image.value,
+      quantity = +event.target.quantity.value,
+      description = event.target.description.value,
+      categories = event.target.categories.value,
+      productObj = {},
+      candyCategoryArr = [];
+
     if (name.length !== 0) {
       productObj.name = name;
     }
@@ -31,10 +36,27 @@ class AddProduct extends Component {
     if (description.length !== 0) {
       productObj.description = description;
     }
-    this.props.putProduct(productObj, this.props.ownProps.history);
+
+    categories = categories.map(category => {
+      return +category.id;
+    });
+    //Need to associate candyId after candy is created
+    candyCategoryArr = categories;
+
+    this.props.putProduct(
+      productObj,
+      candyCategoryArr,
+      this.props.ownProps.history
+    );
   }
 
   render() {
+    let isMounted = this.props.categories,
+      categories = this.props.categories,
+      categoryOptions = null;
+    if (isMounted) {
+      categoryOptions = createOptions(categories, "categories");
+    }
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
@@ -58,6 +80,7 @@ class AddProduct extends Component {
             Image:
             <input type="text" name="image" />
           </label>
+          {isMounted && categories}
           <input type="submit" value="Submit" />
         </form>
       </div>
@@ -65,9 +88,15 @@ class AddProduct extends Component {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    categories: state.categories
+  };
+};
+
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  putProduct: (product, history) => {
-    return dispatch(putProductThunk(product, history));
+  putProduct: (product, candyCategory, history) => {
+    return dispatch(putProductThunk(product, candyCategory, history));
   },
   ownProps
 });

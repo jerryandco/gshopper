@@ -11,14 +11,13 @@ class PutOrder extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    const address = event.target.adress.value;
-    const status = event.target.status.value;
-    const orderObj = {};
+    const id = +this.props.match.params.id,
+      address = event.target.adress.value,
+      status = event.target.status.value,
+      orderObj = {status};
+
     if (address.length !== 0) {
       orderObj.address = {};
-    }
-    if (status.length !== 0) {
-      orderObj.status = status;
     }
     this.props.putOrder(orderObj, this.props.ownProps.history);
   }
@@ -33,10 +32,20 @@ class PutOrder extends Component {
             Address:
             <input type="text" name="name" autoFocus />
           </label>
-          <label>
-            Status:
-            <input type="text" name="name" />
-          </label>
+          <select name="status">
+            <option key="1" value="Created">
+              Created
+            </option>
+            <option key="2" value="Processing">
+              Processing
+            </option>
+            <option key="3" value="Cancelled">
+              Cancelled
+            </option>
+            <option key="4" value="Completed">
+              Completed
+            </option>
+          </select>
           <input type="submit" value="Submit" />
         </form>
       </div>
@@ -46,8 +55,8 @@ class PutOrder extends Component {
 
 const mapDispatchToProps = (dispatch, history) => {
   return {
-    putCategory: (category, history) => {
-      return dispatch(putOrderThunk(category, history));
+    putOrder: (order, history) => {
+      return dispatch(putOrderThunk(order, history));
     }
   };
 };

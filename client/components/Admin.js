@@ -4,41 +4,48 @@ import { connect } from "react-redux";
 import AddProduct from "./AddProduct.js";
 import AddCategory from "./AddCategory.js";
 
+export const createOptions = (table, name) => {
+  const options = table.map(row => {
+    return (
+      <option key={row.id} value={row.id}>
+        {row.name}
+      </option>
+    );
+  });
+  return (
+    <select name={name} multiple>
+      {options}
+    </select>
+  );
+};
+//admin route should be something not accessible solely by hardcoding into the url, should return something like "must be an admin to access this page"
 class Admin extends Component {
   constructor(props) {
     super(props);
-    this.createUsers = this.createUsers.bind(this);
-    this.createCandies = this.createCandies.bind(this);
+    this.createElements = this.createElements.bind(this);
   }
 
-  createUsers() {
-    let users = this.props.users;
-    let userElements = users.map(user => {
+  createElements(table, name) {
+    return table.map(row => {
       return (
-        <NavLink key={user.id} to={`/useredit/${user.id}`}>
-          <button id={user.id} />
+        <NavLink key={row.id} to={`/${name}edit/${row.id}`}>
+          <button id={row.id} />
         </NavLink>
       );
     });
-    return userElements;
   }
 
-  createCandies() {
-    let candies = this.props.candies;
-    let candyElements = candies.map(user => {
-      return (
-        <NavLink key={candy.id} to={`/candyedit/${candy.id}`}>
-          <button id={candy.id} />
-        </NavLink>
-      );
-    });
-    return candyElements;
-  }
   render() {
-    const isMounted = this.props.candies;
-    if(isMounted) {
-      const candies = this.createCandies();
-      const users = this.createUsers();
+    const allCandy = this.props.candies;
+    const allUsers = this.props.users;
+    const allOrders = this.props.users;
+    const allReviews = this.props.reviews;
+
+    if (allCandy && allUsers && allOrders && allReviews) {
+      let candies = this.createElements(allCandy, "candies"),
+        users = this.createElements(allUsers, "users"),
+        orders = this.createElements(allOrders, "orders"),
+        reviews = this.createElements(allReviews, "reviews");
     }
     return (
       <div>
@@ -46,6 +53,8 @@ class Admin extends Component {
         <AddCategory />
         {isMounted && candies}
         {isMounted && users}
+        {isMounted && orders}
+        {isMounted && reviews}
       </div>
     );
   }
@@ -53,7 +62,9 @@ class Admin extends Component {
 
 const mapStateToProps = state => ({
   candies: state.candies,
-  users: state.users
+  users: state.users,
+  reviews: state.reviews,
+  orders: state.orders
 });
 
 export default withRouter(connect(mapStateToProps)(Admin));
