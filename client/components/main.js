@@ -29,6 +29,7 @@ const Main = (props) => {
               <Link to="/login">Login</Link>
               <Link to="/signup">Sign Up</Link>
               <Link to="/candies">All Candy</Link>
+              <Link to="/categories">All Categories</Link>
             </div>
         }
       </nav>

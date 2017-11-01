@@ -1,12 +1,13 @@
 const router = require('express').Router()
-const { Candy, Category } = require('../db/models')
+const { Candy, Category, CandyCategory } = require('../db/models')
+
 module.exports = router
 
 router.get('/', (req, res, next) => {
   Candy.findAll({
     include: {
       model: Category,
-      through: 'candy_category'
+      through: CandyCategory
     }
   })
     .then(users => res.json(users))
