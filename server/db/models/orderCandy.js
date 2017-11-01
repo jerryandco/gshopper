@@ -25,4 +25,5 @@ const OrderCandy = db.define('ordercandy', {
     }
 });
 
+
 module.exports = OrderCandy;

@@ -27,8 +27,8 @@ async function seed () {
   // executed until that promise resolves!
 
   const users = await User.bulkCreate(userData)
-  const candies = await Candy.bulkCreate(candyData)
   const categories = await Category.bulkCreate(categoriesData)
+  const candies = await Candy.bulkCreate(candyData)
   const orders = await Order.bulkCreate(ordersData)
   const reviews = await Review.bulkCreate(reviewsData)
   // Wowzers! We can even `await` on the right-hand side of the assignment operator

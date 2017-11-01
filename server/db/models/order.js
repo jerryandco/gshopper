@@ -1,6 +1,7 @@
 const Sequelize = require('sequelize');
 const db = require('../db');
 const User = require('./user');
+const OrderCandy = require('./orderCandy');
 
 const Order = db.define('order', {
     address: {
@@ -16,7 +17,10 @@ const Order = db.define('order', {
     },
     date: {
         type: Sequelize.DATE,
-        defaultValue : Sequelize.NOW
+        defaultValue: Sequelize.NOW
+    },
+    price: {
+        type: Sequelize.DOUBLE
     }
 },
     {

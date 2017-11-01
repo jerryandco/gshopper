@@ -298,6 +298,14 @@
   {
     name: "Hard Candy",
     description: "Yeaa baby!"
+  },
+  {
+    name: "Soft Candy",
+    description: "Also Yeaa baby!"
+  },
+  {
+    name: "Chocolate Candy",
+    description: "Yeaa baby Chocolate!"
   }
 ];
 
