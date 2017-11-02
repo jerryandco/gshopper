@@ -29,7 +29,7 @@ router.get('/:id', (req, res, next) => {
     })
 })
 
-router.put('/:id/addCategory', (req, res, next) => {
+router.post('/:id/addCategory', (req, res, next) => {
   Candy.findById(req.params.id)
     .then(foundCandy => {
       return foundCandy.addCategories(req.body.id);
@@ -39,3 +39,46 @@ router.put('/:id/addCategory', (req, res, next) => {
     })
 });
 
+router.delete('/:id', (req, res, next) => {
+  Candy.destroy({
+    where: {
+      id: req.params.id
+    }
+  })
+    .then(() => {
+      res.sendStatus(201);
+    })
+})
+
+router.post('/', (req, res, next) => {
+  Candy.create(req.body.candy)
+    .then(createCandy => {
+      return createCandy.addCategories(req.body.categories);
+    })
+    .then(() => {
+      return Candy.findOne({
+        where: {
+          name: req.body.candy.name
+        },
+        include: {
+          model: Category,
+          through: CandyCategory
+        }
+      })
+    })
+    .then(found => {
+      res.json(found);
+    })
+    .catch(next);
+})
+
+router.delete('/:id', (req, res, next) => {
+  Candy.destroy({
+    where: {
+      id: req.params.id
+    }
+  })
+    .then(() => {
+      res.sendStatus(204);
+    })
+})
