@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { NavLink, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import { putUserThunk } from "../store/products.js";
+import { putUserThunk } from "../store/users.js";
 
 //way to force user to reset password??
 class PutUser extends Component {

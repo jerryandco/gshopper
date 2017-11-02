@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { NavLink, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import { postProductThunk } from "../store/products.js";
+import { postCandyThunk } from "../store/candies.js";
 import { createOptions } from "./Admin.js";
 
 class AddProduct extends Component {
@@ -30,6 +30,7 @@ class AddProduct extends Component {
     categories = categories.map(category => {
       return +category.id;
     });
+
     //Need to associate candyId after candy is created
     candyCategoryArr = categories;
     this.props.postProduct(
