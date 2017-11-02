@@ -73,7 +73,7 @@ const ordersReducer = function(orders = [], action) {
       var otherOrders = orders.filter(order => order.id !== action.order.id);
       return [action.order, ...otherOrders];
     default:
-      return orderes;
+      return orders;
   }
 };
 
