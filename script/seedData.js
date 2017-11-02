@@ -78,7 +78,7 @@
       "A mix of sweet, tart, little colored things of absolute taste perfection",
     image: "/images/chewycandymix.jpg",
     quantity: 20,
-    categoryId: 10
+    categoryId: 1
   },
   {
     name: "Chocolate Abundance",
@@ -86,7 +86,7 @@
     description: "Countless varieties of the treat of the Gods",
     image: "/images/chocoloateabundance.jpg",
     quantity: 20,
-    categoryId: 10
+    categoryId: 2
   },
   {
     name: "Confiserie Chocolate",
@@ -94,7 +94,7 @@
     description: "Decadence, heaven, my oh my flavor everywhere",
     image: "/images/confiseriechocolate.jpg",
     quantity: 15,
-    categoryId: 1
+    categoryId: 2
   },
   {
     name: "Almond Chocolate Coconut Magic",
@@ -103,7 +103,7 @@
       "Put these three things in one and your heading straight to NIRVANA",
     image: "/images/confiseriechocolate.jpg",
     quantity: 59,
-    categoryId: 1
+    categoryId: 4
   },
   {
     name: "Chocolate Covered... APPLE!",
@@ -112,7 +112,7 @@
       "So, you want some healthy, some sweet, what comes? This, chocolate covered... APPLES!",
     image: "/images/fancyapples.jpg",
     quantity: 12,
-    categoryId: 1
+    categoryId: 3
   },
   {
     name: "Super Fine Hard Candies",
@@ -120,7 +120,7 @@
     description: "Old fashioned but with class. Grandma would approve.",
     image: "/images/fancyhardcandy.jpg",
     quantity: 11,
-    categoryId: 1
+    categoryId: 5
   },
   {
     name: "Ecstatic Ginger Cookies",
@@ -129,7 +129,7 @@
       "These little guys got the perfect blend of sweet with that ginger kick",
     image: "/images/gingercookies.jpg",
     quantity: 58,
-    categoryId: 1
+    categoryId: 2
   },
   {
     name: "Floribunda Chocolate",
@@ -147,7 +147,7 @@
       "No touching these hardies. They full of little bits of flavor, utterly new to your taste buds.",
     image: "/images/hardcandymix.jpg",
     quantity: 99,
-    categoryId: 1
+    categoryId: 6
   },
   {
     name: "Handmade Heart Candies",
@@ -156,7 +156,7 @@
       "Hot damn! It's loving season. And you gotta show your in it. Pop! Heart Candy!",
     image: "/images/heartcandy.jpg",
     quantity: 69,
-    categoryId: 1
+    categoryId: 6
   },
   {
     name: "Jelly Beans",
@@ -164,7 +164,7 @@
     description: "Eat a bean, sprout some happy!",
     image: "/images/jellybeans.jpg",
     quantity: 78,
-    categoryId: 1
+    categoryId: 6
   },
   {
     name: "Cute as Hell Donuts",
@@ -172,7 +172,7 @@
     description: "These guys are as big as top of your finger! Tiny donuts!",
     image: "/images/littledonuts.jpg",
     quantity: 6,
-    categoryId: 1
+    categoryId: 4
   },
   {
     name: "Bright Macaroons",
@@ -180,7 +180,7 @@
     description: "You like macaroons? You at least like the word? Get em!",
     image: "/images/macaroons.jpg",
     quantity: 43,
-    categoryId: 1
+    categoryId: 3
   },
   {
     name: "Mozart Kugeln Chocolate",
@@ -188,7 +188,7 @@
     description: "With a name this classy, how could you say no??",
     image: "/images/mozartkugelnchocolate.jpg",
     quantity: 23,
-    categoryId: 1
+    categoryId: 2
   },
   {
     name: "Nutty Sweety Bread",
@@ -196,7 +196,7 @@
     description: "Yes, it's as good as it looks. Hot damn!",
     image: "/images/nuttysweetybread.jpg",
     quantity: 12,
-    categoryId: 1
+    categoryId: 3
   },
   {
     name: "Pink Meringue",
@@ -204,7 +204,7 @@
     description: "Cute! Too cute to eat? Said no one ever",
     image: "/images/pinkmeringue.jpg",
     quantity: 48,
-    categoryId: 19
+    categoryId: 4
   },
   {
     name: "Popular Candy Mix",
@@ -212,7 +212,7 @@
     description: "Sometimes you gotta settle for what you can get.",
     image: "/images/popularcandymix.jpg",
     quantity: 79,
-    categoryId: 10
+    categoryId: 4
   },
   {
     name: "Red and Green Lollies",
@@ -220,7 +220,7 @@
     description: "Christmas you may think. We think... yeah, the same thing.",
     image: "/images/redgreenlolly.jpg",
     quantity: 48,
-    categoryId: 1
+    categoryId: 4
   },
   {
     name: "Super Sour Candy",
@@ -229,7 +229,7 @@
       "Nostalgia? If you had this in the young years, you sure can taste it right now...",
     image: "/images/sourcandy.jpg",
     quantity: 48,
-    categoryId: 19
+    categoryId: 4
   },
   {
     name: "Truffles",
@@ -306,8 +306,26 @@
   {
     name: "Chocolate Candy",
     description: "Yeaa baby Chocolate!"
+  },
+  {
+    name: "Lollipops",
+    description: "Owls love them!"
+  },
+  {
+    name: "Baby Candy",
+    description: "Take it, it's easy!"
+  },
+  {
+    name: "Healthy Candy",
+    description: "If you like this, then you might be weird!"
   }
 ];
+
+const candyCategoriesData = candyData.map(( candy, index, candyData )=> ({
+    candyId: index + 1,
+    categoryId: (Math.floor(Math.random() * 6) + 1 )
+
+}))
 
  const ordersData = [
   {
@@ -323,5 +341,6 @@ module.exports = {
   candyData,
   reviewsData,
   categoriesData,
+  candyCategoriesData,
   ordersData
 }

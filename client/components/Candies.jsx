@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { withRouter, NavLink, Link } from "react-router-dom";
 import store from "../store"
 import { fetchCandies } from "../store/candies.js"
-
+import AddToCart from "./AddToCart.jsx";
 class Candies extends Component {
   constructor(props) {
     super(props);
@@ -22,6 +22,7 @@ class Candies extends Component {
         <h1>All Candy</h1>
         {this.props.allCandies.map(candy => (
           <div className="all-candies" key={candy.id}>
+            <AddToCart item={candy} />
             <NavLink to={`/candies/${candy.id}`}>
               <h2>{candy.name}</h2>
               <img src={candy.image} className="candy-image" />
