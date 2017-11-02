@@ -11,6 +11,7 @@ import {logout} from '../store'
  *  rendered out by the component's `children`.
  */
 const Main = (props) => {
+  window.localStorage.cart = JSON.stringify([]);
   const {children, handleClick, isLoggedIn} = props
   console.log(children, handleClick, isLoggedIn)
   return (
