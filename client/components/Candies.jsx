@@ -15,46 +15,7 @@ class Candies extends Component {
   }
 
   render() {
-    const dumbyCandy = [
-      {
-        id: 1,
-        name: "Cavendish Drops",
-        price: 3,
-        description: "Classy, tart, make your heart drop",
-        image: "./images/cavendishcandy.jpg",
-        quantity: 20,
-        categoryId: 1
-      },
-      {
-        id: 2,
-        name: "Chewy Candy Mix",
-        price: 3,
-        description:
-        "A mix of sweet, tart, little colored things of absolute taste perfection",
-        image: "./images/chewycandymix.jpg",
-        quantity: 20,
-        categoryId: 10
-      },
-      {
-        id: 3,
-        name: "Chocolate Abundance",
-        price: 10,
-        description: "Countless varieties of the treat of the Gods",
-        image: "./images/chocoloateabundance.jpg",
-        quantity: 20,
-        categoryId: 10
-      },
-      {
-        id: 4,
-        name: "Confiserie Chocolate",
-        price: 12,
-        description: "Decadence, heaven, my oh my flavor everywhere",
-        image: "./images/confiseriechocolate.jpg",
-        quantity: 15,
-        categoryId: 1
-      },
-    ];
-    console.log(this.props)
+
 
     return (
       <div>
@@ -78,8 +39,9 @@ class Candies extends Component {
    * CONTAINER
    */
 const mapStateToProps = (state) => {
+  console.log('state', state)
   return {
-    allCandies: state.candies
+    allCandies: state.candies.allCandies //candies is the reducer in Combine Reducers
   }
 }
 

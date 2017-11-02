@@ -10,18 +10,24 @@ const GET_CANDIES = 'GET_CANDIES'
  * INITIAL STATE
  */
 
+ const initialState = {
+   allCandies: []
+ }
+
 
 /**
  * ACTION CREATORS
  */
-const getCandies = candies => ({type: GET_CANDIES, candies})
+const candiesAction = candies => ({type: GET_CANDIES, candies})
 
-export default function (state = [], action) {
+export default function (state = initialState, action) {
+  const newState = Object.assign({}, state)
     switch (action.type) {
       case GET_CANDIES:
-        return action.candies
+      newState.allCandies = action.candies
+      return newState
       default:
-        return state
+        return newState
     }
   }
 
@@ -33,9 +39,10 @@ export default function (state = [], action) {
       .get("/api/candies")
       .then(res => res.data)
       .then(candies => {
-        const action = getCandies(candies);
+        const action = candiesAction(candies);
         dispatch(action);
       })
       .catch(err => console.error(err))
     }
   }
+
