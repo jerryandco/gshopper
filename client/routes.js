@@ -9,6 +9,7 @@ import {me} from './store'
 import Candies from './components/Candies.jsx'
 import Categories from './components/Categories.jsx'
 import SingleCandy from './components/SingleCandy.jsx'
+import Home from './components/Home.jsx';
 
 /**
  * COMPONENT
@@ -24,8 +25,10 @@ class Routes extends Component {
     return (
       <Router history={history}>
         <Main>
+          
           <Switch>
             {/* Routes placed here are available to all visitors */}
+            <Route exact path="/" component={Home} />
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
             {
