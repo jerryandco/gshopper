@@ -14,10 +14,11 @@ const db = require('../server/db')
 const {User,
   Candy,
   Category,
+  CandyCategory,
   Order,
   OrderCandy,
   Review } = require('../server/db/models')
-const { userData, candyData, reviewsData, categoriesData, ordersData} = require('./seedData.js')
+const { userData, candyData, reviewsData, categoriesData, ordersData, candyCategoriesData} = require('./seedData.js')
 
 async function seed () {
   await db.sync({force: true})
@@ -29,6 +30,7 @@ async function seed () {
   const users = await User.bulkCreate(userData)
   const categories = await Category.bulkCreate(categoriesData)
   const candies = await Candy.bulkCreate(candyData)
+  const candyCategories = await CandyCategory.bulkCreate(candyCategoriesData)
   const orders = await Order.bulkCreate(ordersData)
   const reviews = await Review.bulkCreate(reviewsData)
   // Wowzers! We can even `await` on the right-hand side of the assignment operator
@@ -36,6 +38,8 @@ async function seed () {
   console.log(`seeded ${users.length} users`)
   console.log(`seeded ${candies.length} candies`)
   console.log(`seeded ${categories.length} categories`)
+  console.log(`seeded ${candyCategories.length} candyCategories`)
+
   console.log(`seeded ${orders.length} orders`)
   console.log(`seeded ${reviews.length} reviews`)
 
