@@ -16,6 +16,14 @@ const Category = db.define('category', {
         validate: {
             notEmpty: true
         }
+    },
+    image: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        validate: {
+            notEmpty: true,
+        },
+        defaultValue: '/images/cavendishcandy.jpg'
     }
 });
 
