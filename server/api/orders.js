@@ -10,7 +10,6 @@ router.get('/', (req, res, next) => {
 })
 
 router.get('/:id', (req, res, next) => {
-  console.log(req.params.id);
   Order.findById(req.params.id)
     .then(foundOrder => {
       res.json(foundOrder);
