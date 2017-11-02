@@ -5,6 +5,7 @@ import { withRouter, NavLink, Link } from 'react-router-dom';
 import store from '../store';
 import { fetchCandies } from '../store/candies.js';
 import { fetchCategories } from '../store/categories.js';
+import AddToCart from './AddToCart.jsx';
 
 class Home extends Component {
   constructor(props) {
@@ -27,9 +28,8 @@ class Home extends Component {
           ];
           if (featuredArr.indexOf(category) < 0) {
             featuredArr.push(category);
-          }
-          else{
-              i--;
+          } else {
+            i--;
           }
         }
       }
@@ -43,8 +43,8 @@ class Home extends Component {
           ];
           if (featuredArr.indexOf(candy) < 0) {
             featuredArr.push(candy);
-          }else{
-              i--
+          } else {
+            i--;
           }
         }
       }
@@ -59,7 +59,9 @@ class Home extends Component {
         {this.generateFeaturedList('category').map(featCategory => (
           <div key={featCategory.id}>
             <p>{featCategory.name}</p>
-            <img src={featCategory.image} className="featured-image"/>
+            <img src={featCategory.image} className="featured-image" />
+            <p>{featCategory.description}</p>
+           
           </div>
         ))}
 
@@ -68,6 +70,8 @@ class Home extends Component {
           <div key={featCandy.id}>
             <p>{featCandy.name}</p>
             <img src={featCandy.image} className="featured-image" />
+            <p>{featCandy.description}</p>
+            <AddToCart item={featCandy} />
           </div>
         ))}
       </div>

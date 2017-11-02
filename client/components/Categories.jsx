@@ -22,6 +22,7 @@ console.log('props', this.props)
           <div className="all-categories" key={category.id}>
             <NavLink to={`/categories/${category.id}`}>
               <h2>{category.name}</h2>
+              <img src={category.image} className="image" />
               <h3>{category.description}</h3>
             </NavLink>
           </div>
