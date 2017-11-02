@@ -1,50 +1,52 @@
 import React, { Component } from "react";
-//import PropTypes from 'prop-types'
 import { connect } from "react-redux";
 import { withRouter, NavLink, Link } from "react-router-dom";
-import store from "../store"
-import { fetchSingleCandies } from "../store/candies.js"
+import store from "../store";
+import { fetchCandies } from "../store/candies.js";
 
 class Candies extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  componentDidMount(){
+  componentDidMount() {
     this.props.allCandiesFetch();
   }
 
   render() {
-
-    return (
-      <div>
-        <h1>All Candy</h1>
-        {this.props.allCandies.map(candy => (
-          <div className="all-candies" key={candy.id}>
-            <NavLink to={`/candies/${candy.id}`}>
-              <h2>{candy.name}</h2>
-              <img src={candy.image} className="candy-image" />
-              <h3>{candy.description}</h3>
-              <h3>Stock: {candy.quantity}</h3>
-            </NavLink>
+    const candyId = this.props.match.params.id;
+    if (this.props.allCandies.length) {
+      const singleCandy = this.props.allCandies.find(
+        candy => candy.id === +candyId
+      );
+      return (
+        <div>
+          <h1>{singleCandy.name}</h1>
+          <div className="all-candies" key="1">
+            <img src={singleCandy.image} className="singleCandy-image" />
+            <h3>description</h3>
           </div>
-        ))}
-      </div>
-    );
+        </div>
+      );
+    } else {
+      return <div> loading </div>;
+    }
   }
 }
 
 /**
    * CONTAINER
    */
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     allCandies: state.candies.allCandies
-  }
-}
+  };
+};
 
-
+const mapDispatchToProps = dispatch => {
+  return {
+    allCandiesFetch: () => dispatch(fetchCandies())
+  };
+};
 
 // The `withRouter` wrapper makes sure that updates are not blocked
 // when the url changes
-export default withRouter(connect(mapStateToProps)(Candies));
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(Candies)
+);

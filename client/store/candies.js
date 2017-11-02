@@ -46,15 +46,3 @@ export default function (state = initialState, action) {
     }
   }
 
-  export function fetchSingleCandy(candyId){
-    return function thunk(dispatch){
-      return axios
-      .get(`/api/candies/${candyId}`)
-      .then(res => res.data)
-      .then(candy => {
-        const action = singleCandyAction(candy);
-        dispatch(action);
-      })
-      .catch(err => console.error(err))
-    }
-  }

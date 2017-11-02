@@ -8,6 +8,7 @@ import {Main, Login, Signup, UserHome} from './components'
 import {me} from './store'
 import Candies from './components/Candies.jsx'
 import Categories from './components/Categories.jsx'
+import SingleCandy from './components/SingleCandy.jsx'
 
 /**
  * COMPONENT
@@ -35,7 +36,8 @@ class Routes extends Component {
                 </Switch>
             }
             {/* Displays our Login component as a fallback */}
-            {/* <Route component={Login} /> */}
+            {/* <Route component={Login} /> */}\
+            <Route path="/candies/:id" component={SingleCandy} />
             <Route path="/candies" component={Candies} />
             <Route path="/categories" component={Categories} />
           </Switch>
