@@ -20,7 +20,7 @@ class Candies extends Component {
           <h1>{singleCandy.name}</h1>
           <div className="all-candies" key="1">
             <img src={singleCandy.image} className="singleCandy-image" />
-            <h3>description</h3>
+            <h3>{singleCandy.description}</h3>
           </div>
         </div>
       );
