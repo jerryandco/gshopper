@@ -58,8 +58,10 @@ class Home extends Component {
         <h1>Featured Categories</h1>
         {this.generateFeaturedList('category').map(featCategory => (
           <div key={featCategory.id}>
+          <NavLink to={`/categories/${featCategory.id}`}>
             <p>{featCategory.name}</p>
             <img src={featCategory.image} className="featured-image" />
+            </NavLink>
             <p>{featCategory.description}</p>
            
           </div>
