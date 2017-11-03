@@ -10,10 +10,8 @@ class Filter extends Component {
       candiesSearch: this.props.allCandies,
       categoriesSearch: this.props.allCategories
     };
-    console.log('state', this.props);
     this.handleFilterForm = this.handleFilterForm.bind(this);
   }
-
 
   handleFilterForm = event => {
     if (event.target.value.length === 0) {
@@ -40,43 +38,55 @@ class Filter extends Component {
     if (this.props.allCandies.length && this.props.allCategories.length) {
       return (
         <div className="filter-list">
-          <form>
-            <fieldset className="form-group">
-              <input
-                type="text"
-                placeholder="Candy Name"
-                onChange={this.handleFilterForm}
-              />
-              <input
-                type="text"
-                placeholder="Category Name"
-                onChange={this.handleFilterForm}
-              />
-            </fieldset>
-          </form>
+          {this.props.type === 'candy' && (
+            <div>
+              <h4>Search For A Candy</h4>
+              <form>
+                <fieldset className="form-group">
+                  <input
+                    type="text"
+                    placeholder="Candy Name"
+                    onChange={this.handleFilterForm}
+                  />
+                </fieldset>
+              </form>
 
-          {this.props.type === 'candy' &&
-            this.state.candiesSearch.map(candy => (
-              <div className="all-candies" key={candy.id}>
-                <NavLink to={`/candies/${candy.id}`}>
-                  <h2>{candy.name}</h2>
-                  <img src={candy.image} className="image" />
-                </NavLink>
-                <h3>{candy.description}</h3>
-                <h3>Stock: {candy.quantity}</h3>
-                <AddToCart />
-              </div>
-            ))}
-          {this.props.type === 'category' &&
-            this.state.categoriesSearch.map(category => (
-              <div className="all-categories" key={category.id}>
-                <NavLink to={`/categories/${category.id}`}>
-                  <h2>{category.name}</h2>
-                  <img src={category.image} className="image" />
-                </NavLink>
-                <h3>{category.description}</h3>
-              </div>
-            ))}
+              {this.state.candiesSearch.map(candy => (
+                <div className="all-candies" key={candy.id}>
+                  <NavLink to={`/candies/${candy.id}`}>
+                    <h2>{candy.name}</h2>
+                    <img src={candy.image} className="image" />
+                  </NavLink>
+                  <h3>{candy.description}</h3>
+                  <h3>Stock: {candy.quantity}</h3>
+                  <AddToCart />
+                </div>
+              ))}
+            </div>
+          )}
+          {this.props.type === 'category' && (
+            <div>
+              <h4>Search For A Category</h4>
+              <form>
+                <fieldset className="form-group">
+                  <input
+                    type="text"
+                    placeholder="Category Name"
+                    onChange={this.handleFilterForm}
+                  />
+                </fieldset>
+              </form>
+              {this.state.categoriesSearch.map(category => (
+                <div className="all-categories" key={category.id}>
+                  <NavLink to={`/categories/${category.id}`}>
+                    <h2>{category.name}</h2>
+                    <img src={category.image} className="image" />
+                  </NavLink>
+                  <h3>{category.description}</h3>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       );
     } else {

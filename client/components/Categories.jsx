@@ -1,10 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 //import PropTypes from 'prop-types'
 import { connect } from 'react-redux';
-import { withRouter, NavLink, Link } from 'react-router-dom';
-import store from '../store';
+import { withRouter } from 'react-router-dom';
+
 import Filter from './Filter.jsx';
-import { fetchCategories } from '../store/categories.js';
 
 const Categories = props => {
   return (
@@ -28,14 +27,6 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    allCategoriesFetch: () => dispatch(fetchCategories())
-  };
-};
-
 // The `withRouter` wrapper makes sure that updates are not blocked
 // when the url changes
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(Categories)
-);
+export default withRouter(connect(mapStateToProps)(Categories));
