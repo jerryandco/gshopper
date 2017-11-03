@@ -9,6 +9,7 @@ import {me} from './store'
 import Candies from './components/Candies.jsx'
 import Categories from './components/Categories.jsx'
 import SingleCandy from './components/SingleCandy.jsx'
+import Cart from './components/Cart.jsx'
 import SingleCategory from './components/SingleCategory.jsx'
 import Home from './components/Home.jsx';
 import { fetchCategories } from './store/categories.js';
@@ -28,7 +29,7 @@ class Routes extends Component {
     return (
       <Router history={history}>
         <Main>
-          
+
           <Switch>
             {/* Routes placed here are available to all visitors */}
             <Route exact path="/" component={Home} />
@@ -47,6 +48,7 @@ class Routes extends Component {
             <Route path="/candies" component={Candies} />
             <Route path="/categories/:id" component={SingleCategory} />
             <Route path="/categories" component={Categories} />
+            <Route path="/cart" component={Cart} />
           </Switch>
         </Main>
       </Router>
@@ -72,7 +74,7 @@ const mapDispatch = (dispatch) => {
       dispatch(fetchCategories())
       dispatch(fetchCandies())
     }
-    
+
   }
 }
 
