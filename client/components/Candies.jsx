@@ -22,13 +22,13 @@ class Candies extends Component {
         <h1>All Candy</h1>
         {this.props.allCandies.map(candy => (
           <div className="all-candies" key={candy.id}>
-            <AddToCart item={candy} />
             <NavLink to={`/candies/${candy.id}`}>
               <h2>{candy.name}</h2>
-              <img src={candy.image} className="candy-image" />
+              <img src={candy.image} className="image" />
+              </NavLink>
               <h3>{candy.description}</h3>
               <h3>Stock: {candy.quantity}</h3>
-            </NavLink>
+              <AddToCart item={candy} />
           </div>
         ))}
       </div>
