@@ -9,6 +9,7 @@ import {me} from './store'
 import Candies from './components/Candies.jsx'
 import Categories from './components/Categories.jsx'
 import SingleCandy from './components/SingleCandy.jsx'
+import Cart from './components/Cart.jsx'
 import Home from './components/Home.jsx';
 
 /**
@@ -25,7 +26,7 @@ class Routes extends Component {
     return (
       <Router history={history}>
         <Main>
-          
+
           <Switch>
             {/* Routes placed here are available to all visitors */}
             <Route exact path="/" component={Home} />
@@ -43,6 +44,7 @@ class Routes extends Component {
             <Route path="/candies/:id" component={SingleCandy} />
             <Route path="/candies" component={Candies} />
             <Route path="/categories" component={Categories} />
+            <Route path="/cart" component={Cart} />
           </Switch>
         </Main>
       </Router>
