@@ -12,13 +12,9 @@ import SingleCandy from './components/SingleCandy.jsx'
 import Cart from './components/Cart.jsx'
 import SingleCategory from './components/SingleCategory.jsx'
 import Home from './components/Home.jsx';
-<<<<<<< HEAD
-import AddProduct from './components/AddProduct'
-=======
 import { fetchCategories } from './store/categories.js';
 import { fetchCandies } from './store/candies.js';
 
->>>>>>> dac8c79f555d55ab8c5f58523401d3d74e58275f
 /**
  * COMPONENT
  */
