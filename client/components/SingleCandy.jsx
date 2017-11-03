@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter, NavLink, Link } from 'react-router-dom';
 import store from '../store';
 import { fetchCandies } from '../store/candies.js';
-
+import AddToCart from './AddToCart.jsx';
 class Candies extends Component {
   componentDidMount() {
     this.props.allCandiesFetch();
@@ -23,6 +23,7 @@ class Candies extends Component {
             <img src={singleCandy.image} className="singleCandy-image" />
             <h3>{singleCandy.description}</h3>
             <h3>Stock: {singleCandy.quantity}</h3>
+            <AddToCart item={singleCandy} />
           </div>
         </div>
       );

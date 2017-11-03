@@ -10,6 +10,9 @@ class Cart extends Component {
 
   constructor() {
     super()
+    this.state = {
+      cart: JSON.parse(window.localStorage.cart)
+    }
     // this.handleClick = this.handleClick.bind(this)
   }
 
@@ -20,7 +23,7 @@ class Cart extends Component {
 
   // handleClick(event) {
   //   console.log(event.target.value)
-
+  //  this.setState()
   // }
 
   render() {
