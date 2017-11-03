@@ -1,33 +1,22 @@
-import React, { Component } from 'react';
+import React from 'react';
 //import PropTypes from 'prop-types'
 import { connect } from 'react-redux';
-import { withRouter, NavLink, Link } from 'react-router-dom';
-import store from '../store';
-import { fetchCategories } from '../store/categories.js';
+import { withRouter } from 'react-router-dom';
 
-class Categories extends Component {
-  // componentDidMount() {
-  //   this.props.allCategoriesFetch();
-  // }
+import Filter from './Filter.jsx';
 
-  render() {
-    console.log('props', this.props);
-    return (
-      <div>
-        <h1>All Categories</h1>
-        {this.props.categories.map(category => (
-          <div className="all-categories" key={category.id}>
-            <NavLink to={`/categories/${category.id}`}>
-              <h2>{category.name}</h2>
-              <img src={category.image} className="image" />
-            </NavLink>
-            <h3>{category.description}</h3>
-          </div>
-        ))}
-      </div>
-    );
-  }
-}
+const Categories = props => {
+  return (
+    <div>
+      {props.categories.length && (
+        <div>
+          <h1>All Categories</h1>
+          <Filter type={'category'} />
+        </div>
+      )}
+    </div>
+  );
+};
 
 /**
    * CONTAINER
@@ -38,14 +27,6 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    allCategoriesFetch: () => dispatch(fetchCategories())
-  };
-};
-
 // The `withRouter` wrapper makes sure that updates are not blocked
 // when the url changes
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(Categories)
-);
+export default withRouter(connect(mapStateToProps)(Categories));
