@@ -51,6 +51,7 @@ export const putCandyThunk = candy => {
         const action = putCandy(changedCandy);
         dispatch(action);
         //history or not?
+      })
       .catch(err => console.error(err))
   }
 }
