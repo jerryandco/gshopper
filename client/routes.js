@@ -11,6 +11,8 @@ import Categories from './components/Categories.jsx'
 import SingleCandy from './components/SingleCandy.jsx'
 import SingleCategory from './components/SingleCategory.jsx'
 import Home from './components/Home.jsx';
+import { fetchCategories } from './store/categories.js';
+import { fetchCandies } from './store/candies.js';
 
 /**
  * COMPONENT
@@ -67,7 +69,10 @@ const mapDispatch = (dispatch) => {
   return {
     loadInitialData () {
       dispatch(me())
+      dispatch(fetchCategories())
+      dispatch(fetchCandies())
     }
+    
   }
 }
 
