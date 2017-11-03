@@ -1,31 +1,14 @@
 import axios from 'axios';
 import history from '../history';
-<<<<<<< HEAD
 //will we reroute?
 
 const GET_CATEGORIES = 'GET_CATEGORIES';
 const POST_CATEGORY = 'POST_CATEGORY';
-=======
-
-/**
- * ACTION TYPES
- */
-const GET_CATEGORIES = 'GET_CATEGORIES';
-
-/**
- * INITIAL STATE
- */
-
-const initialState = {
-  allCategories: []
-};
->>>>>>> d7cde2fec5d4ff25e1e0d8c4437bd679643cdb5e
 
 /**
  * ACTION CREATORS
  */
 const getCategories = categories => ({ type: GET_CATEGORIES, categories });
-<<<<<<< HEAD
 const postCategory = category => ({ type: POST_CATEGORY, category });
 
 export default function(categories = [], action) {
@@ -36,17 +19,6 @@ export default function(categories = [], action) {
       return [action.category, ...categories];
     default:
       return categories;
-=======
-
-export default function(state = initialState, action) {
-  const newState = { ...state };
-  switch (action.type) {
-    case GET_CATEGORIES:
-      newState.allCategories = action.categories;
-      return newState;
-    default:
-      return state;
->>>>>>> d7cde2fec5d4ff25e1e0d8c4437bd679643cdb5e
   }
 }
 
@@ -64,7 +36,6 @@ export function fetchCategories() {
       .catch(err => console.error(err));
   };
 }
-<<<<<<< HEAD
 
 export const postCategoryThunk = category => dispatch => {
   axios
@@ -74,5 +45,3 @@ export const postCategoryThunk = category => dispatch => {
       console.error(`Creating category: ${category} unsuccessful`, err)
     );
 };
-=======
->>>>>>> d7cde2fec5d4ff25e1e0d8c4437bd679643cdb5e
