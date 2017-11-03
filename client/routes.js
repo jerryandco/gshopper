@@ -9,6 +9,7 @@ import {me} from './store'
 import Candies from './components/Candies.jsx'
 import Categories from './components/Categories.jsx'
 import SingleCandy from './components/SingleCandy.jsx'
+import SingleCategory from './components/SingleCategory.jsx'
 import Home from './components/Home.jsx';
 import AddProduct from './components/AddProduct'
 /**
@@ -43,6 +44,7 @@ class Routes extends Component {
             {/* <Route component={Login} /> */}\
             <Route path="/candies/:id" component={SingleCandy} />
             <Route path="/candies" component={Candies} />
+            <Route path="/categories/:id" component={SingleCategory} />
             <Route path="/categories" component={Categories} />
           </Switch>
         </Main>
