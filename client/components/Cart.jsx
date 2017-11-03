@@ -13,7 +13,7 @@ class Cart extends Component {
     this.state = {
       cart: JSON.parse(window.localStorage.cart)
     }
-    // this.handleClick = this.handleClick.bind(this)
+    this.handleClick = this.handleClick.bind(this)
   }
 
   componentDidMount() {
@@ -21,14 +21,19 @@ class Cart extends Component {
 
   }
 
-  // handleClick(event) {
-  //   console.log(event.target.value)
-  //  this.setState()
-  // }
+  handleClick(event) {
+    const cart = JSON.parse(window.localStorage.cart)
+
+    delete cart[event.target.value]
+    window.localStorage.cart = JSON.stringify(cart)
+    this.setState({
+      cart: cart
+    })
+  }
 
   render() {
+
     const cart = JSON.parse(window.localStorage.cart)
-    console.log(cart)
     return (
       <div>
         This is the cart
@@ -36,6 +41,7 @@ class Cart extends Component {
           <div key={key}>
             Name: {key}
             Quantity: {cart[key].quantity}
+            <button value={key}onClick={this.handleClick}> Remove </button>
           </div>
           ))}
       </div>
@@ -46,11 +52,7 @@ class Cart extends Component {
 /**
    * CONTAINER
    */
-const mapStateToProps = state => {
-  return {
-    allCandies: state.candies.allCandies
-  };
-};
+
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -61,5 +63,5 @@ const mapDispatchToProps = dispatch => {
 // The `withRouter` wrapper makes sure that updates are not blocked
 // when the url changes
 export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(Cart)
+  connect(null, mapDispatchToProps)(Cart)
 );

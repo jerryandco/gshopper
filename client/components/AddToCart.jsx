@@ -19,6 +19,7 @@ export default class AddToCart extends Component {
       cart[name].quantity++
     } else {
       cart[name] = {
+        name: name,
         id: id,
         quantity: 1
       }
