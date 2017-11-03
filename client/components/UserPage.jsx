@@ -1,12 +1,20 @@
-import React, { Component } from "react";
-import { NavLink, withRouter } from "react-router-dom";
-import { connect } from "react-redux";
-import { putOrderThunk } from "../store/orders.js";
+import React, { Component } from 'react';
+import { NavLink, withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { putOrderThunk } from '../store/orders.js';
 
-class PutOrder extends Component {
+class UserPage extends Component {
   constructor(props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  createOrders(orders) {
+    const orderDivs = orders.map((order) => {
+      return (
+      <div
+      key={order.id}>{order.name}
+    })
   }
 
   handleSubmit(event) {
@@ -14,7 +22,7 @@ class PutOrder extends Component {
     const id = +this.props.match.params.id,
       address = event.target.adress.value,
       status = event.target.status.value,
-      orderObj = {status};
+      orderObj = { status };
 
     if (address.length !== 0) {
       orderObj.address = {};
@@ -26,7 +34,7 @@ class PutOrder extends Component {
     const orders = this.props.orders;
     return (
       <div>
-        {/*perhaps an order placed, ie. order.createdAt can be placed here in the future?*/}
+        {orders && <p>Order placed: {}</p>}
         <form onSubmit={this.handleSubmit}>
           <label>
             Address:
@@ -61,4 +69,4 @@ const mapDispatchToProps = (dispatch, history) => {
   };
 };
 
-export default withRouter(connect(_, mapDispatchToProps)(PutOrder));
+export default withRouter(connect(_, mapDispatchToProps)(UserPage));
