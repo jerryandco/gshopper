@@ -3,31 +3,21 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter, NavLink, Link } from 'react-router-dom';
 import store from '../store';
+import Filter from './Filter.jsx';
 import { fetchCategories } from '../store/categories.js';
 
-class Categories extends Component {
-  // componentDidMount() {
-  //   this.props.allCategoriesFetch();
-  // }
-
-  render() {
-    console.log('props', this.props);
-    return (
-      <div>
-        <h1>All Categories</h1>
-        {this.props.categories.map(category => (
-          <div className="all-categories" key={category.id}>
-            <NavLink to={`/categories/${category.id}`}>
-              <h2>{category.name}</h2>
-              <img src={category.image} className="image" />
-            </NavLink>
-            <h3>{category.description}</h3>
-          </div>
-        ))}
-      </div>
-    );
-  }
-}
+const Categories = props => {
+  return (
+    <div>
+      {props.categories.length && (
+        <div>
+          <h1>All Categories</h1>
+          <Filter type={'category'} />
+        </div>
+      )}
+    </div>
+  );
+};
 
 /**
    * CONTAINER
