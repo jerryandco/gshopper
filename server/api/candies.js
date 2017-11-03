@@ -39,3 +39,27 @@ router.put('/:id/addCategory', (req, res, next) => {
     })
 });
 
+router.post('/', (req, res, next) => {
+  let candyId = 0;
+  Candy.create(req.body.candy)
+    .then(createdCandy => {
+      candyId = createdCandy.id;
+      return createdCandy.setCategories(req.body.categories);
+
+    })
+    .then(() => {
+      return Candy.findOne({
+        where: {
+          id: candyId
+        },
+        include: {
+          model: Category,
+          through: CandyCategory
+        }
+      })
+    })
+    .then(foundCandy => {
+      res.status(201).json(foundCandy);
+    })
+    .catch(next);
+});
