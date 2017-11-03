@@ -13,10 +13,10 @@ class Home extends Component {
     this.generateFeaturedList = this.generateFeaturedList.bind(this);
   }
 
-  componentDidMount() {
-    this.props.allCandiesFetch();
-    this.props.allCategoriesFetch();
-  }
+  // componentDidMount() {
+  //   this.props.allCandiesFetch();
+  //   this.props.allCategoriesFetch();
+  // }
 
   generateFeaturedList = type => {
     const featuredArr = [];
@@ -58,8 +58,10 @@ class Home extends Component {
         <h1>Featured Categories</h1>
         {this.generateFeaturedList('category').map(featCategory => (
           <div key={featCategory.id}>
+          <NavLink to={`/categories/${featCategory.id}`}>
             <p>{featCategory.name}</p>
             <img src={featCategory.image} className="featured-image" />
+            </NavLink>
             <p>{featCategory.description}</p>
            
           </div>

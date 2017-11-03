@@ -10,9 +10,9 @@ class Candies extends Component {
     super(props);
   }
 
-  componentDidMount() {
-    this.props.allCandiesFetch();
-  }
+  // componentDidMount() {
+  //   this.props.allCandiesFetch();
+  // }
 
   render() {
 
@@ -25,9 +25,9 @@ class Candies extends Component {
             <NavLink to={`/candies/${candy.id}`}>
               <h2>{candy.name}</h2>
               <img src={candy.image} className="image" />
+              </NavLink>
               <h3>{candy.description}</h3>
               <h3>Stock: {candy.quantity}</h3>
-              </NavLink>
               <AddToCart item={candy} />
           </div>
         ))}
