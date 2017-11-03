@@ -6,9 +6,9 @@ import store from '../store';
 import { fetchCategories } from '../store/categories.js';
 
 class Categories extends Component {
-  componentDidMount() {
-    this.props.allCategoriesFetch();
-  }
+  // componentDidMount() {
+  //   this.props.allCategoriesFetch();
+  // }
 
   render() {
     console.log('props', this.props);
