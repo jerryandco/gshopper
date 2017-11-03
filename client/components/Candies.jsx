@@ -1,8 +1,7 @@
-import React, { Component } from 'react';
-//import PropTypes from 'prop-types'
+import React from 'react';
+
 import { connect } from 'react-redux';
-import { withRouter, NavLink, Link } from 'react-router-dom';
-import { fetchCandies } from '../store/candies.js';
+import { withRouter } from 'react-router-dom';
 
 import Filter from './Filter.jsx';
 const Candies = props => {
@@ -27,14 +26,8 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    allCandiesFetch: () => dispatch(fetchCandies())
-  };
-};
-
 // The `withRouter` wrapper makes sure that updates are not blocked
 // when the url changes
 export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(Candies)
+  connect(mapStateToProps)(Candies)
 );
