@@ -10,9 +10,9 @@ class Candies extends Component {
     super(props);
   }
 
-  componentDidMount() {
-    this.props.allCandiesFetch();
-  }
+  // componentDidMount() {
+  //   this.props.allCandiesFetch();
+  // }
 
   render() {
 
