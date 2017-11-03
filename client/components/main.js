@@ -11,7 +11,9 @@ import {logout} from '../store'
  *  rendered out by the component's `children`.
  */
 const Main = (props) => {
-  window.localStorage.cart = JSON.stringify([]);
+  if(!window.localStorage.cart){
+  window.localStorage.cart = JSON.stringify({})
+  }
   const {children, handleClick, isLoggedIn} = props
   console.log(children, handleClick, isLoggedIn)
   return (
@@ -22,7 +24,7 @@ const Main = (props) => {
           isLoggedIn
             ? <div>
               {/* The navbar will show these links after you log in */}
-             
+
               <a href="#" onClick={handleClick}>Logout</a>
             </div>
             : <div>
@@ -32,6 +34,7 @@ const Main = (props) => {
               <Link to="/signup">Sign Up</Link>
               <Link to="/candies">All Candy</Link>
               <Link to="/categories">All Categories</Link>
+              <Link to="/cart"> Cart </Link>
             </div>
         }
       </nav>

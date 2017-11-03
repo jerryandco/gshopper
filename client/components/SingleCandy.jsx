@@ -36,11 +36,11 @@ class Candies extends Component {
 /**
    * CONTAINER
    */
-const mapStateToProps = state => {
-  return {
-    allCandies: state.candies.allCandies
+  const mapStateToProps = state => {
+    return {
+      allCandies: state.candies.allCandies
+    };
   };
-};
 
 const mapDispatchToProps = dispatch => {
   return {
