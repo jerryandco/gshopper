@@ -45,4 +45,4 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   ownProps
 });
 
-export default withRouter(connect(_, mapDispatchToProps)(AddCategory));
+export default withRouter(connect(null, mapDispatchToProps)(AddCategory));

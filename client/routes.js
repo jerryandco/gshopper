@@ -10,7 +10,7 @@ import Candies from './components/Candies.jsx'
 import Categories from './components/Categories.jsx'
 import SingleCandy from './components/SingleCandy.jsx'
 import Home from './components/Home.jsx';
-
+import AddProduct from './components/AddProduct'
 /**
  * COMPONENT
  */
@@ -31,6 +31,7 @@ class Routes extends Component {
             <Route exact path="/" component={Home} />
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
+            <Route path="/addProduct" component={AddProduct} />
             {
               isLoggedIn &&
                 <Switch>
