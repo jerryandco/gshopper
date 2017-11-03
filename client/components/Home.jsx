@@ -13,10 +13,10 @@ class Home extends Component {
     this.generateFeaturedList = this.generateFeaturedList.bind(this);
   }
 
-  componentDidMount() {
-    this.props.allCandiesFetch();
-    this.props.allCategoriesFetch();
-  }
+  // componentDidMount() {
+  //   this.props.allCandiesFetch();
+  //   this.props.allCategoriesFetch();
+  // }
 
   generateFeaturedList = type => {
     const featuredArr = [];

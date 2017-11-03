@@ -7,10 +7,10 @@ import { fetchCandies } from '../store/candies.js';
 import AddToCart from './AddToCart.jsx'
 
 class Category extends Component {
-  componentDidMount() {
-    this.props.allCategoriesFetch();
-    this.props.allCandiesFetch();
-  }
+  // componentDidMount() {
+  //   this.props.allCategoriesFetch();
+  //   this.props.allCandiesFetch();
+  // }
 
   render() {
     const categoryId = this.props.match.params.id;

@@ -5,17 +5,12 @@ import store from '../store';
 import { fetchCandies } from '../store/candies.js';
 
 class Candy extends Component {
-  componentDidMount() {
-    this.props.allCandiesFetch();
-  }
-
   render() {
     const candyId = this.props.match.params.id;
     if (this.props.allCandies.length) {
       const singleCandy = this.props.allCandies.find(
         candy => candy.id === +candyId
       );
-      console.log(singleCandy);
       return (
         <div>
           <h1>{singleCandy.name}</h1>
@@ -41,14 +36,12 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    allCandiesFetch: () => dispatch(fetchCandies())
-  };
-};
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     allCandiesFetch: () => dispatch(fetchCandies())
+//   };
+// };
 
 // The `withRouter` wrapper makes sure that updates are not blocked
 // when the url changes
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(Candy)
-);
+export default withRouter(connect(mapStateToProps)(Candy));
