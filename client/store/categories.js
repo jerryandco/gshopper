@@ -1,32 +1,24 @@
 import axios from 'axios';
 import history from '../history';
+//will we reroute?
 
-/**
- * ACTION TYPES
- */
 const GET_CATEGORIES = 'GET_CATEGORIES';
-
-/**
- * INITIAL STATE
- */
-
-const initialState = {
-  allCategories: []
-};
+const POST_CATEGORY = 'POST_CATEGORY';
 
 /**
  * ACTION CREATORS
  */
 const getCategories = categories => ({ type: GET_CATEGORIES, categories });
+const postCategory = category => ({ type: POST_CATEGORY, category });
 
-export default function(state = initialState, action) {
-  const newState = { ...state };
+export default function(categories = [], action) {
   switch (action.type) {
     case GET_CATEGORIES:
-      newState.allCategories = action.categories;
-      return newState;
+      return action.categories;
+    case POST_CATEGORY:
+      return [action.category, ...categories];
     default:
-      return state;
+      return categories;
   }
 }
 
@@ -44,3 +36,12 @@ export function fetchCategories() {
       .catch(err => console.error(err));
   };
 }
+
+export const postCategoryThunk = category => dispatch => {
+  axios
+    .post('/api/categories', category)
+    .then(res => dispatch(postCategory(res.data)))
+    .catch(err =>
+      console.error(`Creating category: ${category} unsuccessful`, err)
+    );
+};

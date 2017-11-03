@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import { NavLink, withRouter } from "react-router-dom";
-import { connect } from "react-redux";
-import AddProduct from "./AddProduct.js";
-import AddCategory from "./AddCategory.js";
+import React, { Component } from 'react';
+import { NavLink, withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import AddProduct from './AddProduct.js';
+import AddCategory from './AddCategory.js';
 
 export const createOptions = (table, name) => {
   const options = table.map(row => {
@@ -42,10 +42,10 @@ class Admin extends Component {
     const allReviews = this.props.reviews;
 
     if (allCandy && allUsers && allOrders && allReviews) {
-      let candies = this.createElements(allCandy, "candies"),
-        users = this.createElements(allUsers, "users"),
-        orders = this.createElements(allOrders, "orders"),
-        reviews = this.createElements(allReviews, "reviews");
+      let candies = this.createElements(allCandy, 'candies'),
+        users = this.createElements(allUsers, 'users'),
+        orders = this.createElements(allOrders, 'orders'),
+        reviews = this.createElements(allReviews, 'reviews');
     }
     return (
       <div>
