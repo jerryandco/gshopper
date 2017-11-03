@@ -64,7 +64,7 @@ class AddProduct extends Component {
             Name:
             <input type="text" name="name" autoFocus required onChange={this.handleChange} />
             {this.state.name.length === 0 && (
-              <span>Name can't be empty</span>
+              <span>{"Name can't be empty"}</span>
             )}
           </label>
           <label>
