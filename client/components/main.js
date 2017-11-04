@@ -16,7 +16,6 @@ const Main = (props) => {
   window.localStorage.cart = JSON.stringify({})
   }
   const {children, handleClick, isLoggedIn} = props
-  console.log(children, handleClick, isLoggedIn)
   return (
     <div>
       <h1>Welcome to the Candy Shop</h1>

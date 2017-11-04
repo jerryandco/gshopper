@@ -49,6 +49,7 @@ class Routes extends Component {
             <Route path="/categories/:id" component={SingleCategory} />
             <Route path="/categories" component={Categories} />
             <Route path="/cart" component={Cart} />
+            <Route path="/putproduct" component={PutProduct}/>
           </Switch>
         </Main>
       </Router>
