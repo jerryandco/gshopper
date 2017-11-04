@@ -5,21 +5,26 @@ import history from '../history';
 const GET_CATEGORIES = 'GET_CATEGORIES';
 const POST_CATEGORY = 'POST_CATEGORY';
 
+const initialState = {
+  allCategories: []
+};
+
 /**
  * ACTION CREATORS
  */
 const getCategories = categories => ({ type: GET_CATEGORIES, categories });
 const postCategory = category => ({ type: POST_CATEGORY, category });
 
-export default function(categories = [], action) {
-  switch (action.type) {
-    case GET_CATEGORIES:
-      return action.categories;
-    case POST_CATEGORY:
-      return [action.category, ...categories];
-    default:
-      return categories;
-  }
+export default function (state = initialState, action) {
+      switch (action.type) {
+        case GET_CATEGORIES:
+          return {
+            ...state,
+            allCategories: action.categories
+          }
+        default:
+          return state
+      }
 }
 
 //THUNK CREATOR

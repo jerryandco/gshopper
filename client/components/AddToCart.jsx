@@ -1,8 +1,8 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 //import PropTypes from 'prop-types'
-import { connect } from "react-redux";
-import { withRouter, NavLink, Link } from "react-router-dom";
-import _ from "lodash"
+import { connect } from 'react-redux';
+import { withRouter, NavLink, Link } from 'react-router-dom';
+import _ from 'lodash'
 
 export default class AddToCart extends Component {
   constructor(props) {

@@ -6,24 +6,33 @@ const POST_CANDY = 'POST_CANDY';
 const DELETE_CANDY = 'DELETE_CANDY';
 const PUT_CANDY = 'PUT_CANDY';
 
+const initialState = {
+    allCandies: []
+};
+
 const candiesAction = candies => ({ type: GET_CANDIES, candies })
 const postCandyAction = candy => ({ type: POST_CANDY, candy });
 const deleteCandyAction = id => ({ type: DELETE_CANDY, id });
 const putCandyAction = candy => ({ type: PUT_CANDY, candy });
 
-export default function(candies = [], action) {
+export default function (state = initialState, action) {
+  const newState = Object.assign({}, state)
   switch (action.type) {
     case GET_CANDIES:
-      return action.candies;
+      newState.allCandies = action.candies
+      return newState
     case POST_CANDY:
-      return [action.candy, ...candies];
+      newState.allCandies = [...newState.allCandies, action.candy];
+      return newState
     case PUT_CANDY:
-      var otherCandy = candies.filter(candy => candy.id !== action.candy.id);
-      return [action.candy, ...otherCandy];
+      // var otherCandy = candies.filter(candy => candy.id !== action.candy.id);
+      // return [action.candy, ...otherCandy];
+      return newState;
     case DELETE_CANDY:
-      return candies.filter(candy => candy.id !== action.candy.id);
+      newState.allCandies = newState.allCandies.filter(candy => +candy.id !== +action.id);
+      return newState
     default:
-      return candies;
+      return state;
   }
 }
 
@@ -33,7 +42,7 @@ export function fetchCandies() {
       .get('/api/candies')
       .then(res => res.data)
       .then(candies => {
-        const action = getCandies(candies);
+        const action = candiesAction(candies);
         dispatch(action);
       })
       .catch(err => console.error(err));

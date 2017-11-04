@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter, NavLink, Link } from 'react-router-dom';
-import store from '../store';
 import _ from 'lodash'
-import { fetchCandies } from "../store/candies.js"
-// import { fetchCandies } from '../store/candies.js';
+import { fetchCandies } from '../store'
 
 class Cart extends Component {
 
