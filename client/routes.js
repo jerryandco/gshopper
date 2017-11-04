@@ -14,6 +14,7 @@ import SingleCategory from './components/SingleCategory.jsx'
 import Home from './components/Home.jsx';
 import { fetchCategories } from './store/categories.js';
 import { fetchCandies } from './store/candies.js';
+import PutUser from "./components/PutUser.js"
 
 /**
  * COMPONENT
@@ -49,6 +50,7 @@ class Routes extends Component {
             <Route path="/categories/:id" component={SingleCategory} />
             <Route path="/categories" component={Categories} />
             <Route path="/cart" component={Cart} />
+            <Route path="/putorder" component={PutUser} />
           </Switch>
         </Main>
       </Router>

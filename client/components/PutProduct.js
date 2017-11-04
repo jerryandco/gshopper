@@ -11,8 +11,9 @@ class AddProduct extends Component {
   }
   handleSubmit(event) {
     event.preventDefault();
-    let id = +this.props.match.params.id,
-      name = event.target.name.value,
+    //this will exist when properly formatted, as in, the link will have the associated id.
+    // let id = +this.props.match.params.id,
+      let name = event.target.name.value,
       price = +event.target.price.value,
       image = event.target.image.value,
       quantity = +event.target.quantity.value,
