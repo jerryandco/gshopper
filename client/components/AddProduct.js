@@ -12,7 +12,7 @@ class AddProduct extends Component {
       description: '',
       price: 0,
       quantity: 0,
-      Image: '',
+      image: '',
     }
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -47,7 +47,7 @@ class AddProduct extends Component {
     }
     const categories = this.state.categories;
 
-    if (this.state.Image.length > 0) candy['image'] = this.state.image
+    if (this.state.image.length > 0) candy.image = this.state.image
     this.props.postProduct(candy, categories);
   }
 

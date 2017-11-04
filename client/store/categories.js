@@ -15,13 +15,17 @@ const initialState = {
 const getCategories = categories => ({ type: GET_CATEGORIES, categories });
 const postCategory = category => ({ type: POST_CATEGORY, category });
 
+
+
 export default function (state = initialState, action) {
+      const newState = Object.assign({}, state)
       switch (action.type) {
         case GET_CATEGORIES:
-          return {
-            ...state,
-            allCategories: action.categories
-          }
+          newState.allCategories = action.categories
+          return newState
+        case POST_CATEGORY :
+          newState.allCategories = [...newState.allCategories , action.category];
+          return newState
         default:
           return state
       }
@@ -45,7 +49,10 @@ export function fetchCategories() {
 export const postCategoryThunk = category => dispatch => {
   axios
     .post('/api/categories', category)
-    .then(res => dispatch(postCategory(res.data)))
+    .then(res => {
+      dispatch(postCategory(res.data))
+      history.push(`/categories`);
+    })
     .catch(err =>
       console.error(`Creating category: ${category} unsuccessful`, err)
     );
