@@ -13,7 +13,7 @@ const initialState = {
 const candiesAction = candies => ({ type: GET_CANDIES, candies })
 const postCandyAction = candy => ({ type: POST_CANDY, candy });
 const deleteCandyAction = id => ({ type: DELETE_CANDY, id });
-const putCandyAction = candy => ({ type: PUT_CANDY, candy });
+const updateCandyAction = candy => ({ type: PUT_CANDY, candy });
 
 export default function (state = initialState, action) {
   const newState = Object.assign({}, state)
@@ -59,7 +59,6 @@ export const putCandyThunk = candy => {
       .then(changedCandy => {
         const action = putCandy(changedCandy);
         dispatch(action);
-        //history or not?
       })
       .catch(err => console.error(err))
   }
