@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import { NavLink, withRouter } from "react-router-dom";
-import { connect } from "react-redux";
-import { postCandyThunk } from "../store/candies.js";
+import React, { Component } from 'react';
+import { NavLink, withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { postCandyThunk } from '../store/candies.js';
 
 class AddProduct extends Component {
   constructor(props) {
