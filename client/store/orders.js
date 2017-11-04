@@ -63,7 +63,7 @@ export const putOrderThunk = order => {
   };
 };
 
-const ordersReducer = function(orders = [], action) {
+export default function (orders = [], action) {
   switch (action.type) {
     case GET_ORDERS:
       return action.orders;
@@ -75,6 +75,4 @@ const ordersReducer = function(orders = [], action) {
     default:
       return orders;
   }
-};
-
-export default ordersReducer;
+}

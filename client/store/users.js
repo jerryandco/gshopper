@@ -22,19 +22,19 @@ const updateUserAction = user  => ({ type: UPDATE_USER, user });
 
 /* ------------       REDUCER     ------------------ */
 
-export default function reducer (users = [], action) {
+export default function (users = [], action) {
   switch (action.type) {
 
     case GET_USERS:
       return action.users;
 
-    case CREATE:
+    case CREATE_USER:
       return [action.user, ...users];
 
-    case DELETE:
+    case DELETE_USER:
       return users.filter(user => user.id !== action.id);
 
-    case UPDATE:
+    case UPDATE_USER:
       return users.map(user => (
         action.user.id === user.id ? action.user : user
       ));

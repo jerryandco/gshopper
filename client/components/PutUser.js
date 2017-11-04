@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { NavLink, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import { putUserThunk } from "../store/products.js";
+import { putUserThunk } from "../store/users.js";
 
 //way to force user to reset password??
 class PutUser extends Component {
@@ -40,26 +40,19 @@ class PutUser extends Component {
       <div>
         <form onSubmit={this.handleSubmit}>
           <label>
-            Name:
-            <input type="text" name="name" autoFocus />
+            First Name:
+            <input type="text" name="firstname" autoFocus />
           </label>
           <label>
-            Description:
-            <input type="text" name="name" />
+            Last Name:
+            <input type="text" name="lastname" />
           </label>
           <label>
-            Price:
-            <input type="number" name="price" value="0" />
-          </label>
-          <label>
-            Quantity:
-            <input type="number" name="quantity" value="-1" />
-          </label>
-          <label>
-            Image:
-            <input type="text" name="image" />
+            Email:
+            <input type="text" name="email" />
           </label>
           <input type="submit" value="Submit" />
+          <div>Administrator?</div>
           <select name="isadmin">
             <option value="false" selected>
               False

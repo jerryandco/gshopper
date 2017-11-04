@@ -52,11 +52,6 @@ class AddProduct extends Component {
   }
 
   render() {
-    console.log('this is props', this.props);
-    if (this.props.categories.length) {
-      console.log(this.props.categories[0].id === 1);
-      if (this.state.categories.length) console.log('check here', this.state.categories[0]);
-    }
     return (
       <div>
         <form>
@@ -111,7 +106,6 @@ class AddProduct extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log(state);
   return {
     categories: state.categories.allCategories
   }
