@@ -27,7 +27,7 @@ async function seed () {
   // Whoa! Because we `await` the promise that db.sync returns, the next line will not be
   // executed until that promise resolves!
 
-  const users = await User.bulkCreate(userData)
+  const users = await User.bulkCreate(userData , {individualHooks: true})
   const categories = await Category.bulkCreate(categoriesData)
   const candies = await Candy.bulkCreate(candyData)
   const candyCategories = await CandyCategory.bulkCreate(candyCategoriesData)
