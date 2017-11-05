@@ -15,6 +15,7 @@ class Cart extends Component {
     this.handleIncrement = this.handleIncrement.bind(this)
     this.handleDecrement = this.handleDecrement.bind(this)
     this.price = this.price.bind(this);
+    this.totalPrice = this.totalPrice.bind(this)
   }
 
   componentDidMount() {
@@ -43,6 +44,12 @@ class Cart extends Component {
     })
   }
 
+  totalPrice(candiesInCart, allCandies) {
+    const candyTotals = candiesInCart.map(candy => this.price(candy, allCandies))
+
+    const cartTotal = candyTotals.reduce((a, b) =>  a + b)
+    return +cartTotal
+  }
 
   price(key, candies) {
     let item = this.state.cart[key];
@@ -51,8 +58,8 @@ class Cart extends Component {
     let foundCandy = candies.find(candy=>{
         return +candy.id === +id
     });
-    console.log('check here',foundCandy);
-    if(foundCandy){
+    // console.log('check here',foundCandy);
+    if (foundCandy){
       return +quantity * +foundCandy.price
     }
   }
@@ -87,9 +94,11 @@ class Cart extends Component {
             <br />
             <div> price: {this.props.candies && (<span>{this.price(key,this.props.candies)}</span>)}
             </div>
-
+            </div>
+          ))}
+          <div>
+          Total Price: {this.totalPrice(Object.keys(cart), this.props.candies)}
           </div>
-        ))}
       </div>
     );
   }
