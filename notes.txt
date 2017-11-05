@@ -1,0 +1,34 @@
+1. How to create cart inside cookie session
+
+
+
+2. Should we fetch all initially then filter, or just wait to fetch what we need
+
+
+
+3. Q: How do we label issues when it's building out the framework
+    - should we be listing out what the part is
+    - not a fix or a feature yet
+
+  A: A 'master' open issue for the story that gets closed when all subissues are all closed.
+
+
+4. What should we be aware of going forward?
+  - typically rough spots
+
+
+5. Is it ok to build with one reducer and split later
+
+6.
+
+
+
+
+Notes ----
+
+Price: int then divide by 100
+
+Description: required?
+
+image: url vs local image
+
