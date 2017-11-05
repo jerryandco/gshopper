@@ -97,7 +97,7 @@ class Cart extends Component {
             </div>
           ))}
           <div>
-          Total Price: {this.totalPrice(Object.keys(cart), this.props.candies)}
+          Total Price: {Object.keys(cart).length && this.totalPrice(Object.keys(cart), this.props.candies)}
           </div>
       </div>
     );
