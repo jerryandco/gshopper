@@ -18,9 +18,9 @@ describe('thunk creators', () => {
   let store;
   let mockAxios;
 
-  let initialState = {
+  const initialState = {
     allCandies: []
-  };
+  }
 
   beforeEach(() => {
     mockAxios = new MockAdapter(axios);
@@ -73,9 +73,9 @@ describe('thunk creators', () => {
       name: 'Magic expensive stuff',
       price: 1124322.5,
       quantity: 1
-    };
+    }
 
-    it('eventually dispatches the postCandy action', () => {
+    it('eventually dispatches the POST_CANDY action', () => {
       mockAxios.onPost('/api/candies').replyOnce(201, newCandy);
       return store.dispatch(postCandyThunk(newCandy)).then(() => {
         const actions = store.getActions();
@@ -85,6 +85,5 @@ describe('thunk creators', () => {
     });
   });
 
-});
-
   //there are no functions for put or for delete in mock axios adapter so I am stopping here, perhaps, we would need to find new libraries to implement such tests.
+});

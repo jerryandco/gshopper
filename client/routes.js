@@ -41,12 +41,18 @@ class Routes extends Component {
             <Route exact path="/" component={Home} />
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
-            {isLoggedIn && (
-              <Switch>
-                {/* Routes placed here are only available after logging in */}
-                <Route path="/home" component={UserHome} />
-              </Switch>
-            )}
+            {
+              isLoggedIn &&
+                <Switch>
+                  {/* Routes placed here are only available after logging in */}
+                  <Route path="/candies/:id" component={SingleCandy} />
+                  <Route path="/candies" component={Candies} />
+                  <Route path="/categories/:id" component={SingleCategory} />
+                  <Route path="/categories" component={Categories} />
+                  <Route path="/cart" component={Cart} />
+                  <Route path="/home" component={UserHome} />
+                </Switch>
+            }
             {/* Displays our Login component as a fallback */}
             {/* <Route component={Login} /> */}\
             <Route path="/candies/:id" component={SingleCandy} />
