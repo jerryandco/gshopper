@@ -35,7 +35,11 @@ const Main = (props) => {
               <Link to="/candies">All Candy</Link>
               <Link to="/categories">All Categories</Link>
               <Link to="/cart"> Cart </Link>
+<<<<<<< HEAD
               <Link to="/putorder"> Put Order </Link>
+=======
+              <Link to="/admin">Admin </Link>
+>>>>>>> e5babd3a8a7f54b3e6d03099030ca7ac1b901859
             </div>
         }
       </nav>

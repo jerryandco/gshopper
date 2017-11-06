@@ -59,7 +59,7 @@ class Filter extends Component {
                   </NavLink>
                   <h3>{candy.description}</h3>
                   <h3>Stock: {candy.quantity}</h3>
-                  <AddToCart />
+                  <AddToCart item={candy} />
                 </div>
               ))}
             </div>

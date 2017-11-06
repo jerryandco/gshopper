@@ -1,48 +1,56 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
-import {Router} from 'react-router'
-import {Route, Switch} from 'react-router-dom'
-import PropTypes from 'prop-types'
-import history from './history'
-import {Main, Login, Signup, UserHome} from './components'
-import {me} from './store'
-import Candies from './components/Candies.jsx'
-import Categories from './components/Categories.jsx'
-import SingleCandy from './components/SingleCandy.jsx'
-import Cart from './components/Cart.jsx'
-import SingleCategory from './components/SingleCategory.jsx'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Router } from 'react-router';
+import { Route, Switch } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import history from './history';
+import { Main, Login, Signup, UserHome } from './components';
+import { me } from './store';
+import Candies from './components/Candies.jsx';
+import Categories from './components/Categories.jsx';
+import SingleCandy from './components/SingleCandy.jsx';
+import Cart from './components/Cart.jsx';
+import SingleCategory from './components/SingleCategory.jsx';
 import Home from './components/Home.jsx';
 import { fetchCategories } from './store/categories.js';
 import { fetchCandies } from './store/candies.js';
+<<<<<<< HEAD
 import PutUser from "./components/PutUser.js"
+=======
+import { fetchOrders } from './store/orders.js';
+import { fetchUsersThunk } from './store/users.js'
+import Admin from './components/Admin.js';
+// import PutCategory from './components/PutCategory.js';
+import PutOrder from './components/PutOrder.js';
+import PutProduct from './components/PutProduct.js';
+import PutUser from './components/PutUser.js';
+>>>>>>> e5babd3a8a7f54b3e6d03099030ca7ac1b901859
 
 /**
  * COMPONENT
  */
 class Routes extends Component {
-  componentDidMount () {
-    this.props.loadInitialData()
+  componentDidMount() {
+    this.props.loadInitialData();
   }
 
-  render () {
-    const {isLoggedIn} = this.props
+  render() {
+    const { isLoggedIn } = this.props;
 
     return (
       <Router history={history}>
         <Main>
-
           <Switch>
             {/* Routes placed here are available to all visitors */}
             <Route exact path="/" component={Home} />
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
-            {
-              isLoggedIn &&
-                <Switch>
-                  {/* Routes placed here are only available after logging in */}
-                  <Route path="/home" component={UserHome} />
-                </Switch>
-            }
+            {isLoggedIn && (
+              <Switch>
+                {/* Routes placed here are only available after logging in */}
+                <Route path="/home" component={UserHome} />
+              </Switch>
+            )}
             {/* Displays our Login component as a fallback */}
             {/* <Route component={Login} /> */}\
             <Route path="/candies/:id" component={SingleCandy} />
@@ -50,37 +58,46 @@ class Routes extends Component {
             <Route path="/categories/:id" component={SingleCategory} />
             <Route path="/categories" component={Categories} />
             <Route path="/cart" component={Cart} />
+<<<<<<< HEAD
             <Route path="/putorder" component={PutUser} />
+=======
+            <Route path="/admin" component={Admin} />
+            <Route path="/usersedit/:id" component={PutUser} />
+            <Route path="/candiesedit/:id" component={PutProduct} />
+            <Route path="/ordersedit/:id" component={PutOrder} />
+            {/*<Route path="/categoriesedit/:id" component={PutCategory} />*/}
+>>>>>>> e5babd3a8a7f54b3e6d03099030ca7ac1b901859
           </Switch>
         </Main>
       </Router>
-    )
+    );
   }
 }
 
 /**
  * CONTAINER
  */
-const mapState = (state) => {
+const mapState = state => {
   return {
     // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
     isLoggedIn: !!state.user.id
-  }
-}
+  };
+};
 
-const mapDispatch = (dispatch) => {
+const mapDispatch = dispatch => {
   return {
-    loadInitialData () {
-      dispatch(me())
-      dispatch(fetchCategories())
-      dispatch(fetchCandies())
+    loadInitialData() {
+      dispatch(me());
+      dispatch(fetchCategories());
+      dispatch(fetchCandies());
+      dispatch(fetchUsersThunk());
+      dispatch(fetchOrders());
     }
+  };
+};
 
-  }
-}
-
-export default connect(mapState, mapDispatch)(Routes)
+export default connect(mapState, mapDispatch)(Routes);
 
 /**
  * PROP TYPES
@@ -88,4 +105,4 @@ export default connect(mapState, mapDispatch)(Routes)
 Routes.propTypes = {
   loadInitialData: PropTypes.func.isRequired,
   isLoggedIn: PropTypes.bool.isRequired
-}
+};

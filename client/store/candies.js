@@ -57,7 +57,7 @@ export const putCandyThunk = candy => {
         return res.data;
       })
       .then(changedCandy => {
-        const action = putCandy(changedCandy);
+        const action = updateCandyAction(changedCandy);
         dispatch(action);
       })
       .catch(err => console.error(err))

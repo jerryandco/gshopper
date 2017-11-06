@@ -14,9 +14,11 @@ class AddProduct extends Component {
       quantity: 0,
       image: '',
     }
+
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleAdd = this.handleAdd.bind(this);
+    this.handleRemove = this.handleRemove.bind(this);
     this.check = this.check.bind(this);
   }
 
@@ -51,12 +53,23 @@ class AddProduct extends Component {
     this.props.postProduct(candy, categories);
   }
 
+  handleRemove(event) {
+    event.preventDefault();
+    let categories = this.state.categories;
+    categories = categories.filter(index => {
+      return index !== +event.target.categories.value
+    })
+    this.setState({
+      categories
+    })
+  }
+
   render() {
-    console.log('this is props', this.props);
-    if (this.props.categories.length) {
-      console.log(this.props.categories[0].id === 1);
-      if (this.state.categories.length) console.log('check here', this.state.categories[0]);
-    }
+    const selectCategory = this.props.categories.filter(category => {
+      return this.state.categories.includes(+category.id);
+    }).sort((a, b) => {
+      return a.id - b.id;
+    })
     return (
       <div>
         <form>
@@ -104,6 +117,44 @@ class AddProduct extends Component {
           </select>
           <input type="submit" value="add categories" />
         </form>
+        <label>
+          Categories select :
+        {this.state.categories.length > 0 && (
+            <table>
+              <thead>
+                <tr>
+                  <th>Type</th>
+                </tr>
+              </thead>
+              <tbody>
+                {
+                  selectCategory.map(category => {
+                    return (
+                      <tr key={category.id}>
+                        <td>{category.name}</td>
+                      </tr>
+                    )
+                  })
+                }
+              </tbody>
+            </table>
+          )
+          }
+        </label>
+        {selectCategory.length > 0 &&
+          <form onSubmit={this.handleRemove}>
+            <select name="categories">
+              {selectCategory.map(category => {
+                return (
+                  <option key={category.name} value={category.id}>
+                    {category.name}
+                  </option>
+                )
+              })}
+            </select>
+            <input type="submit" value="remove categories" />
+          </form>
+        }
         <button onClick={this.handleSubmit} disabled={!this.check()}>Submit</button>
       </div>
     );
@@ -111,7 +162,6 @@ class AddProduct extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log(state);
   return {
     categories: state.categories.allCategories
   }
