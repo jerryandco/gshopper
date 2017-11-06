@@ -3,7 +3,9 @@ const { Category, Candy } = require('../db/models')
 module.exports = router
 
 router.get('/', (req, res, next) => {
-  Category.scope('populated').findAll()
+  Category.findAll({
+    include: [Candy]
+  })
     .then(categories => res.json(categories))
     .catch(next)
 })
