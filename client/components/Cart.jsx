@@ -2,20 +2,23 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter, NavLink, Link } from 'react-router-dom';
 import _ from 'lodash'
-import { fetchCandies } from '../store'
+import { fetchCandies, postOrderThunk } from '../store'
 
 class Cart extends Component {
 
   constructor() {
     super()
     this.state = {
-      cart: JSON.parse(window.localStorage.cart)
+      cart: JSON.parse(window.localStorage.cart),
+      address: ''
     }
     this.handleRemove = this.handleRemove.bind(this)
     this.handleIncrement = this.handleIncrement.bind(this)
     this.handleDecrement = this.handleDecrement.bind(this)
     this.price = this.price.bind(this);
     this.totalPrice = this.totalPrice.bind(this)
+    this.handleAddressChange = this.handleAddressChange.bind(this)
+    this.handleOrder = this.handleOrder.bind(this)
   }
 
   componentDidMount() {
@@ -74,6 +77,38 @@ class Cart extends Component {
     })
   }
 
+  handleAddressChange(event) {
+    this.setState({
+      address: event.target.value
+    })
+  }
+
+  handleOrder(price, candies, id, event) {
+    event.preventDefault();
+    const userId = id || 2;
+    const cart = this.state.cart;
+    let submitCandy=[];
+    for(let key in cart){
+      submitCandy.push(cart[key]);
+    }
+    submitCandy.map(candy=>{
+      const find = candies.find(singleCandy=> +singleCandy.id === +candy.id );
+      candy.price = find.price;
+      return candy
+    });
+
+    const order = {
+      userId,
+      address: this.state.address,
+      price
+    }
+    this.props.submitOrder(order, submitCandy)
+    window.localStorage.cart=JSON.stringify({});
+    this.setState({
+      address: ''
+    })
+  }
+
   render() {
     console.log('props', this.props.candies)
     const cart = JSON.parse(window.localStorage.cart)
@@ -98,6 +133,20 @@ class Cart extends Component {
           ))}
           <div>
           Total Price: {Object.keys(cart).length && this.totalPrice(Object.keys(cart), this.props.candies)}
+          <form onSubmit={ (event)=> {
+            let price = this.totalPrice(Object.keys(cart), this.props.candies);
+            this.handleOrder(price,this.props.candies,this.props.user.id,event);
+          }} >
+          <span>Address: <input type="text" name="address" onChange={this.handleAddressChange}/></span>
+          <input
+          type='submit'
+          disabled={this.props.isLoggedIn || this.state.address.length===0 }
+          value='Checkout'
+          />
+          {!this.props.isLoggedIn && (
+            <span>Please signup or login to complete the order</span>
+          )}
+          </form>
           </div>
       </div>
     );
@@ -110,12 +159,15 @@ class Cart extends Component {
 const mapStateToProps = state => {
   return {
     candies: state.candies.allCandies,
-    cart: JSON.parse(window.localStorage.cart)
+    cart: JSON.parse(window.localStorage.cart),
+    isLoggedIn: !!state.user.id,
+    user: state.user
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
+    submitOrder: (order, candy)=> dispatch(postOrderThunk(order, candy)),
     allCandiesFetch: () => dispatch(fetchCandies())
   };
 };

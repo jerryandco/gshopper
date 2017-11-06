@@ -32,10 +32,10 @@ export const fetchOrders = () => {
   };
 };
 
-export const postOrderThunk = (newOrder, history) => {
+export const postOrderThunk = (order, candies) => {
   return dispatch => {
     return axios
-      .post('/api/orders', newOrder)
+      .post('/api/orders', {order, candies})
       .then(res => {
         return res.data;
       })
