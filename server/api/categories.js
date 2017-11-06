@@ -1,22 +1,15 @@
 const router = require('express').Router()
-const { Category, Candy, CandyCategory } = require('../db/models')
+const { Category, Candy } = require('../db/models')
 module.exports = router
 
 router.get('/', (req, res, next) => {
-  Category.findAll({
-    include: [Candy]
-  })
+  Category.scope('populated').findAll()
     .then(categories => res.json(categories))
     .catch(next)
 })
 
 router.get('/:id', (req, res, next) => {
-  Category.findOne({
-    where: {
-      id: req.params.id
-    },
-    include: [Candy]
-  })
+  Category.scope('populated').findById(req.params.id)
     .then(foundCategory => {
       res.json(foundCategory);
     })
@@ -24,24 +17,11 @@ router.get('/:id', (req, res, next) => {
 })
 
 router.put('/:id', (req, res, next) => {
-  Category.update(req.body, {
-    where: {
-      id: req.params.id
-    },
-    returning: true,
-  })
-    .spread((row, updatedCatagory) => {
-      return Category.findOne({
-        where: {
-          id: updatedCatagory[0].id
-        },
-        include: [Candy]
-      })
-        .then(foundCandy => {
-          res.json(foundCandy);
-        })
-        .catch(next);
+  Category.updateCandy(req.params.id, req.body)
+    .then(foundCandy => {
+      res.json(foundCandy);
     })
+    .catch(next);
 })
 
 router.post('/', (req, res, next) => {

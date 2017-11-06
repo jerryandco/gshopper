@@ -3,9 +3,7 @@ const { Order, Candy } = require('../db/models');
 module.exports = router
 
 router.get('/', (req, res, next) => {
-  Order.findAll({
-    include: [Candy]
-  })
+  Order.scope('populated').findAll()
     .then(orders => {
       res.json(orders);
     })
@@ -13,44 +11,18 @@ router.get('/', (req, res, next) => {
 })
 
 router.get('/:id', (req, res, next) => {
-  Order.findById(req.params.id, {
-    include: [Candy]
-  })
+  Order.scope('populated').findById(req.params.id)
     .then(foundOrder => {
       res.json(foundOrder);
     })
-})
-
-router.get('/:id/detail', (req, res, next) => {
-  Order.findById(req.params.id)
-    .then(foundOrder => {
-      return foundOrder.getCandies();
-    })
-    .then(allCandy => {
-      res.json(allCandy);
-    })
+    .catch(next);
 })
 
 router.post('/', (req, res, next) => {
-  let id = 0; // { order : {} , candies : [id,quantity,price]} => req.body
-  Order.create(req.body.order)
-    .then(createdOrder => {
-      id = createdOrder.id;
-      const addRelationPromise = req.body.candies.map(candy => {
-        return createdOrder.setCandies([candy.id], {
-          through: {
-            price: candy.price,
-            quantity: candy.quantity
-          }
-        })
-      })
-      return Promise.all(addRelationPromise);
-    })
-    .then(() => {
-      return Order.findById(id, { include: [Candy] })
-        .then(foundCandy => res.json(foundCandy))
-        .catch(next);
-    })
+  // { order : {} , candies : [id,quantity,price]} => req.body
+  Order.createWithCandy(req.body.order, req.body.candies)
+    .then(foundCandy => res.json(foundCandy))
+    .catch(next);
 })
 
 router.put('/:id', (req, res, next) => {
@@ -61,9 +33,7 @@ router.put('/:id', (req, res, next) => {
     returning: true
   })
     .spread((row, updatedOrder) => {
-      return Order.findById(updatedOrder[0].id, {
-        include: [Candy]
-      });
+      return Order.scope('populated').findById(updatedOrder[0].id);
     })
     .then((foundOrder => res.json(foundOrder)))
     .catch(next);

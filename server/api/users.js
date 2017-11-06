@@ -3,7 +3,7 @@ const { User } = require('../db/models')
 module.exports = router
 
 router.get('/', (req, res, next) => {
-  User.findAll()
+  User.findAll({ attributes: ['id', 'firstName', 'lastName', 'email'] })
     .then(users => res.json(users))
     .catch(next)
 })
