@@ -15,7 +15,7 @@ import Home from './components/Home.jsx';
 import { fetchCategories } from './store/categories.js';
 import { fetchCandies } from './store/candies.js';
 import { fetchOrders } from './store/orders.js';
-import { fetchUsersThunk } from './store/users.js'
+import { fetchUsersThunk } from './store/users.js';
 import Admin from './components/Admin.js';
 // import PutCategory from './components/PutCategory.js';
 import PutOrder from './components/PutOrder.js';
@@ -54,6 +54,7 @@ class Routes extends Component {
             <Route path="/categories/:id" component={SingleCategory} />
             <Route path="/categories" component={Categories} />
             <Route path="/cart" component={Cart} />
+            <Route path="/putorder" component={PutUser} />
             <Route path="/admin" component={Admin} />
             <Route path="/usersedit/:id" component={PutUser} />
             <Route path="/candiesedit/:id" component={PutProduct} />

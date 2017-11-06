@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import { NavLink, withRouter } from "react-router-dom";
-import { connect } from "react-redux";
-import { putUserThunk } from "../store/users.js";
+import React, { Component } from 'react';
+import { NavLink, withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { putUserThunk } from '../store/users.js';
 
 //way to force user to reset password??
 class PutUser extends Component {
@@ -12,27 +12,29 @@ class PutUser extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-
-    let id = +this.props.match.params.id,
-      firstName = event.target.firstname.value,
+    this;
+    // let id = +this.props.match.params.id,
+    const firstName = event.target.firstname.value,
       lastName = +event.target.lastname.value,
       email = event.target.email.value,
       isAdmin = event.target.isadmin.value,
-      userObj = { id };
+      //here it should be userObj = { id }
+      userObj = {};
 
     if (firstName.length !== 0) {
       userObj.firstName = firstName;
     }
     if (lastName.length !== 0) {
-      userObj.lastName.length = lastName.length;
+      userObj.lastName = lastName.length;
     }
     if (email.length !== 0) {
       userObj.email = email;
     }
-    if (isAdmin === "true") {
-      userObj.isAdmin = "TRUE";
+    if (isAdmin === 'true') {
+      userObj.isAdmin = 'TRUE';
     }
-    this.props.putUser(userObj, this.props.ownProps.history);
+    console.log(userObj);
+    // this.props.putUser(userObj, this.props.ownProps.history);
   }
 
   render() {
