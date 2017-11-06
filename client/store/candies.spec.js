@@ -33,29 +33,29 @@ describe('thunk creators', () => {
   });
 
   describe('Get candies', () => {
-      const candies = [
-      {
-        name: 'Magic stuff',
-        price: 10.5,
-        quantity: 409
-      },
-      {
-        name: 'Magic other stuff',
-        price: 0.5,
-        quantity: 4049
-      },
-      {
-        name: 'Coconut Crabs',
-        price: 4.5,
-        quantity: 9
-      },
-      {
-        name: 'Crocodile candy',
-        price: 1,
-        quantity: 9
-      }
-    ];
     it('eventually dispatches the GET ALL CANDY action', () => {
+      const candies = [
+        {
+          name: 'Magic stuff',
+          price: 10.5,
+          quantity: 409
+        },
+        {
+          name: 'Magic other stuff',
+          price: 0.5,
+          quantity: 4049
+        },
+        {
+          name: 'Coconut Crabs',
+          price: 4.5,
+          quantity: 9
+        },
+        {
+          name: 'Crocodile candy',
+          price: 1,
+          quantity: 9
+        }
+      ];
       mockAxios.onGet('/api/candies').replyOnce(200, candies);
       return store.dispatch(fetchCandies(candies)).then(() => {
         const actions = store.getActions();
