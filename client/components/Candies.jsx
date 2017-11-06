@@ -1,10 +1,10 @@
 import React from 'react';
-
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-
 import Filter from './Filter.jsx';
-const Candies = props => {
+
+
+export const Candies = props => {
   return (
     <div>
       {props.allCandies.length && (
@@ -28,6 +28,12 @@ const mapStateToProps = state => {
 
 // The `withRouter` wrapper makes sure that updates are not blocked
 // when the url changes
-export default withRouter(
+// const CandiesContainer = withRouter(
+//   connect(mapStateToProps)(Candies)
+// );
+const CandiesContainer = withRouter(
   connect(mapStateToProps)(Candies)
 );
+export default CandiesContainer;
+
+
