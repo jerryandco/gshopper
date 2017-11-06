@@ -1,13 +1,13 @@
-const router = require('express').Router()
-const { Candy, Category, CandyCategory } = require('../db/models')
+const router = require('express').Router();
+const { Candy, Category, CandyCategory } = require('../db/models');
 
-module.exports = router
+module.exports = router;
 
 router.get('/', (req, res, next) => {
   Candy.findAll({
     include: [Category]
   })
-    .then(users => res.json(users))
+    .then(candies => res.status(200).json(candies))
     .catch(next)
 })
 
@@ -80,7 +80,7 @@ router.put('/:id/', (req, res, next) => {
       })
     })
     .then(foundCandy => {
-      res.json(foundCandy);
+      res.status(200).json(foundCandy);
     })
     .catch(next);
 })

@@ -32,10 +32,11 @@ export const fetchOrders = () => {
   };
 };
 
-export const postOrderThunk = (newOrder, history) => {
+
+export const postOrderThunk = (order, candies) => {
   return dispatch => {
     return axios
-      .post('/api/orders', newOrder)
+      .post('/api/orders', {order, candies})
       .then(res => {
         return res.data;
       })
@@ -64,7 +65,7 @@ export const putOrderThunk = order => {
   };
 };
 
-const ordersReducer = function (orders = [], action) {
+export default function(orders = [], action) {
   switch (action.type) {
     case GET_ORDERS:
       return action.orders;
@@ -76,6 +77,4 @@ const ordersReducer = function (orders = [], action) {
     default:
       return orders;
   }
-};
-
-export default ordersReducer;
+}

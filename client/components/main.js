@@ -16,7 +16,6 @@ const Main = (props) => {
   window.localStorage.cart = JSON.stringify({})
   }
   const {children, handleClick, isLoggedIn} = props
-  console.log(children, handleClick, isLoggedIn)
   return (
     <div>
       <h1>Welcome to the Candy Shop</h1>
@@ -39,6 +38,7 @@ const Main = (props) => {
               <Link to="/candies">All Candy</Link>
               <Link to="/categories">All Categories</Link>
               <Link to="/cart"> Cart </Link>
+              <Link to="/admin">Admin </Link>
             </div>
         }
       </nav>

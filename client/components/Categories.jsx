@@ -5,7 +5,7 @@ import { withRouter } from 'react-router-dom';
 
 import Filter from './Filter.jsx';
 
-const Categories = props => {
+export const Categories = props => {
   return (
     <div>
       {props.categories.length && (
