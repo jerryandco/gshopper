@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize');
 const db = require('../db');
+const Category = require('./category');
 
 const Candy = db.define('candy', {
     name: {
@@ -35,5 +36,20 @@ const Candy = db.define('candy', {
         }
     }
 });
+
+Candy.createAndAdd = function (detail, categories) {
+    let candyId = 0;
+    return Candy.create(detail)
+      .then(createdCandy => {
+        candyId = createdCandy.id;
+        return createdCandy.setCategories(categories);
+      })
+      .then(() => {
+        return Candy.findById(candyId, {
+          include: [Category]
+        })
+      })
+}
+
 
 module.exports = Candy;

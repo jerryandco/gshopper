@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize');
 const db = require('../db');
+const Candy = require('./candy');
 
 const Category = db.define('category', {
     name: {
@@ -25,6 +26,31 @@ const Category = db.define('category', {
         },
         defaultValue: '/images/cavendishcandy.jpg'
     }
-});
+}, {
+        scopes: {
+            populated: () => ({
+                include: [{
+                    model: Candy
+                }]
+            })
+        }
+    });
+
+
+Category.updateCandy = function (id, detail) {
+    return Category.update(detail, {
+        where: {
+            id
+        },
+        returning: true,
+    })
+        .then(() => {
+            return Category.findById(
+                id
+                , {
+                    include: [Candy]
+                })
+        })
+}
 
 module.exports = Category;

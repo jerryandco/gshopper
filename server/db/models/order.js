@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const db = require('../db');
 const User = require('./user');
-const OrderCandy = require('./orderCandy');
+const Candy = require('./candy');
 
 const Order = db.define('order', {
     address: {
@@ -24,9 +24,36 @@ const Order = db.define('order', {
     }
 },
     {
-        defaultScope: {
-            include: [User]
+        scopes: {
+            populated: () => ({
+                include: [{
+                    model: User,
+                    attributes: ['id', 'firstName', 'lastName', 'email']
+                }, {
+                    model: Candy
+                }]
+            })
         }
     });
+
+Order.createWithCandy = function (detail, candies) {
+    let id = 0;
+    return Order.create(detail)
+        .then(createdOrder => {
+            id = createdOrder.id;
+            const addRelationPromise = candies.map(candy => {
+                return createdOrder.setCandies([candy.id], {
+                    through: {
+                        price: candy.price,
+                        quantity: candy.quantity
+                    }
+                })
+            })
+            return Promise.all(addRelationPromise);
+        })
+        .then(() => {
+            return Order.scope('populated').findById(id)
+        });
+}
 
 module.exports = Order;

@@ -1,6 +1,5 @@
 const Sequelize = require('sequelize');
 const db = require('../db');
-const Candy = require('./candy');
 const User = require('./user');
 
 const Review = db.define('review', {
@@ -11,10 +10,14 @@ const Review = db.define('review', {
         defaultValue: 0
     }
 }, {
-        defaultScope: {
-            include: [User, Candy]
+        scopes: {
+            populated: () => ({
+                include: [{
+                    model: User,
+                    attributes: ['firstName', 'lastName', 'email']
+                }]
+            })
         }
-
     });
 
 module.exports = Review;
