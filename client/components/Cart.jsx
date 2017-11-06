@@ -61,7 +61,6 @@ class Cart extends Component {
     let foundCandy = candies.find(candy=>{
         return +candy.id === +id
     });
-    // console.log('check here',foundCandy);
     if (foundCandy){
       return +quantity * +foundCandy.price
     }
@@ -110,7 +109,6 @@ class Cart extends Component {
   }
 
   render() {
-    console.log('props', this.props.candies)
     const cart = JSON.parse(window.localStorage.cart)
     return (
       this.props.candies &&
