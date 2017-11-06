@@ -15,7 +15,6 @@ class Candies extends Component {
       const singleCandy = this.props.allCandies.find(
         candy => candy.id === +candyId
       );
-      console.log(singleCandy);
       return (
         <div>
           <h1>{singleCandy.name}</h1>
