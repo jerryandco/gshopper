@@ -38,6 +38,7 @@ const createApp = () => {
   app.use(bodyParser.json())
   app.use(bodyParser.urlencoded({ extended: true }))
 
+
   // compression middleware
   app.use(compression())
 
@@ -50,13 +51,13 @@ const createApp = () => {
   }))
   app.use(passport.initialize())
   app.use(passport.session())
+  app.use(express.static(path.join(__dirname, '..', 'public')))
 
   // auth and api routes
   app.use('/auth', require('./auth'))
   app.use('/api', require('./api'))
 
   // static file-serving middleware
-  app.use(express.static(path.join(__dirname, '..', 'public')))
 
   // any remaining requests with an extension (.js, .css, etc.) send 404
   .use((req, res, next) => {

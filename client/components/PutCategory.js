@@ -1,8 +1,7 @@
-import React, { Component } from "react";
-import { NavLink, withRouter } from "react-router-dom";
-import { connect } from "react-redux";
-import { putCategoryThunk } from "../store/categories.js";
-import { createOptions } from "./Admin.js";
+import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { putCategoryThunk } from '../store';
 
 class PutCategory extends Component {
   constructor(props) {
@@ -10,69 +9,49 @@ class PutCategory extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleSubmit(event) {
+  handleSubmit(event, id) {
     event.preventDefault();
-    const id = +this.props.match.params.id,
-      name = event.target.name.value,
-      description = event.target.description.value,
-      candies = event.target.candies.value,
-      categoryObj = { id };
-    if (name.length !== 0) {
-      categoryObj.name = name;
+    const category = {};
+    if (event.target.name.value.length > 0) {
+      category[event.target.name.name] = event.target.name.value;
     }
-    if (description.length !== 0) {
-      categoryObj.description = description;
+    if (event.target.description.value.length > 0) {
+      category[event.target.description.name] = event.target.description.value;
     }
-    const candyCategoryObj = {};
-    candies = candies.map(candy => candy.id);
-    candyCategoryObj.categoryId = id;
-    candyCategoryObj.candies = candies;
-    //candyCategoryObj is not yet ready for post to candy category, must loop through array
-    this.props.putCategory(
-      categoryObj,
-      candyCategoryObj,
-      this.props.ownProps.history
-    );
+    if (Object.keys(category).length > 0) {
+      this.props.putCategory(category, id);
+    } else {
+      alert("Nothing to update");
+    }
   }
 
   render() {
-    let isMounted = this.props.candies,
-      candies = this.props.candies,
-      candyOptions = null;
-    if (isMounted) {
-      candyOptions = createOptions(candies, "candies");
-    }
+    const id = this.props.match.params.id;
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={(event) => { this.handleSubmit(event, id) }}>
           <label>
             Name:
             <input type="text" name="name" autoFocus />
           </label>
           <label>
             Description:
-            <input type="text" name="name" />
+            <input type="text" name="description" />
           </label>
           <input type="submit" value="Submit" />
-          {isMounted && candyOptions}
         </form>
       </div>
     );
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    candies: state.candies
-  };
-};
 
-const mapDispatchToProps = (dispatch, history) => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    putCategory: (category, candyCategory, history) => {
-      return dispatch(putCategoryThunk(category, candyCategory, history));
+    putCategory: (category, candyCategory) => {
+      return dispatch(putCategoryThunk(category, candyCategory));
     }
   };
 };
 
-export default withRouter(connect(_, mapDispatchToProps)(PutCategory));
+export default withRouter(connect(null, mapDispatchToProps)(PutCategory));

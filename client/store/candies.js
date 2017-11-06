@@ -1,38 +1,40 @@
 import axios from 'axios';
 import history from '../history';
 
-const GET_CANDIES = 'GET_CANDIES';
+const GET_CANDIES = 'GET_CANDIES'
 const POST_CANDY = 'POST_CANDY';
-const PUT_CANDY = 'PUT_CANDY';
 const DELETE_CANDY = 'DELETE_CANDY';
-/**
- * INITIAL STATE
- */
+const PUT_CANDY = 'PUT_CANDY';
 
 const initialState = {
-  allCandies: []
+    allCandies: []
 };
 
-/**
- * ACTION CREATORS
- */
-const getCandies = candies => ({ type: GET_CANDIES, candies });
-const postCandy = candy => ({ type: POST_CANDY, candy });
-const putCandy = candy => ({ type: PUT_CANDY, candy });
-const deleteCandy = candy => ({ type: DELETE_CANDY, candy });
+const candiesAction = candies => ({ type: GET_CANDIES, candies })
+const postCandyAction = candy => ({ type: POST_CANDY, candy });
+const deleteCandyAction = id => ({ type: DELETE_CANDY, id });
+const updateCandyAction = candy => ({ type: PUT_CANDY, candy });
 
-export default function(state = initialState, action) {
-  const newState = Object.assign({}, state);
+export default function (state = initialState, action) {
+  const newState = Object.assign({}, state)
   switch (action.type) {
     case GET_CANDIES:
-      newState.allCandies = action.candies;
+      newState.allCandies = action.candies
+      return newState
+    case POST_CANDY:
+      newState.allCandies = [...newState.allCandies, action.candy];
+      return newState
+    case PUT_CANDY:
+      // var otherCandy = candies.filter(candy => candy.id !== action.candy.id);
+      // return [action.candy, ...otherCandy];
       return newState;
+    case DELETE_CANDY:
+      newState.allCandies = newState.allCandies.filter(candy => +candy.id !== +action.id);
+      return newState
     default:
-      return newState;
+      return state;
   }
 }
-
-//THUNK CREATOR
 
 export function fetchCandies() {
   return function thunk(dispatch) {
@@ -47,6 +49,7 @@ export function fetchCandies() {
   };
 }
 
+<<<<<<< HEAD
 export function fetchSingleCandy(candyId) {
   return function thunk(dispatch) {
     return axios
@@ -59,3 +62,49 @@ export function fetchSingleCandy(candyId) {
       .catch(err => console.error(err));
   };
 }
+=======
+export const putCandyThunk = candy => {
+  return dispatch => {
+    return axios
+      .put(`/api/candies/${candy.id}`, candy)
+      .then(res => {
+        return res.data;
+      })
+      .then(changedCandy => {
+        const action = updateCandyAction(changedCandy);
+        dispatch(action);
+      })
+      .catch(err => console.error(err))
+  }
+}
+
+export const postCandyThunk = (candy, categories) => {
+  return dispatch => {
+    const ObjectToSend = {
+      candy: candy,
+      categories: categories
+    }
+    return axios
+      .post('/api/candies', ObjectToSend)
+      .then(res => {
+        return res.data;
+      })
+      .then(createCandy => {
+        const action = postCandyAction(createCandy);
+        dispatch(action);
+        history.push('/');
+      })
+      .catch(console.error);
+  };
+};
+
+export const deleteCandyThunk = id => {
+  return dispatch => {
+    return axios.delete(`/api/candies/${id}`)
+      .then( () => {
+      const action = deleteCandyAction(id);
+      dispatch(action);
+    });
+  };
+};
+>>>>>>> e5babd3a8a7f54b3e6d03099030ca7ac1b901859
