@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { NavLink, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { postCandyThunk } from '../store/candies.js';
 
@@ -67,8 +67,8 @@ class AddProduct extends Component {
   render() {
     const selectCategory = this.props.categories.filter(category => {
       return this.state.categories.includes(+category.id);
-    }).sort((a, b) => {
-      return a.id - b.id;
+    }).sort((first, second) => {
+      return first.id - second.id;
     })
     return (
       <div>

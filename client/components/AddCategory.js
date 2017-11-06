@@ -25,14 +25,14 @@ class AddCategory extends Component {
     event.preventDefault();
     // let name = event.target.name.value;
     // let description = event.target.description.value;
-    const categoryObj = Object.assign({},this.state);
+    const categoryObj = Object.assign({}, this.state);
     if (event.target.image.value.length > 0) {
       categoryObj[event.target.image.name] = event.target.image.value;
     }
     this.props.postCategory(categoryObj);
   }
 
-  check(){
+  check() {
     return this.state.name.length > 0 && this.state.description.length > 0;
   }
 
