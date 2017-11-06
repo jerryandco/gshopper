@@ -21,8 +21,8 @@ const CandyCategory = require('./candyCategory');
 User.hasMany(Order, { onDelete: 'CASCADE', hooks: true });
 Order.belongsTo(User, { foreignKey: { allowNull: false }, onDelete: 'CASCADE' });
 
-User.hasMany(Review, { onDelete: 'CASCADE', hooks: true });
-Review.belongsTo(User, { foreignKey: { allowNull: false }, onDelete: 'CASCADE' });
+User.hasMany(Review);
+Review.belongsTo(User);
 
 Candy.hasMany(Review, { onDelete: 'CASCADE', hooks: true });
 Review.belongsTo(Candy, { foreignKey: { allowNull: false }, onDelete: 'CASCADE' });
