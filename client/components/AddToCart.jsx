@@ -14,7 +14,6 @@ export default class AddToCart extends Component {
     const name = this.props.item.name
     const id = this.props.item.id
     const cart = JSON.parse(window.localStorage.cart);
-    console.log(this.props.item.id)
     if (cart[name]){
       cart[name].quantity++
     } else {
