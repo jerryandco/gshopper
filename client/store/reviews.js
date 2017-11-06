@@ -19,7 +19,7 @@ const putReviewAction = review => ({
 export default function(reviews = [], action) {
   switch (action.type) {
     case GET_REVIEWS:
-      return reviews;
+      return action.reviews;
     case POST_REVIEW:
       return [...reviews, action.review];
     case PUT_REVIEW:
