@@ -4,10 +4,7 @@ module.exports = router
 
 router.get('/', (req, res, next) => {
   Category.findAll({
-    include: {
-      model: Candy,
-      through: CandyCategory
-    }
+    include: [Candy]
   })
     .then(categories => res.json(categories))
     .catch(next)
@@ -18,10 +15,7 @@ router.get('/:id', (req, res, next) => {
     where: {
       id: req.params.id
     },
-    include: {
-      model: Candy,
-      through: CandyCategory
-    }
+    include: [Candy]
   })
     .then(foundCategory => {
       res.json(foundCategory);
@@ -41,10 +35,7 @@ router.put('/:id', (req, res, next) => {
         where: {
           id: updatedCatagory[0].id
         },
-        include: {
-          model: Candy,
-          through: CandyCategory
-        }
+        include: [Candy]
       })
         .then(foundCandy => {
           res.json(foundCandy);

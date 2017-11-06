@@ -31,6 +31,7 @@ export const fetchOrders = () => {
       .catch(console.error);
   };
 };
+
 export const postOrderThunk = (newOrder, history) => {
   return dispatch => {
     return axios
