@@ -12,18 +12,18 @@ class PutProduct extends Component {
       description: '',
       price: 0,
       quantity: -1,
-      image: '',
-    }
+      image: ''
+    };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleAdd = this.handleAdd.bind(this);
   }
 
   handleChange(event) {
-    console.log(event)
+    console.log(event);
     this.setState({
       [event.target.name]: event.target.value
-    })
+    });
   }
 
   handleAdd(event) {
@@ -33,16 +33,20 @@ class PutProduct extends Component {
     this.setState({ categories });
   }
 
-  handleSubmit(event,id) {
+  handleSubmit(event, id) {
     event.preventDefault();
+    //this will exist when properly formatted, as in, the link will have the associated id.
+    this; //To get the annoying yellow squiglies away.
     const productObj = {},
-    categories = this.state.categories,
-    name = this.state.name,
-    description = this.state.description,
-    price = this.state.price,
-    image = this.state.image,
-    quantity = this.state.quantity;
+      categories = this.state.categories,
+      name = this.state.name,
+      description = this.state.description,
+      price = this.state.price,
+      image = this.state.image,
+      quantity = this.state.quantity
+      id = +this.props.match.params.id;
 
+    productObj.id = id;
     if (name.length !== 0) {
       productObj.name = name;
     }
@@ -58,7 +62,7 @@ class PutProduct extends Component {
     if (description.length !== 0) {
       productObj.description = description;
     }
-    console.log(categories, productObj, id)
+    console.log(categories, productObj, id);
     // this.props.putProduct(
     //   productObj,
     //   categories,
@@ -72,23 +76,42 @@ class PutProduct extends Component {
         <form>
           <label>
             Name:
-            <input type="text" name="name" autoFocus onChange={this.handleChange}/>
+            <input
+              type="text"
+              name="name"
+              autoFocus
+              onChange={this.handleChange}
+            />
           </label>
           <label>
             Description:
-            <input type="text" name="description" onChange={this.handleChange}/>
+            <input
+              type="text"
+              name="description"
+              onChange={this.handleChange}
+            />
           </label>
           <label>
             Price:
-            <input type="number" name="price" defaultValue="0" onChange={this.handleChange}/>
+            <input
+              type="number"
+              name="price"
+              defaultValue="0"
+              onChange={this.handleChange}
+            />
           </label>
           <label>
             Quantity:
-            <input type="number" name="quantity" defaultValue="-1" onChange={this.handleChange}/>
+            <input
+              type="number"
+              name="quantity"
+              defaultValue="-1"
+              onChange={this.handleChange}
+            />
           </label>
           <label>
             Image:
-            <input type="text" name="image" onChange={this.handleChange}/>
+            <input type="text" name="image" onChange={this.handleChange} />
           </label>
         </form>
         <form onSubmit={this.handleAdd}>
@@ -108,7 +131,13 @@ class PutProduct extends Component {
           </select>
           <input type="submit" value="add categories" />
         </form>
-        <button onClick={(event)=>{this.handleSubmit(event,this.props.match.params)}} >Submit</button>
+        <button
+          onClick={event => {
+            this.handleSubmit(event, this.props.match.params);
+          }}
+        >
+          Submit
+        </button>
       </div>
     );
   }

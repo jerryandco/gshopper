@@ -64,7 +64,7 @@ export const putOrderThunk = order => {
   };
 };
 
-export default function (orders = [], action) {
+export default function(orders = [], action) {
   switch (action.type) {
     case GET_ORDERS:
       return action.orders;
