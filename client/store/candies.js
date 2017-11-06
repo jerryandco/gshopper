@@ -41,27 +41,13 @@ export function fetchCandies() {
       .get('/api/candies')
       .then(res => res.data)
       .then(candies => {
-        const action = getCandies(candies);
+        const action = candiesAction(candies);
         dispatch(action);
       })
       .catch(err => console.error(err));
   };
 }
 
-<<<<<<< HEAD
-export function fetchSingleCandy(candyId) {
-  return function thunk(dispatch) {
-    return axios
-      .get(`/api/candies/${candyId}`)
-      .then(res => res.data)
-      .then(candy => {
-        const action = singleCandyAction(candy);
-        dispatch(action);
-      })
-      .catch(err => console.error(err));
-  };
-}
-=======
 export const putCandyThunk = candy => {
   return dispatch => {
     return axios
@@ -106,4 +92,3 @@ export const deleteCandyThunk = id => {
     });
   };
 };
->>>>>>> e5babd3a8a7f54b3e6d03099030ca7ac1b901859

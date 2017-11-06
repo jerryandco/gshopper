@@ -1,11 +1,11 @@
 import { expect } from 'chai';
 import {
-  postCandy,
+  postCandyThunk,
   deleteCandy,
   putCandy,
   fetchCandies,
   fetchSingleCandy
-} from './user';
+} from './candies';
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 import configureMockStore from 'redux-mock-store';
@@ -19,7 +19,21 @@ describe('thunk creators', () => {
   let mockAxios;
 
   let initialState = {
-    allCandies: [
+    allCandies: []
+  };
+
+  beforeEach(() => {
+    mockAxios = new MockAdapter(axios);
+    store = mockStore(initialState);
+  });
+
+  afterEach(() => {
+    mockAxios.restore();
+    store.clearActions();
+  });
+
+  describe('Get candies', () => {
+      const candies = [
       {
         name: 'Magic stuff',
         price: 10.5,
@@ -40,28 +54,16 @@ describe('thunk creators', () => {
         price: 1,
         quantity: 9
       }
-    ]
-  };
-
-  beforeEach(() => {
-    mockAxios = new MockAdapter(axios);
-    store = mockStore(initialState);
-  });
-
-  afterEach(() => {
-    mockAxios.restore();
-    store.clearActions();
-  });
-
-  describe('me', () => {
+    ];
     it('eventually dispatches the GET ALL CANDY action', () => {
       mockAxios.onGet('/api/candies').replyOnce(200, candies);
-      return store.dispatch(getCandies(candies)).then(() => {
+      return store.dispatch(fetchCandies(candies)).then(() => {
         const actions = store.getActions();
         expect(actions[0].type).to.be.equal('GET_CANDIES');
         expect(actions[0].candies[1].name).to.be.deep.equal(
           'Magic other stuff'
         );
+        expect(actions[0].candies.length).to.be.deep.equal(4);
       });
     });
   });
@@ -71,11 +73,11 @@ describe('thunk creators', () => {
       name: 'Magic expensive stuff',
       price: 1124322.5,
       quantity: 1
-    }
+    };
 
-    it('logout: eventually dispatches the POST_CANDY action', () => {
+    it('eventually dispatches the postCandy action', () => {
       mockAxios.onPost('/api/candies').replyOnce(201, newCandy);
-      return store.dispatch(postCandy(newCandy)).then(() => {
+      return store.dispatch(postCandyThunk(newCandy)).then(() => {
         const actions = store.getActions();
         expect(actions[0].type).to.be.equal('POST_CANDY');
         expect(actions[0].candy.name).to.be.equal('Magic expensive stuff');
@@ -83,5 +85,6 @@ describe('thunk creators', () => {
     });
   });
 
-  //there are no functions for put or for delete in mock axios adapter so I am stopping here, perhaps, we would need to find new libraries to implement such tests.
 });
+
+  //there are no functions for put or for delete in mock axios adapter so I am stopping here, perhaps, we would need to find new libraries to implement such tests.
