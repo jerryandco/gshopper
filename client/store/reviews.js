@@ -23,7 +23,9 @@ export default function(reviews = [], action) {
     case POST_REVIEW:
       return [...reviews, action.review];
     case PUT_REVIEW:
-      var otherReviews = reviews.filter(review => review.id !== action.review.id);
+      var otherReviews = reviews.filter(
+        review => review.id !== action.review.id
+      );
       return [action.review, ...otherReviews];
     default:
       return reviews;
