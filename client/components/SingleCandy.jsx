@@ -4,6 +4,9 @@ import { withRouter, NavLink, Link } from 'react-router-dom';
 import store from '../store';
 import { fetchCandies } from '../store/candies.js';
 import AddToCart from './AddToCart.jsx';
+import Reviews from './Reviews.jsx'
+
+
 class Candies extends Component {
   componentDidMount() {
     this.props.allCandiesFetch();
@@ -23,6 +26,7 @@ class Candies extends Component {
             <h3>{singleCandy.description}</h3>
             <h3>Stock: {singleCandy.quantity}</h3>
             <AddToCart item={singleCandy} />
+            <Reviews item = {singleCandy} />
           </div>
         </div>
       );

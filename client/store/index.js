@@ -7,8 +7,9 @@ import candies from './candies';
 import categories from './categories';
 import users from './users';
 import orders from './orders';
+import reviews from './reviews'
 
-const reducer = combineReducers({ user, users, orders, candies, categories });
+const reducer = combineReducers({ user, users, orders, candies, categories, reviews });
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({ collapsed: true }))
 );
@@ -20,3 +21,4 @@ export * from './candies';
 export * from './categories';
 export * from './users';
 export * from './orders';
+export * from './reviews'
