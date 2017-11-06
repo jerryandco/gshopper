@@ -14,8 +14,11 @@ class Reviews extends Component {
     const reviews = this.props.reviews.filter(review => review.candyId === this.props.item.id)
     return (
       <div>
-        <div> {reviews.map(review => ( <div key={review.id}>{review.review}  |  {review.stars}/5 stars </div>))}</div>
-        <br />
+        <div> {reviews.map(review => ( <div key={review.id}>{review.review}  |  {review.stars}/5 stars
+
+          <div>  {`- ${review.user.firstName}  ${review.user.lastName[0]}`}. </div>
+          </div>
+        ))}</div>
       </div>
     )
   }
