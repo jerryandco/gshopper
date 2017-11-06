@@ -25,9 +25,8 @@ export default function (state = initialState, action) {
       newState.allCandies = [...newState.allCandies, action.candy];
       return newState
     case PUT_CANDY:
-      // var otherCandy = candies.filter(candy => candy.id !== action.candy.id);
-      // return [action.candy, ...otherCandy];
-      return newState;
+      var otherCandy = candies.filter(candy => candy.id !== action.candy.id);
+      return [action.candy, ...otherCandy];
     case DELETE_CANDY:
       newState.allCandies = newState.allCandies.filter(candy => +candy.id !== +action.id);
       return newState

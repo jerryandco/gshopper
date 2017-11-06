@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import { NavLink, withRouter } from "react-router-dom";
-import { connect } from "react-redux";
-import { putOrderThunk } from "../store/orders.js";
+import React, { Component } from 'react';
+import { NavLink, withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { putOrderThunk } from '../store/orders.js';
 
 class PutOrder extends Component {
   constructor(props) {
@@ -11,15 +11,16 @@ class PutOrder extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    const id = +this.props.match.params.id,
-      address = event.target.adress.value,
+    this;
+    //this will exist when properly formatted, as in, the link will have the associated id.
+    // const id = +this.props.match.params.id,
+    const address = event.target.adress.value,
       status = event.target.status.value,
-      orderObj = {status};
-
-    if (address.length !== 0) {
-      orderObj.address = {};
-    }
-    this.props.putOrder(orderObj, this.props.ownProps.history);
+      orderObj = { status };
+      if (address.length !== 0) {
+        orderObj.address = address;
+      }
+    // this.props.putOrder(orderObj, this.props.ownProps.history);
   }
 
   render() {
@@ -30,7 +31,7 @@ class PutOrder extends Component {
         <form onSubmit={this.handleSubmit}>
           <label>
             Address:
-            <input type="text" name="name" autoFocus />
+            <input type="text" name="adress" autoFocus />
           </label>
           <select name="status">
             <option key="1" value="Created">
@@ -53,6 +54,12 @@ class PutOrder extends Component {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    orders: state.orders
+  };
+};
+
 const mapDispatchToProps = (dispatch, history) => {
   return {
     putOrder: (order, history) => {
@@ -61,4 +68,6 @@ const mapDispatchToProps = (dispatch, history) => {
   };
 };
 
-export default withRouter(connect(_, mapDispatchToProps)(PutOrder));
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(PutOrder)
+);
