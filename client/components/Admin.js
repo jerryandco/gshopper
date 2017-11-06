@@ -61,11 +61,11 @@ class Admin extends Component {
         <AddProduct />
         <AddCategory />
         {isMounted && candies}
-          <div>{'\n'}</div>
+          <br />
         {isMounted && users}
-          <div>{'\n'}</div>
+          <br />
         {isMounted && orders}
-          <div>{'\n'}</div>
+          <br />
         {/*isMounted && reviews*/}
       </div>
     );
