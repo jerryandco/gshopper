@@ -26,15 +26,7 @@ const Category = db.define('category', {
         },
         defaultValue: '/images/cavendishcandy.jpg'
     }
-}, {
-        scopes: {
-            populated: () => ({
-                include: [{
-                    model: Candy
-                }]
-            })
-        }
-    });
+});
 
 
 Category.updateCandy = function (id, detail) {

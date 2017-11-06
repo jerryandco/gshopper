@@ -11,7 +11,9 @@ router.get('/', (req, res, next) => {
 })
 
 router.get('/:id', (req, res, next) => {
-  Category.scope('populated').findById(req.params.id)
+  Category.findById(req.params.id, {
+    include: [Candy]
+  })
     .then(foundCategory => {
       res.json(foundCategory);
     })
