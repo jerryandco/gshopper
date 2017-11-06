@@ -14,6 +14,10 @@ import {logout} from '../store'
 const Main = (props) => {
   if(!window.localStorage.cart){
   window.localStorage.cart = JSON.stringify({})
+  }else{
+    if(window.localStorage.cart[0] !== '{'){
+      window.localStorage.cart = JSON.stringify({})
+    }
   }
   const {children, handleClick, isLoggedIn} = props
   return (
