@@ -5,10 +5,7 @@ module.exports = router
 
 router.get('/', (req, res, next) => {
   Candy.findAll({
-    include: {
-      model: Category,
-      through: CandyCategory
-    }
+    include: [Category]
   })
     .then(users => res.json(users))
     .catch(next)
@@ -19,10 +16,7 @@ router.get('/:id', (req, res, next) => {
     where: {
       id: req.params.id
     },
-    include: {
-      model: Category,
-      through: CandyCategory
-    }
+    include: [Category]
   })
     .then(foundCandy => {
       res.json(foundCandy);
@@ -35,8 +29,17 @@ router.put('/:id/addCategory', (req, res, next) => {
       return foundCandy.addCategories(req.body.id);
     })
     .then(() => {
-      res.json(req.body.id);
+      return Candy.findOne({
+        where: {
+          id: req.params.id
+        },
+        include: [Category]
+      })
     })
+    .then(foundCandy => {
+      res.json(foundCandy);
+    })
+    .catch(next);
 });
 
 router.post('/', (req, res, next) => {
@@ -52,10 +55,7 @@ router.post('/', (req, res, next) => {
         where: {
           id: candyId
         },
-        include: {
-          model: Category,
-          through: CandyCategory
-        }
+        include: [Category]
       })
     })
     .then(foundCandy => {
@@ -63,3 +63,67 @@ router.post('/', (req, res, next) => {
     })
     .catch(next);
 });
+
+router.put('/:id/', (req, res, next) => {
+  Candy.update(req.body, {
+    where: {
+      id: req.params.id
+    },
+    returning: true,
+  })
+    .spread((row, updatedCandy) => {
+      return Candy.findOne({
+        where: {
+          id: updatedCandy[0].id
+        },
+        include: [Category]
+      })
+    })
+    .then(foundCandy => {
+      res.json(foundCandy);
+    })
+    .catch(next);
+})
+
+// router.put('/:id/changeCategory', (req, res, next) => {
+//   let categoriesId = req.body.categories;
+//   Candy.findOne({
+//     where: {
+//       id: req.params.id
+//     },
+//     include: {
+//       model: Category,
+//       through: CandyCategory
+//     }
+//   })
+//     .then(foundCandy => {
+//       candy = foundCandy;
+//       return candy.setCategories(categoriesId);
+//     })
+//     .then(() => {
+//       return Candy.findOne({
+//         where: {
+//           id: req.params.id
+//         },
+//         include: {
+//           model: Category,
+//           through: CandyCategory
+//         }
+//       })
+//     })
+//     .then(foundCandy => {
+//       res.json(foundCandy);
+//     })
+//     .catch(next);
+// })
+
+router.delete('/:id', (req, res, next) => {
+  Candy.destroy({
+    where: {
+      id: req.params.id
+    }
+  })
+    .then(() => {
+      res.sendStatus(204);
+    })
+})
