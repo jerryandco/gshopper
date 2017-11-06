@@ -14,9 +14,7 @@ import SingleCategory from './components/SingleCategory.jsx';
 import Home from './components/Home.jsx';
 import { fetchCategories } from './store/categories.js';
 import { fetchCandies } from './store/candies.js';
-<<<<<<< HEAD
 import PutUser from "./components/PutUser.js"
-=======
 import { fetchOrders } from './store/orders.js';
 import { fetchUsersThunk } from './store/users.js'
 import Admin from './components/Admin.js';
@@ -24,7 +22,6 @@ import Admin from './components/Admin.js';
 import PutOrder from './components/PutOrder.js';
 import PutProduct from './components/PutProduct.js';
 import PutUser from './components/PutUser.js';
->>>>>>> e5babd3a8a7f54b3e6d03099030ca7ac1b901859
 
 /**
  * COMPONENT
@@ -58,15 +55,12 @@ class Routes extends Component {
             <Route path="/categories/:id" component={SingleCategory} />
             <Route path="/categories" component={Categories} />
             <Route path="/cart" component={Cart} />
-<<<<<<< HEAD
             <Route path="/putorder" component={PutUser} />
-=======
             <Route path="/admin" component={Admin} />
             <Route path="/usersedit/:id" component={PutUser} />
             <Route path="/candiesedit/:id" component={PutProduct} />
             <Route path="/ordersedit/:id" component={PutOrder} />
             {/*<Route path="/categoriesedit/:id" component={PutCategory} />*/}
->>>>>>> e5babd3a8a7f54b3e6d03099030ca7ac1b901859
           </Switch>
         </Main>
       </Router>
