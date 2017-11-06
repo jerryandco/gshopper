@@ -14,9 +14,8 @@ import SingleCategory from './components/SingleCategory.jsx';
 import Home from './components/Home.jsx';
 import { fetchCategories } from './store/categories.js';
 import { fetchCandies } from './store/candies.js';
-import PutUser from "./components/PutUser.js"
 import { fetchOrders } from './store/orders.js';
-import { fetchUsersThunk } from './store/users.js'
+import { fetchUsersThunk } from './store/users.js';
 import Admin from './components/Admin.js';
 // import PutCategory from './components/PutCategory.js';
 import PutOrder from './components/PutOrder.js';

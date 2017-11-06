@@ -36,17 +36,17 @@ class PutProduct extends Component {
   handleSubmit(event, id) {
     event.preventDefault();
     //this will exist when properly formatted, as in, the link will have the associated id.
-    // let id = +this.props.match.params.id,
-    this;//To get the annoying yellow squiglies away.
-    let name = event.target.name.value,
-      price = +event.target.price.value,
-      image = event.target.image.value,
-      quantity = +event.target.quantity.value,
-      description = event.target.description.value,
-      categories = event.target.categories.value,
-      productObj = {},
-      candyCategoryArr = [];
+    this; //To get the annoying yellow squiglies away.
+    const productObj = {},
+      categories = this.state.categories,
+      name = this.state.name,
+      description = this.state.description,
+      price = this.state.price,
+      image = this.state.image,
+      quantity = this.state.quantity
+      id = +this.props.match.params.id;
 
+    productObj.id = id;
     if (name.length !== 0) {
       productObj.name = name;
     }

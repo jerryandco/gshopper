@@ -25,7 +25,7 @@ class PutUser extends Component {
       userObj.firstName = firstName;
     }
     if (lastName.length !== 0) {
-      userObj.lastName.length = lastName.length;
+      userObj.lastName = lastName.length;
     }
     if (email.length !== 0) {
       userObj.email = email;
