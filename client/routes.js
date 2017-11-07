@@ -58,7 +58,8 @@ class Routes extends Component {
                 <Route path="/admin/addproduct" component={AddProduct} />
                 <Route path="/admin/putproduct" component={PutProduct} />
                 <Route path="/admin/putcategories" component={PutCategory} />
-              </Switch>
+                <Route path="/admin/putuser" component={PutUser} />
+                </Switch>
             }
             {
               (isLoggedIn && !isAdmin) &&

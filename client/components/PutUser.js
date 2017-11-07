@@ -7,71 +7,123 @@ import { putUserThunk } from '../store/users.js';
 class PutUser extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      selectUser: {},
+      name: '',
+      email: '',
+      firstname: '',
+      lastname: '',
+      password: '',
+      isClick: false
+    }
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSelect = this.handleSelect.bind(this);
+  }
+
+  handleChange(event) {
+    event.preventDefault();
+    this.setState({
+      [event.target.name]: event.target.value
+    })
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    this;
-    // let id = +this.props.match.params.id,
-    const firstName = event.target.firstname.value,
-      lastName = +event.target.lastname.value,
-      email = event.target.email.value,
-      isAdmin = event.target.isadmin.value,
-      //here it should be userObj = { id }
-      userObj = {};
+     let userObj = {};
 
-    if (firstName.length !== 0) {
-      userObj.firstName = firstName;
+    if (this.state.firstname.length !== 0) {
+      userObj.firstName = this.state.firstname;
     }
-    if (lastName.length !== 0) {
-      userObj.lastName = lastName.length;
+    if (this.state.lastname.length !== 0) {
+      userObj.lastName = this.state.lastname;
     }
-    if (email.length !== 0) {
-      userObj.email = email;
+    if (this.state.email.length !== 0) {
+      userObj.email = this.state.email;
     }
-    if (isAdmin === 'true') {
-      userObj.isAdmin = 'TRUE';
+    if (this.state.password.length !== 0) {
+      userObj.password = this.state.password;
     }
-    console.log(userObj);
-    // this.props.putUser(userObj, this.props.ownProps.history);
+    userObj.id = this.state.selectUser.id;
+    this.props.putUser(userObj);
+  }
+
+  handleSelect(event) {
+    event.preventDefault();
+    let selectUser = this.props.allUsers.find(user => {
+      return +user.id === +event.target.user.value
+    })
+
+    this.setState({ selectUser, isClick: true });
   }
 
   render() {
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
-          <label>
-            First Name:
-            <input type="text" name="firstname" autoFocus />
-          </label>
-          <label>
-            Last Name:
-            <input type="text" name="lastname" />
-          </label>
-          <label>
-            Email:
-            <input type="text" name="email" />
-          </label>
-          <input type="submit" value="Submit" />
-          <div>Administrator?</div>
-          <select name="isadmin">
-            <option value="false" selected>
-              False
-            </option>
-            <option value="true">True</option>
-          </select>
-        </form>
+        {this.props.allUsers &&
+          <form onSubmit={this.handleSelect}>
+            <select className="browser-default" name="user">
+              {
+                this.props.allUsers.map(user => {
+                  return (
+                    <option value={user.id} key={user.firstName + ' ' + user.lastName}>{user.firstName + ' ' + user.lastName}</option>
+                  )
+                })
+              }
+            </select>
+            <input type="submit" value="select the category to change" />
+          </form>
+        }
+        {this.state.isClick &&
+          <form onSubmit={this.handleSubmit}>
+            <label>
+              First Name:
+            <input
+                type="text" name="firstname"
+                onChange={this.handleChange}
+                placeholder={this.state.firstName}
+                autoFocus />
+            </label>
+            <label>
+              Last Name:
+            <input
+                type="text" name="lastname"
+                onChange={this.handleChange} />
+              placeholder={this.state.lastname}
+            </label>
+            <label>
+              Email:
+            <input
+                type="text" name="email"
+                onChange={this.handleChange}
+                placeholder={this.state.email}
+              />
+            </label>
+            <label>
+              password:
+          <input
+                type="password" name="password"
+                onChange={this.handleChange} />
+              />
+        </label>
+            <input type="submit" value="Submit" />
+          </form>
+        }
       </div>
     );
   }
 }
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
-  putUser: (product, history) => {
-    return dispatch(putUserThunk(product, history));
-  },
-  ownProps
+const mapStateToProps = (state) => {
+  return {
+    allUsers: state.users
+  }
+}
+
+const mapDispatchToProps = (dispatch) => ({
+  putUser: (product) => {
+    return dispatch(putUserThunk(product));
+  }
 });
 
-export default withRouter(connect(_, mapDispatchToProps)(PutUser));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PutUser));
