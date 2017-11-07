@@ -28,3 +28,21 @@ p {
   color: darkmagenta;
   text-align: center;
 }
+a {
+  font-family: 'Lucida Sans Typewriter', 'Lucida Console', monaco,
+    'Bitstream Vera Sans Mono', monospace;
+  font-size: 40px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 400;
+  line-height: 12px;
+  color: palevioletred;
+}
+
+#app > div > hr {
+  visibility: hidden;
+}
+
+#app {
+  background-color: black;
+}

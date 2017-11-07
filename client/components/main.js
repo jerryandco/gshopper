@@ -21,40 +21,28 @@ const Main = props => {
   }
   const { children, handleClick, isLoggedIn } = props;
   return (
-    <div>
-      <h1>Welcome to the Candy Shop</h1>
+    <div className="home-page">
       <nav>
         {isLoggedIn ? (
-          <div className="nav-wrapper">
-            <a href="#" className="brand-logo right" />
-            <ul id="navbar" className="left hide-on-med-and-down">
+          <div className="nav-wrapper" id="navbar">
+            <ul className="left hide-on-med-and-down">
               {/* The navbar will show these links after you log in */}
-              <li className="home-link">
-                <Link className="#42a5f5 blue lighten-1" to="/">
-                  Home
-                </Link>
+              <li><img src="http://woltag.com/wp-content/photos/2014/08/Candy-symbol.jpg" />
               </li>
-              <li className="candy-link">
-                <Link className="#ff5252 red accent-2" to="/candies">
-                  All Candy
-                </Link>
+              <li className="#42a5f5 blue lighten-1">
+                <Link className="home-link" to="/">Home</Link>
               </li>
-              <li className="category-link">
-                <Link className="#283593 indigo darken-3"to="/categories">
-                  All Categories
-                </Link>
+              <li className="#ff5252 red accent-2">
+                <Link className="candy-link" to="/candies">Candies</Link>
               </li>
-              <li className="cart-link">
-                <Link className="#fdd835 yellow darken-1"to="/cart">
-                  {' '}
-                  Cart{' '}
-                </Link>
+              <li className="#283593 indigo darken-3">
+                <Link className="category-link" to="/categories">Categories</Link>
+              </li>
+              <li className="#fdd835 yellow darken-1">
+                <Link className="cart-link" to="/cart"> Cart </Link>
               </li>
               <li className="logout-link #f44336 red">
-                <a
-                  href="#"
-                  onClick={handleClick}
-                >
+                <a className="logout-link" href="#" onClick={handleClick}>
                   Logout
                 </a>
               </li>
@@ -73,7 +61,6 @@ const Main = props => {
           </div>
         )}
       </nav>
-      <hr />
       {children}
     </div>
   );
