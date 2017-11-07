@@ -5,7 +5,7 @@ import store from '../store';
 import { fetchCandies } from '../store/candies.js';
 import AddToCart from './AddToCart.jsx';
 import Reviews from './Reviews.jsx'
-
+import AddReview from './AddReview.jsx'
 
 class Candies extends Component {
   componentDidMount() {
@@ -26,6 +26,8 @@ class Candies extends Component {
             <h3>{singleCandy.description}</h3>
             <h3>Stock: {singleCandy.quantity}</h3>
             <AddToCart item={singleCandy} />
+            <div> -------- </div>
+            <AddReview item={singleCandy} />
             <Reviews item = {singleCandy} />
           </div>
         </div>

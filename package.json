@@ -16,10 +16,8 @@
     "seed-test": "node script/seedTest.js",
     "start": "node server",
     "start-dev": "npm run build-client-watch & npm run start-server",
-    "start-server":
-      "NODE_ENV='development' nodemon server -e html,js,scss --ignore public",
-    "test":
-      "NODE_ENV='test' DATABASE_URL='postgres://localhost:5432/boilermaker-test' mocha ./server/**/*.spec.js ./server/**/**/*.spec.js ./client/**/*.spec.js --compilers js:babel-register"
+    "start-server": "NODE_ENV='development' nodemon server -e html,js,scss --ignore public",
+    "test": "NODE_ENV='test' DATABASE_URL='postgres://localhost:5432/boilermaker-test' mocha ./server/**/*.spec.js ./server/**/**/*.spec.js ./client/**/*.spec.js --compilers js:babel-register --require ignore-styles"
   },
   "author": "",
   "license": "ISC",
@@ -71,6 +69,7 @@
     "eslint": "^4.10.0",
     "eslint-config-fullstack": "^3.0.0",
     "eslint-plugin-react": "^7.4.0",
+    "ignore-styles": "^5.0.1",
     "mocha": "^3.3.0",
     "nodemon": "^1.12.1",
     "react-test-renderer": "^16.0.0",
