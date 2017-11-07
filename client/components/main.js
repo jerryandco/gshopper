@@ -15,8 +15,13 @@ const Main = props => {
   if (!window.localStorage.cart) {
     window.localStorage.cart = JSON.stringify({});
   } else if (window.localStorage.cart[0] !== '{') {
+<<<<<<< HEAD
     window.localStorage.cart = JSON.stringify({});
   }
+=======
+      window.localStorage.cart = JSON.stringify({});
+    }
+>>>>>>> 1f0156a9eb91a29761fb0769f8dcdb7049eb3456
   const { children, handleClick, isLoggedIn } = props;
   return (
     <div className="home-page">
@@ -25,11 +30,16 @@ const Main = props => {
           <div className="nav-wrapper" id="navbar">
             <ul className="left hide-on-med-and-down">
               {/* The navbar will show these links after you log in */}
+<<<<<<< HEAD
               <li>
                 <img src="http://woltag.com/wp-content/photos/2014/08/Candy-symbol.jpg" />
               </li>
               <li className="#42a5f5 blue lighten-1">
                 <Link className="home-link" to="/">
+=======
+              <li className="home-link">
+                <Link className="#42a5f5 blue lighten-1" to="/">
+>>>>>>> 1f0156a9eb91a29761fb0769f8dcdb7049eb3456
                   Home
                 </Link>
               </li>
@@ -50,6 +60,7 @@ const Main = props => {
                   Order{' '}
                 </Link>
               </li>
+              <Link to="/order"> Order </Link>
               <li className="logout-link #f44336 red">
                 <a className="logout-link" href="#" onClick={handleClick}>
                   Logout
