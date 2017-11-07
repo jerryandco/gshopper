@@ -29,9 +29,9 @@ export default class AddToCart extends Component {
   render() {
 
     return (
-      <button onClick={this.handleSubmit}> Add to cart </button>
+      <button className="btn waves-effect waves-light" type="submit" name="action" onClick={this.handleSubmit}>AddToCart
+    </button>
     )
   }
 }
-
 

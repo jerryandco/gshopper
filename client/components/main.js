@@ -19,19 +19,14 @@ const Main = (props) => {
   }
   const { children, handleClick, isLoggedIn, isAdmin } = props
   return (
-    <div className="home-page">
-      <nav>
-        {isLoggedIn ? (
+    <div className="home-page purple lighten-5">
+      {isLoggedIn ? (
+        <nav className="purple lighten-5">
           <div className="nav-wrapper" id="navbar">
             <ul className="left hide-on-med-and-down">
               {/* The navbar will show these links after you log in */}
-              <li>
-                <img src="http://woltag.com/wp-content/photos/2014/08/Candy-symbol.jpg" />
-              </li>
-              <li className="#42a5f5 blue lighten-1">
-                <Link className="home-link" to="/">
-                  Home
-                </Link>
+              <li className="home-list-item #42a5f5 blue lighten-1">
+                <Link className="home-link" to="/" />
               </li>
               <li className="candy-list-item #ff5252 red accent-2">
                 <Link className="candy-link" to="/candies" />
@@ -42,23 +37,21 @@ const Main = (props) => {
               <li className="cart-list-item #fdd835 yellow darken-1">
                 <Link className="cart-link" to="/cart" />
               </li>
-              <li className="#1de9b6 teal accent-3">
-                <Link className="order-link" to="/order">
-                  {' '}
-                  Order{' '}
-                </Link>
+              <li className="order-list-item #1de9b6 teal accent-3">
+                <Link className="order-link" to="/order" />
               </li>
               <Link to="/order"> Order </Link>
                <li className="logout-link #f44336 red">
                 <a className="logout-link" href="#" onClick={handleClick}>
-                  Logout
+                  {' '}
                 </a>
               </li>
             </ul>
               {isAdmin &&
                 (<Link to="/admin"> Admin </Link>)
               }
-            </div>)
+              </div>
+              </nav>)
             : <div>
               {/* The navbar will show these links before you log in */}
               <Link to="/">Home</Link>
@@ -69,7 +62,6 @@ const Main = (props) => {
               <Link to="/cart"> Cart </Link>
             </div>
         }
-      </nav>
       {children}
     </div>
   );
