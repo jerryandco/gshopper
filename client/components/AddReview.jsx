@@ -40,7 +40,7 @@ class AddReview extends Component {
       </select>
       </label>
       <textarea name='review'/>
-      <input type='submit' value="Submit your Review!" />
+      <button className="waves-effect waves-dark btn" type='submit'><i className="material-icons">add</i></button>
       </form>
       </div>
     )
