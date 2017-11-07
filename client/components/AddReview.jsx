@@ -31,7 +31,7 @@ class AddReview extends Component {
       <form onSubmit={this.handleSubmit}>
       <label>
        Stars :
-      <select name='stars'>
+      <select className='browser-default' name='stars'>
       <option value='1'>1</option>
       <option value='2'>2</option>
       <option value='3'>3</option>
@@ -40,7 +40,7 @@ class AddReview extends Component {
       </select>
       </label>
       <textarea name='review'/>
-      <input type='submit' value="Submit your Review!" />
+      <button className="waves-effect waves-dark btn" type='submit'><i className="material-icons">add</i></button>
       </form>
       </div>
     )

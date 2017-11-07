@@ -22,8 +22,14 @@ router.get('/:id', (req, res, next) => {
 
 router.put('/:id', (req, res, next) => {
   Category.updateCandy(req.params.id, req.body)
-    .then(foundCandy => {
-      res.json(foundCandy);
+    .then(() => {
+      return Category.findById(req.params.id,
+        {
+          include: [Candy]
+        })
+    })
+    .then(foundCategory => {
+      res.json(foundCategory);
     })
     .catch(next);
 })

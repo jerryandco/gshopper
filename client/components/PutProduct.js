@@ -1,22 +1,24 @@
 import React, { Component } from 'react';
-import { NavLink, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { putCandyThunk } from '../store';
+import './Admin.scss'
 
 class PutProduct extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      categories: [],
+      selectCandy: {},
       name: '',
       description: '',
       price: 0,
-      quantity: -1,
-      image: ''
+      quantity: 0,
+      image: '',
+      isClick: false
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleAdd = this.handleAdd.bind(this);
+    this.handleSelect = this.handleSelect.bind(this);
   }
 
   handleChange(event) {
@@ -25,134 +27,112 @@ class PutProduct extends Component {
     });
   }
 
-  handleAdd(event) {
+  handleSubmit(event) {
     event.preventDefault();
-    let categories = this.state.categories;
-    categories.push(+event.target.categories.value);
-    this.setState({ categories });
+    const updateCandy = {};
+    if (this.state.name.length > 0) {
+      updateCandy.name = this.state.name
+    }
+    if (this.state.description.length > 0) {
+      updateCandy.description = this.state.description
+    }
+    if (this.state.image.length > 0) {
+      updateCandy.image = this.state.image;
+    }
+    if (+this.state.price > 0) {
+      updateCandy.price = this.state.price;
+    }
+    if (+this.state.quantity > 0) {
+      updateCandy.quantity = this.state.quantity;
+    }
+    updateCandy.id = this.state.selectCandy.id;
+    this.props.putProduct(updateCandy);
+
   }
 
-  handleSubmit(event, id) {
+  handleSelect(event) {
     event.preventDefault();
-    //this will exist when properly formatted, as in, the link will have the associated id.
-    this; //To get the annoying yellow squiglies away.
-    const productObj = {},
-      categories = this.state.categories,
-      name = this.state.name,
-      description = this.state.description,
-      price = this.state.price,
-      image = this.state.image,
-      quantity = this.state.quantity
-      id = +this.props.match.params.id;
-
-    productObj.id = id;
-    if (name.length !== 0) {
-      productObj.name = name;
-    }
-    if (price !== 0) {
-      productObj.price = price;
-    }
-    if (image.length !== 0) {
-      productObj.image = image;
-    }
-    if (quantity !== -1) {
-      productObj.quantity = quantity;
-    }
-    if (description.length !== 0) {
-      productObj.description = description;
-    }
-    console.log(categories, productObj, id);
-    // this.props.putProduct(
-    //   productObj,
-    //   categories,
-    //   this.props.ownProps.history
-    // );
+    this.setState({
+      isClick: true
+    })
+    let selectCandy = this.props.allCandies.find(candy => {
+      return +candy.id === +event.target.candy.value;
+    })
+    this.setState({ selectCandy })
   }
 
   render() {
     return (
       <div>
-        <form>
-          <label>
-            Name:
+        {
+          this.props.allCandies &&
+          <form onSubmit={this.handleSelect}>
+            <select className='browser-default' name="candy">
+              {this.props.allCandies.map(candies => {
+                return (<option value={candies.id} key={candies.name}>{candies.name}</option>)
+              })}
+            </select>
+            <input type="submit" value="select the candy to change" />
+          </form>
+        }
+        {
+          this.state.isClick &&
+          <div>
+            <form onSubmit={this.handleSubmit}>
+              <label>
+                Name:
+                <input
+                  type="text" name="name" autoFocus
+                  onChange={this.handleChange}
+                  placeholder={this.state.selectCandy.name} />
+              </label>
+              <label>
+                Description:
+                <input
+                  type="text" name="description"
+                  onChange={this.handleChange}
+                  placeholder={this.state.selectCandy.description} />
+              </label>
+              <label>
+                Price:
             <input
-              type="text"
-              name="name"
-              autoFocus
-              onChange={this.handleChange}
-            />
-          </label>
-          <label>
-            Description:
+                  type="number" name="price"
+                  onChange={this.handleChange}
+                  placeholder={this.state.selectCandy.price} />
+              </label>
+              <label>
+                Quantity:
             <input
-              type="text"
-              name="description"
-              onChange={this.handleChange}
-            />
-          </label>
-          <label>
-            Price:
-            <input
-              type="number"
-              name="price"
-              defaultValue="0"
-              onChange={this.handleChange}
-            />
-          </label>
-          <label>
-            Quantity:
-            <input
-              type="number"
-              name="quantity"
-              defaultValue="-1"
-              onChange={this.handleChange}
-            />
-          </label>
-          <label>
-            Image:
-            <input type="text" name="image" onChange={this.handleChange} />
-          </label>
-        </form>
-        <form onSubmit={this.handleAdd}>
-          <select name="categories">
-            {this.props.categories &&
-              this.props.categories
-                .filter(category => {
-                  return this.state.categories.indexOf(+category.id) === -1;
-                })
-                .map(category => {
-                  return (
-                    <option key={category.name} value={category.id}>
-                      {category.name}
-                    </option>
-                  );
-                })}
-          </select>
-          <input type="submit" value="add categories" />
-        </form>
-        <button
-          onClick={event => {
-            this.handleSubmit(event, this.props.match.params);
-          }}
-        >
-          Submit
-        </button>
+                  type="number" name="quantity"
+                  onChange={this.handleChange}
+                  placeholder={this.state.selectCandy.quantity}
+                  min={0} />
+              </label>
+              <label>
+                Image:
+              <input
+                  type="text" name="image"
+                  onChange={this.handleChange} />
+              </label>
+              <input type="submit" value="Update my change" />
+            </form>
+          </div>
+        }
       </div>
-    );
+    )
   }
 }
-
 const mapStateToProps = state => {
   return {
-    categories: state.categories.allCategories
+    categories: state.categories.allCategories,
+    allCandies: state.candies.allCandies
   };
 };
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
-  putProduct: (product, candyCategory, history) => {
-    return dispatch(putCandyThunk(product, candyCategory, history));
-  },
-  ownProps
+const mapDispatchToProps = (dispatch) => ({
+  putProduct: (product) => {
+    return dispatch(putCandyThunk(product));
+  }
 });
 
 export default withRouter(

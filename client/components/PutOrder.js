@@ -11,7 +11,7 @@ class PutOrder extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    this;
+
     //this will exist when properly formatted, as in, the link will have the associated id.
     // const id = +this.props.match.params.id,
     const address = event.target.adress.value,
@@ -33,7 +33,7 @@ class PutOrder extends Component {
             Address:
             <input type="text" name="adress" autoFocus />
           </label>
-          <select name="status">
+          <select className='browser-default' name="status">
             <option key="1" value="Created">
               Created
             </option>

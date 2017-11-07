@@ -1,46 +1,31 @@
 .home-page {
-  background: url('https://blog.yesinsights.com/wp-content/uploads/2016/08/tumblr_static_ejsivahhzqosg4sscokgsc4k4_2048_v2.jpg')
-    repeat;
-  background-size: 100vw auto;
 }
 
-#navbar {
-  display: inline;
+nav {
+  height: 11vh;
 }
 
 #navbar > ul > li {
-  height: 10vh;
-}
-
-#navbar > ul > li:nth-child(1) {
-  height: 10vh;
-}
-
-#navbar > ul > li:nth-child(1) > img {
-  width: 20vw;
-  height: 10vh;
+  height: 11vh;
+  border-left: 0.5em;
 }
 
 #navbar > ul > li > a {
   margin: 0;
-  height: auto;
-  width: 11vw;
-  text-align: center;
-  font-size: 1.7em;
+  height: 11vh;
+  width: 13.2vw;
 }
 
-.home-link {
-  color: #77f442;
+.home-list-item {
+  background: url('http://www.stonybrook.edu/happenings/wp-content/uploads/gingerbread-house.jpg')
+    center no-repeat;
+  background-size: 100% 100%;
 }
 
 .candy-list-item {
-  background: url('https://i.ytimg.com/vi/hommTp6PNVE/maxresdefault.jpg')
-  center no-repeat;
-background-size: 100% 100%;
-}
-
-.candy-link {
-  color: #5941f4;
+  background: url('https://i.ytimg.com/vi/hommTp6PNVE/maxresdefault.jpg') center
+    no-repeat;
+  background-size: 100% 100%;
 }
 
 .categories-list-item {
@@ -51,7 +36,6 @@ background-size: 100% 100%;
 
 .category-link {
   color: #f2eb24;
-  margin-right: 0.2em;
 }
 
 .cart-list-item {
@@ -64,12 +48,34 @@ background-size: 100% 100%;
   color: #9cc40b;
 }
 
-.logout-link {
-  color: #f1ee23;
+.order-list-item {
+  background: url('http://2.bp.blogspot.com/-WpvuFzIUCXE/VoNio4jIPyI/AAAAAAAACxU/K14vGStCoB4/s1600/Past%2Bpics%2BOLD%2BHMBA%2B2%2B%25282%2529.gif')
+    center no-repeat;
+  background-size: 100% 100%;
 }
 
-div > hr {
-  background-color: black;
+.logout-list-item {
+  background: url('http://www.prod-link.co.uk/IMGs/LogOut-Big.png') center
+    no-repeat;
+  background-size: 100% 100%;
+}
+
+.login-list-item {
+  background: url('https://maxcdn.icons8.com/Android_L/PNG/512/User_Interface/login_rounded-512.png')
+    center no-repeat;
+  background-size: 100% 100%;
+}
+
+.signup-list-item {
+  background: url('https://www.yocale.com/Content/images/login/signup-consumer-logo-black.png')
+    center no-repeat;
+  background-size: 100% 100%;
+}
+
+.admin-list-item {
+  background: url('http://meconstructionnews.com/wp-content/uploads/2016/05/Admin-logo.png')
+    center no-repeat;
+  background-size: 100% 100%;
 }
 
 //  really odd and funny picture for later. https://i.pinimg.com/originals/2a/84/8e/2a848efbec426a49386fae45a7e5d602.jpg
