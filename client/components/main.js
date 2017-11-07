@@ -39,29 +39,52 @@ const Main = (props) => {
               </li>
               <li className="order-list-item #1de9b6 teal accent-3">
                 <Link className="order-link" to="/order" />
-              </li>
-              <Link to="/order"> Order </Link>
-               <li className="logout-link #f44336 red">
+                </li>
+               <li className="logout-list-item #f44336 red">
                 <a className="logout-link" href="#" onClick={handleClick}>
-                  {' '}
                 </a>
               </li>
+              {
+                isAdmin &&
+                <li className="admin-list-item #42a5f5 blue lighten-1">
+                    <Link to="/admin"></Link>
+              </li>
+            }
             </ul>
-              {isAdmin &&
-                (<Link to="/admin"> Admin </Link>)
-              }
+          </div>
+        </nav>
+      ) : (
+        <nav>
+          <div className="home-page purple lighten-5">
+            {/* The navbar will show these links before you log in */}
+            <nav className="purple lighten-5">
+              <div className="nav-wrapper" id="navbar">
+                <ul className="left hide-on-med-and-down">
+                  <li className="home-list-item #42a5f5 blue lighten-1">
+                    <Link to="/" />
+                  </li>
+                  <li className="login-list-item #80cbc4 teal lighten-3">
+                    <Link to="/login" />
+                  </li>
+                  <li className="signup-list-item #303f9f indigo darken-2">
+                    <Link to="/signup" />
+                  </li>
+                  <li className="candy-list-item #ff5252 red accent-2">
+                    <Link to="/candies" />
+                  </li>
+                  <li className="categories-list-item #283593 indigo darken-3">
+                    <Link to="/categories" />
+                  </li>
+                  <li className="cart-list-item #fdd835 yellow darken-1">
+                    <Link to="/cart" />
+                  </li>
+
+                </ul>
               </div>
-              </nav>)
-            : <div>
-              {/* The navbar will show these links before you log in */}
-              <Link to="/">Home</Link>
-              <Link to="/login">Login</Link>
-              <Link to="/signup">Sign Up</Link>
-              <Link to="/candies">All Candy</Link>
-              <Link to="/categories">All Categories</Link>
-              <Link to="/cart"> Cart </Link>
-            </div>
-        }
+            </nav>
+          </div>
+        </nav>
+      )}
       {children}
     </div>
   );
