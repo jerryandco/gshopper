@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { NavLink, withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import AddProduct from './AddProduct.js';
 import AddCategory from './AddCategory.js';
@@ -18,59 +18,50 @@ export const createOptions = (table, name) => {
     </select>
   );
 };
-//admin route should be something not accessible solely by hardcoding into the url, should return something like "must be an admin to access this page"
-class Admin extends Component {
-  constructor(props) {
-    super(props);
-    this.createElements = this.createElements.bind(this);
-  }
 
-  createElements(table, name) {
-    // if(name === 'orders')
-    this;
-    const elements = table.map(row => {
-      return (
-        <div key={row.id}>
-          <div>
-            {row.address ||row.name || row.firstName + ' ' + row.lastName}
-            <NavLink key={row.id} id={row.id} to={`/${name}edit/${row.id}`}>
-              <button id={row.id}>Go</button>
-            </NavLink>
-          </div>
-        </div>
-      );
-    });
-    elements[elements.length] = <div><br /></div>;
-    return elements;
-  }
-
-  render() {
-    const allCandy = this.props.candies.allCandies;
-    const allUsers = this.props.users;
-    const allOrders = this.props.orders;
-    // const allReviews = this.props.reviews;
-    const isMounted = allCandy.length > 0;
-    if (isMounted) {
-      var candies = this.createElements(allCandy, 'candies'),
-        users = this.createElements(allUsers, 'users'),
-        orders = this.createElements(allOrders, 'orders');
-      // reviews = this.createElements(allReviews, 'reviews');
-    }
+function createElements(table, name) {
+  // if(name === 'orders')
+  const elements = table.map(row => {
     return (
-      <div>
-        <AddProduct />
-        <AddCategory />
-        {isMounted && candies}
-          <br />
-        {isMounted && users}
-          <br />
-        {isMounted && orders}
-          <br />
-        {/*isMounted && reviews*/}
+      <div key={row.id}>
+        <div>
+          {row.address || row.name || row.firstName + ' ' + row.lastName}
+          <NavLink key={row.id} id={row.id} to={`/${name}edit/${row.id}`}>
+            <button id={row.id}>Go</button>
+          </NavLink>
+        </div>
       </div>
     );
-  }
+  });
+  elements[elements.length] = <div><br /></div>;
+  return elements;
 }
+
+
+//admin route should be something not accessible solely by hardcoding into the url, should return something like "must be an admin to access this page"
+const Admin = (props) => {
+  // const allCandy = this.props.candies.allCandies;
+  // const allUsers = this.props.users;
+  // const allOrders = this.props.orders;
+  // // const allReviews = this.props.reviews;
+  // const isMounted = allCandy.length > 0;
+  // if (isMounted) {
+  //   var candies = createElements(allCandy, 'candies'),
+  //     users = createElements(allUsers, 'users'),
+  //     orders = createElements(allOrders, 'orders');
+  //   // reviews = this.createElements(allReviews, 'reviews');
+  // }
+  return (
+    <div>
+      <Link to="/admin/addproduct">Add Product</Link>
+      <br />
+      <Link to="/admin/putproduct">Change Product</Link>
+      <br />
+      <Link to="/admin/putcategories">Change categories</Link>
+    </div>
+  );
+}
+
 
 const mapStateToProps = state => {
   return {

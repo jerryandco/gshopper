@@ -11,13 +11,13 @@ import './main.scss';
  *  else common to our entire app. The 'picture' inside the frame is the space
  *  rendered out by the component's `children`.
  */
-const Main = props => {
+const Main = (props) => {
   if (!window.localStorage.cart) {
-    window.localStorage.cart = JSON.stringify({});
+    window.localStorage.cart = JSON.stringify({})
   } else if (window.localStorage.cart[0] !== '{') {
-    window.localStorage.cart = JSON.stringify({});
+    window.localStorage.cart = JSON.stringify({})
   }
-  const { children, handleClick, isLoggedIn } = props;
+  const { children, handleClick, isLoggedIn, isAdmin } = props
   return (
     <div className="home-page purple lighten-5">
       {isLoggedIn ? (
@@ -39,12 +39,17 @@ const Main = props => {
               </li>
               <li className="order-list-item #1de9b6 teal accent-3">
                 <Link className="order-link" to="/order" />
-              </li>
-              <li className="logout-list-item #f44336 red">
+                </li>
+               <li className="logout-list-item #f44336 red">
                 <a className="logout-link" href="#" onClick={handleClick}>
-                  {' '}
                 </a>
               </li>
+              {
+                isAdmin &&
+                <li className="admin-list-item #42a5f5 blue lighten-1">
+                    <Link to="/admin"></Link>
+              </li>
+            }
             </ul>
           </div>
         </nav>
@@ -73,9 +78,7 @@ const Main = props => {
                   <li className="cart-list-item #fdd835 yellow darken-1">
                     <Link to="/cart" />
                   </li>
-                  <li className="admin-list-item #42a5f5 blue lighten-1">
-                    <Link to="/admin"></Link>
-                  </li>
+
                 </ul>
               </div>
             </nav>
@@ -92,14 +95,15 @@ const Main = props => {
  */
 const mapState = state => {
   return {
-    isLoggedIn: !!state.user.id
-  };
-};
+    isLoggedIn: !!state.user.id,
+    isAdmin: !!state.user.isAdmin
+  }
+}
 
 const mapDispatch = dispatch => {
   return {
     handleClick() {
-      dispatch(logout());
+      dispatch(logout())
     }
   };
 };
@@ -114,5 +118,6 @@ export default withRouter(connect(mapState, mapDispatch)(Main));
 Main.propTypes = {
   children: PropTypes.object,
   handleClick: PropTypes.func.isRequired,
-  isLoggedIn: PropTypes.bool.isRequired
-};
+  isLoggedIn: PropTypes.bool.isRequired,
+  isAdmin: PropTypes.bool.isRequired
+}
