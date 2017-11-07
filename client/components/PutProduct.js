@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { putCandyThunk } from '../store';
+import './Admin.scss'
 
 class PutProduct extends Component {
   constructor(props) {
@@ -66,7 +67,7 @@ class PutProduct extends Component {
         {
           this.props.allCandies &&
           <form onSubmit={this.handleSelect}>
-            <select name="candy">
+            <select className='browser-default' name="candy">
               {this.props.allCandies.map(candies => {
                 return (<option value={candies.id} key={candies.name}>{candies.name}</option>)
               })}
