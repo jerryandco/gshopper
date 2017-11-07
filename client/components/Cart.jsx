@@ -50,7 +50,7 @@ class Cart extends Component {
   totalPrice(candiesInCart, allCandies) {
     const candyTotals = candiesInCart.map(candy => this.price(candy, allCandies))
 
-    const cartTotal = candyTotals.reduce((a, b) =>  a + b)
+    const cartTotal = candyTotals.reduce((a, b) => a + b)
     return +cartTotal
   }
 
@@ -58,10 +58,10 @@ class Cart extends Component {
     let item = this.state.cart[key];
     let quantity = item.quantity;
     let id = item.id;
-    let foundCandy = candies.find(candy=>{
-        return +candy.id === +id
+    let foundCandy = candies.find(candy => {
+      return +candy.id === +id
     });
-    if (foundCandy){
+    if (foundCandy) {
       return +quantity * +foundCandy.price
     }
   }
@@ -86,12 +86,13 @@ class Cart extends Component {
     event.preventDefault();
     const userId = id || 2;
     const cart = this.state.cart;
-    let submitCandy=[];
-    for(let key in cart){
+    let submitCandy = [];
+    for (let key in cart) {
       submitCandy.push(cart[key]);
     }
-    submitCandy.map(candy=>{
-      const find = candies.find(singleCandy=> +singleCandy.id === +candy.id );
+
+    submitCandy.map(candy => {
+      const find = candies.find(singleCandy => +singleCandy.id === +candy.id);
       candy.price = find.price;
       return candy
     });
@@ -101,12 +102,14 @@ class Cart extends Component {
       address: this.state.address,
       price
     }
+
     this.props.submitOrder(order, submitCandy)
-    window.localStorage.cart=JSON.stringify({});
+    window.localStorage.cart = JSON.stringify({});
     this.setState({
       address: ''
     })
   }
+
 
   render() {
     const cart = JSON.parse(window.localStorage.cart)
@@ -125,27 +128,27 @@ class Cart extends Component {
             <button value={key} onClick={this.handleIncrement}  > + </button>
             <button value={key} onClick={this.handleRemove}> Remove </button>
             <br />
-            <div> price: {this.props.candies && (<span>{this.price(key,this.props.candies)}</span>)}
+            <div> price: {this.props.candies && (<span>{this.price(key, this.props.candies)}</span>)}
             </div>
-            </div>
-          ))}
-          <div>
-          Total Price: {Object.keys(cart).length && this.totalPrice(Object.keys(cart), this.props.candies)}
-          <form onSubmit={ (event)=> {
-            let price = this.totalPrice(Object.keys(cart), this.props.candies);
-            this.handleOrder(price,this.props.candies,this.props.user.id,event);
-          }} >
-          <span>Address: <input type="text" name="address" onChange={this.handleAddressChange}/></span>
-          <input
-          type='submit'
-          disabled={this.props.isLoggedIn || this.state.address.length===0 }
-          value='Checkout'
-          />
-          {!this.props.isLoggedIn && (
-            <span>Please signup or login to complete the order</span>
-          )}
-          </form>
           </div>
+        ))}
+        <div>
+          Total Price: {Object.keys(cart).length && this.totalPrice(Object.keys(cart), this.props.candies)}
+          <form onSubmit={(event) => {
+            let price = this.totalPrice(Object.keys(cart), this.props.candies);
+            this.handleOrder(price, this.props.candies, this.props.user.id, event);
+          }} >
+            <span>Address: <input type="text" name="address" onChange={this.handleAddressChange} /></span>
+            <input
+              type="submit"
+              disabled={!this.props.isLoggedIn || this.state.address.length === 0}
+              value="Checkout"
+            />
+            {!this.props.isLoggedIn && (
+              <span>Please signup or login to complete the order</span>
+            )}
+          </form>
+        </div>
       </div>
     );
   }
@@ -165,7 +168,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    submitOrder: (order, candy)=> dispatch(postOrderThunk(order, candy)),
+    submitOrder: (order, candy) => dispatch(postOrderThunk(order, candy)),
     allCandiesFetch: () => dispatch(fetchCandies())
   };
 };

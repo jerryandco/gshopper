@@ -14,11 +14,9 @@ import './main.scss';
 const Main = props => {
   if (!window.localStorage.cart) {
     window.localStorage.cart = JSON.stringify({});
-  } else {
-    if (window.localStorage.cart[0] !== '{') {
+  } else if (window.localStorage.cart[0] !== '{') {
       window.localStorage.cart = JSON.stringify({});
     }
-  }
   const { children, handleClick, isLoggedIn } = props;
   return (
     <div>
@@ -50,6 +48,7 @@ const Main = props => {
                   Cart{' '}
                 </Link>
               </li>
+              <Link to="/order"> Order </Link>
               <li className="logout-link #f44336 red">
                 <a
                   href="#"
