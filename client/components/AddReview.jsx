@@ -27,21 +27,22 @@ class AddReview extends Component {
   render() {
 
     return (  this.props.isLoggedIn &&
-      <div> We appreciate your feedback:
-      <form onSubmit={this.handleSubmit}>
-      <label>
-       Stars :
-      <select className='browser-default' name='stars'>
-      <option value='1'>1</option>
-      <option value='2'>2</option>
-      <option value='3'>3</option>
-      <option value='4'>4</option>
-      <option value='5'>5</option>
-      </select>
-      </label>
-      <textarea name='review'/>
-      <button className="waves-effect waves-dark btn" type='submit'><i className="material-icons">add</i></button>
-      </form>
+      <div className="row" >
+        <p className="col s3">We appreciate your feedback: </p>
+
+        <form className="col s9" onSubmit={this.handleSubmit}>
+
+        <select className=' col s1 browser-default' name='stars'>
+        <option value='1'>1 star</option>
+        <option value='2'>2 stars</option>
+        <option value='3'>3 stars</option>
+        <option value='4'>4 stars</option>
+        <option value='5'>5 stars </option>
+        </select>
+
+        <textarea className="col s8" name='review'/>
+        <button className="waves-effect waves-dark btn col s1" type='submit'><i className="material-icons">add</i></button>
+        </form>
       </div>
     )
   }
