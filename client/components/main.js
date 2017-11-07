@@ -12,13 +12,11 @@ import {logout} from '../store'
  *  rendered out by the component's `children`.
  */
 const Main = (props) => {
-  if(!window.localStorage.cart){
+  if (!window.localStorage.cart){
   window.localStorage.cart = JSON.stringify({})
-  }else{
-    if(window.localStorage.cart[0] !== '{'){
+  }else  if(window.localStorage.cart[0] !== '{'){
       window.localStorage.cart = JSON.stringify({})
     }
-  }
   const {children, handleClick, isLoggedIn} = props
   return (
     <div>
@@ -32,6 +30,7 @@ const Main = (props) => {
               <Link to="/candies">All Candy</Link>
               <Link to="/categories">All Categories</Link>
               <Link to="/cart"> Cart </Link>
+              <Link to="/order"> Order </Link>
               <a href="#" onClick={handleClick}>Logout</a>
             </div>
             : <div>

@@ -12,6 +12,7 @@ import SingleCandy from './components/SingleCandy.jsx';
 import Cart from './components/Cart.jsx';
 import SingleCategory from './components/SingleCategory.jsx';
 import Home from './components/Home.jsx';
+import Order from './components/Order.jsx'
 import { fetchCategories } from './store/categories.js';
 import { fetchCandies } from './store/candies.js';
 import { fetchOrders } from './store/orders.js';
@@ -51,6 +52,7 @@ class Routes extends Component {
                   <Route path="/categories" component={Categories} />
                   <Route path="/cart" component={Cart} />
                   <Route path="/home" component={UserHome} />
+                  <Route path="/order" component={Order} />
                 </Switch>
             }
             {/* Displays our Login component as a fallback */}
