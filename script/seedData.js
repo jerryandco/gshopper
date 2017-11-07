@@ -290,8 +290,37 @@
     userId: 1,
     candyId: 1,
     review:
-      "Oh my lord!!!!! These things drive me wild. I ate one, then two. Fell asleep. And they were gone! I thought... how??? But what'd I know, I was eating them while I was fast asleep @___@"
-  }
+      "Oh my lord!!!!! These things drive me wild. I ate one, then two. Fell asleep. And they were gone! I thought... how??? But what'd I know, I was eating them while I was fast asleep @___@",
+      stars: 5
+  },
+  {
+    userId: 2,
+    candyId: 1,
+    review: "That guys is crazy, this candy is not so good",
+    stars: 1
+
+  },
+  {
+    userId: 3,
+    candyId: 1,
+    review:
+      "eh..",
+    stars: 2
+  },
+  {
+    userId: 4,
+    candyId: 1,
+    review:
+      "Tarts are great.",
+    stars: 4
+  },
+  {
+    userId: 5,
+    candyId: 1,
+    review:
+      "after i ate these i started seeing things, 1/7 would not eat",
+    stars: 1
+  },
 ];
 
  const categoriesData = [
