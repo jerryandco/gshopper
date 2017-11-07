@@ -1,20 +1,48 @@
-
-.image {
-    height: 400px;
-    width: 600px;
+h1 {
+  font-family: 'Lucida Sans Typewriter', 'Lucida Console', monaco,
+    'Bitstream Vera Sans Mono', monospace;
+  font-size: 40px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 400;
+  line-height: 12px;
+  color: palevioletred;
+}
+h3 {
+  font-family: 'Lucida Sans Typewriter', 'Lucida Console', monaco,
+    'Bitstream Vera Sans Mono', monospace;
+  font-size: 16px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 500;
+  line-height: 15.4px;
+}
+p {
+  font-family: 'Lucida Sans Typewriter', 'Lucida Console', monaco,
+    'Bitstream Vera Sans Mono', monospace;
+  font-size: 20px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 400;
+  line-height: 20px;
+  color: darkmagenta;
+  text-align: center;
+}
+a {
+  font-family: 'Lucida Sans Typewriter', 'Lucida Console', monaco,
+    'Bitstream Vera Sans Mono', monospace;
+  font-size: 40px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 400;
+  line-height: 12px;
+  color: palevioletred;
 }
 
-.single-image{
-    height: 600px;
-    width: 900px;
+#app > div > hr {
+  visibility: hidden;
 }
 
-.featured-image{
-    height: 400px;
-    width: 600px;
-}
-
-.single-category-image{
-    height: 200px;
-    width: 350px;
+#app {
+  background-color: black;
 }
