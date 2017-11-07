@@ -22,7 +22,7 @@ class SingleCategory extends Component {
       });
       return (
         <div>
-          <h1>Category Name: {singleCategory.name}</h1>
+          <h1>Category: {singleCategory.name}</h1>
           <div className="all-candies" key="1">
             <img src={singleCategory.image} className="single-category-image" />
             <h3>{singleCategory.description}</h3>
