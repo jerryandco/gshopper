@@ -30,13 +30,16 @@ class SingleCategory extends Component {
               {candiesFromCategory.map(candy => (
                 <div>
                   <h1> Candies From {singleCategory.name} </h1>
+                  <NavLink to={`/candies/${candy.id}`} >
                   <h2>{candy.name}</h2>
                   <div className="all-candies" key="1">
                     <img src={candy.image} className="single-image" />
+                    </div>
+                   </NavLink>
                     <h3>{candy.description}</h3>
                     <h3>Stock: {candy.quantity}</h3>
                     <AddToCart item={candy} />
-                  </div>
+
                 </div>
               ))}
             </div>
