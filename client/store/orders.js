@@ -40,8 +40,8 @@ export const postOrderThunk = (order, candies) => {
       .then(res => {
         return res.data;
       })
-      .then(order => {
-        const action = postOrder(order);
+      .then(updateOrder => {
+        const action = postOrder(updateOrder);
         dispatch(action);
         //figure out history in future
         // history.push(`/orders/${order.id}`);
