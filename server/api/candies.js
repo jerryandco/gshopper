@@ -45,6 +45,7 @@ router.post('/', (req, res, next) => {
 });
 
 router.put('/:id/', (req, res, next) => {
+  console.log('check', req.body);
   Candy.update(req.body, {
     where: {
       id: req.params.id
@@ -52,11 +53,13 @@ router.put('/:id/', (req, res, next) => {
     returning: true,
   })
     .spread((row, updatedCandy) => {
-      return Candy.findOne(updatedCandy[0].id, {
+      console.log('inside');
+      return Candy.findById(updatedCandy[0].id, {
         include: [Category]
       })
     })
     .then(foundCandy => {
+      console.log('inside2');
       res.status(200).json(foundCandy);
     })
     .catch(next);

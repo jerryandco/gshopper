@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {connect} from 'react-redux'
-import {withRouter, Link} from 'react-router-dom'
-import {logout} from '../store'
+import { connect } from 'react-redux'
+import { withRouter, Link } from 'react-router-dom'
+import { logout } from '../store'
 
 
 /**
@@ -12,12 +12,12 @@ import {logout} from '../store'
  *  rendered out by the component's `children`.
  */
 const Main = (props) => {
-  if (!window.localStorage.cart){
-  window.localStorage.cart = JSON.stringify({})
-  }else  if(window.localStorage.cart[0] !== '{'){
-      window.localStorage.cart = JSON.stringify({})
-    }
-  const {children, handleClick, isLoggedIn} = props
+  if (!window.localStorage.cart) {
+    window.localStorage.cart = JSON.stringify({})
+  } else if (window.localStorage.cart[0] !== '{') {
+    window.localStorage.cart = JSON.stringify({})
+  }
+  const { children, handleClick, isLoggedIn, isAdmin } = props
   return (
     <div>
       <h1>Welcome to the Candy Shop</h1>
@@ -31,6 +31,9 @@ const Main = (props) => {
               <Link to="/categories">All Categories</Link>
               <Link to="/cart"> Cart </Link>
               <Link to="/order"> Order </Link>
+              {isAdmin &&
+                (<Link to="/admin"> Admin </Link>)
+              }
               <a href="#" onClick={handleClick}>Logout</a>
             </div>
             : <div>
@@ -41,7 +44,6 @@ const Main = (props) => {
               <Link to="/candies">All Candy</Link>
               <Link to="/categories">All Categories</Link>
               <Link to="/cart"> Cart </Link>
-              <Link to="/admin">Admin </Link>
             </div>
         }
       </nav>
@@ -56,13 +58,14 @@ const Main = (props) => {
  */
 const mapState = (state) => {
   return {
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.id,
+    isAdmin: !!state.user.isAdmin
   }
 }
 
 const mapDispatch = (dispatch) => {
   return {
-    handleClick () {
+    handleClick() {
       dispatch(logout())
     }
   }
@@ -78,5 +81,6 @@ export default withRouter(connect(mapState, mapDispatch)(Main))
 Main.propTypes = {
   children: PropTypes.object,
   handleClick: PropTypes.func.isRequired,
-  isLoggedIn: PropTypes.bool.isRequired
+  isLoggedIn: PropTypes.bool.isRequired,
+  isAdmin: PropTypes.bool.isRequired
 }

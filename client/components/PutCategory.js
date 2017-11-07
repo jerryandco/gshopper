@@ -6,10 +6,28 @@ import { putCategoryThunk } from '../store';
 class PutCategory extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      id: 0,
+      isClick: false,
+      selectCategory: {}
+    }
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleSelect = this.handleSelect.bind(this);
   }
 
-  handleSubmit(event, id) {
+  handleSelect(event) {
+    event.preventDefault();
+    this.setState({
+      isClick: true
+    })
+    let selectCategory = this.props.categories.find(category => {
+      return +category.id === +event.target.categories.value
+    })
+    this.setState({ selectCategory });
+    this.setState({ id: event.target.categories.value })
+  }
+
+  handleSubmit(event) {
     event.preventDefault();
     const category = {};
     if (event.target.name.value.length > 0) {
@@ -19,39 +37,55 @@ class PutCategory extends Component {
       category[event.target.description.name] = event.target.description.value;
     }
     if (Object.keys(category).length > 0) {
-      this.props.putCategory(category, id);
+      this.props.putCategory(category, this.state.selectCategory.id);
     } else {
-      alert("Nothing to update");
+      alert('Nothing to update');
     }
   }
 
   render() {
-    const id = this.props.match.params.id;
     return (
       <div>
-        <form onSubmit={(event) => { this.handleSubmit(event, id) }}>
-          <label>
-            Name:
-            <input type="text" name="name" autoFocus />
-          </label>
-          <label>
-            Description:
-            <input type="text" name="description" />
-          </label>
-          <input type="submit" value="Submit" />
-        </form>
+        {this.props.categories &&
+          <form onSubmit={this.handleSelect}>
+            <select name="categories">
+              {this.props.categories.map(category => {
+                return (<option value={category.id} key={category.name}>{category.name}</option>)
+              })}
+            </select>
+            <input type="submit" value="select the category to change" />
+          </form>
+        }
+        {this.state.isClick &&
+          <form onSubmit={this.handleSubmit}>
+            <label>
+              Name:
+            <input type="text" name="name" autoFocus placeholder={this.state.selectCategory.name} />
+            </label>
+            <label>
+              Description:
+            <input type="text" name="description" placeholder={this.state.selectCategory.description} />
+            </label>
+            <input type="submit" value="Submit" />
+          </form>
+        }
       </div>
     );
   }
 }
 
+const mapStateToProps = (state) => {
+  return {
+    categories: state.categories.allCategories,
+  }
+}
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    putCategory: (category, candyCategory) => {
-      return dispatch(putCategoryThunk(category, candyCategory));
+    putCategory: (category, id) => {
+      return dispatch(putCategoryThunk(category, id));
     }
   };
 };
 
-export default withRouter(connect(null, mapDispatchToProps)(PutCategory));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PutCategory));

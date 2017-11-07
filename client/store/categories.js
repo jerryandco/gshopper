@@ -29,7 +29,7 @@ export default function (state = initialState, action) {
       return newState
     case PUT_CATEGORY:
       newState.allCategories = newState.allCategories.map(category => {
-        return +action.category.id === category.id ? action.category : category
+        return +action.category.id === +category.id ? action.category : category
       })
       return newState;
     default:
@@ -68,6 +68,7 @@ export const putCategoryThunk = (category, id) => dispatch => {
   return axios
     .put(`/api/categories/${id}`, category)
     .then(res => {
+      console.log('here');
       dispatch(putCategoryAction(res.data));
       history.push(`/categories/${id}`);
     })
