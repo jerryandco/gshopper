@@ -57,7 +57,6 @@ router.put('/:id/', (req, res, next) => {
       })
     })
     .then(foundCandy => {
-      console.log('inside2');
       res.status(200).json(foundCandy);
     })
     .catch(next);
