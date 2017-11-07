@@ -68,7 +68,6 @@ export const putCategoryThunk = (category, id) => dispatch => {
   return axios
     .put(`/api/categories/${id}`, category)
     .then(res => {
-      console.log('here');
       dispatch(putCategoryAction(res.data));
       history.push(`/categories/${id}`);
     })
