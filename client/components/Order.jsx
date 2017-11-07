@@ -12,7 +12,7 @@ const Order = (props) => {
     }
     return (
         <div>
-            {
+            {   orders.length ?
                 orders.map(singleOrder => {
                     return (
                         <div key={singleOrder.id}>
@@ -51,10 +51,10 @@ const Order = (props) => {
                                         })
                                     }
                                 </tbody>
-                            </table >
+                            </table>
                         </div>
                     )
-                })
+                }) : <div> You have no order history.  </div>
             }
         </div>
     )
