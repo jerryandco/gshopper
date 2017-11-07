@@ -1,10 +1,11 @@
 .home-page {
-  background: url("https://blog.yesinsights.com/wp-content/uploads/2016/08/tumblr_static_ejsivahhzqosg4sscokgsc4k4_2048_v2.jpg") repeat;
+  background: url('https://blog.yesinsights.com/wp-content/uploads/2016/08/tumblr_static_ejsivahhzqosg4sscokgsc4k4_2048_v2.jpg')
+    repeat;
   background-size: 100vw auto;
 }
 
 #navbar {
-  display:inline;
+  display: inline;
 }
 
 #navbar > ul > li {
@@ -23,26 +24,44 @@
 #navbar > ul > li > a {
   margin: 0;
   height: auto;
-  width:16vw;
+  width: 11vw;
   text-align: center;
-  font-size: 2em;
+  font-size: 1.7em;
 }
 
 .home-link {
   color: #77f442;
 }
 
+.candy-list-item {
+  background: url('https://i.ytimg.com/vi/hommTp6PNVE/maxresdefault.jpg')
+  center no-repeat;
+background-size: 100% 100%;
+}
+
 .candy-link {
-  color:#5941f4;
+  color: #5941f4;
+}
+
+.categories-list-item {
+  background: url('http://kolsheaa.com/english/uploads/fdHfCK2pkRp5javPhb35wZgut8X2hhHefgzX9KjYAaERniPyVJMgVcuu.jpg')
+    center no-repeat;
+  background-size: 100% 100%;
 }
 
 .category-link {
   color: #f2eb24;
-  margin-right:.2em;
+  margin-right: 0.2em;
+}
+
+.cart-list-item {
+  background: url('http://www.free-icons-download.net/images/shopping-cart-logo-icon-70706.png')
+    center no-repeat;
+  background-size: 100% 100%;
 }
 
 .cart-link {
-  color: #0b30c4;
+  color: #9cc40b;
 }
 
 .logout-link {
@@ -50,9 +69,7 @@
 }
 
 div > hr {
-  background-color:black;
+  background-color: black;
 }
-
-
 
 //  really odd and funny picture for later. https://i.pinimg.com/originals/2a/84/8e/2a848efbec426a49386fae45a7e5d602.jpg
