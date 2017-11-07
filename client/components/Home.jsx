@@ -6,6 +6,7 @@ import store from '../store';
 import { fetchCandies } from '../store/candies.js';
 import { fetchCategories } from '../store/categories.js';
 import AddToCart from './AddToCart.jsx';
+import './Home.scss';
 
 class Home extends Component {
   constructor(props) {
@@ -54,28 +55,29 @@ class Home extends Component {
 
   render() {
     return (
-      <div>
+      <div className="container">
         <h1>Featured Categories</h1>
         {this.generateFeaturedList('category').map(featCategory => (
-          <div key={featCategory.id}>
+          <div className="feature categories" key={featCategory.id}>
           <NavLink to={`/categories/${featCategory.id}`}>
             <p>{featCategory.name}</p>
             <img src={featCategory.image} className="featured-image" />
             </NavLink>
             <p>{featCategory.description}</p>
-           
-          </div>
-        ))}
 
-        <h1>Featured Candy</h1>
-        {this.generateFeaturedList('candy').map(featCandy => (
-          <div key={featCandy.id}>
-            <p>{featCandy.name}</p>
-            <img src={featCandy.image} className="featured-image" />
-            <p>{featCandy.description}</p>
-            <AddToCart item={featCandy} />
           </div>
         ))}
+        <div className="container">
+          <h1>Featured Candy</h1>
+          {this.generateFeaturedList('candy').map(featCandy => (
+            <div className="feature" key={featCandy.id}>
+              <p>{featCandy.name}</p>
+              <img src={featCandy.image} className="featured-image" />
+              <p>{featCandy.description}</p>
+              <AddToCart item={featCandy} />
+            </div>
+          ))}
+        </div>
       </div>
     );
   }

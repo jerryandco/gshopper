@@ -1,0 +1,32 @@
+.container {
+  display: inline-block;
+  position: relative;
+}
+
+.feature {
+  text-align: center;
+  padding: 1em;
+  width: 24vw;
+  display: inline-block;
+  float: left;
+}
+
+.categories {
+  width: 40vw;
+  padding-left:1em;
+  height:auto;
+}
+
+img {
+  width: 100%;
+  height: 30vh;
+}
+
+.feature > p {
+
+}
+
+.container > h1 {
+  display: block;
+  text-align:center;
+}
