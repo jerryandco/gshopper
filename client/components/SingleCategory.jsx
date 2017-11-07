@@ -4,6 +4,7 @@ import { withRouter, NavLink, Link } from 'react-router-dom';
 import { fetchCategories } from '../store/categories.js';
 import { fetchCandies } from '../store/candies.js';
 import AddToCart from './AddToCart.jsx'
+import './SingleCategory.scss'
 
 class SingleCategory extends Component {
 
@@ -28,19 +29,25 @@ class SingleCategory extends Component {
             <h3>{singleCategory.description}</h3>
             <div>
               {candiesFromCategory.map(candy => (
-                <div>
-                  <h1> Candies From {singleCategory.name} </h1>
-                  <NavLink to={`/candies/${candy.id}`} >
-                  <h2>{candy.name}</h2>
-                  <div className="all-candies" key="1">
-                    <img src={candy.image} className="single-image" />
+                <div className="row" key={candy.id}>
+                <div className="col s12 m5">
+                  <div className="card large">
+                    <div classNane="card-image">
+                      <img src={candy.image} className="image" />
+                      <span className="card-title"> {candy.name} </span>
                     </div>
-                   </NavLink>
-                    <h3>{candy.description}</h3>
-                    <h3>Stock: {candy.quantity}</h3>
-                    <AddToCart item={candy} />
-
+                     <div className="card-content">
+                      <p>{candy.description}</p>
+                     </div>
+                    <div className="card-action">
+                      <NavLink to={`/candies/${candy.id}`}>
+                      View Candy
+                      </NavLink>
+                      <AddToCart item={candy} />
+                    </div>
+                  </div>
                 </div>
+              </div>
               ))}
             </div>
           </div>
