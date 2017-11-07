@@ -45,7 +45,6 @@ router.post('/', (req, res, next) => {
 });
 
 router.put('/:id/', (req, res, next) => {
-  console.log('check', req.body);
   Candy.update(req.body, {
     where: {
       id: req.params.id
