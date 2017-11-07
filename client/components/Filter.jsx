@@ -55,7 +55,7 @@ class Filter extends Component {
                 <div className="row" key={candy.id}>
                   <div className="col s12 m5">
                     <div className="card large">
-                      <div classNane="card-image">
+                      <div className="card-image">
                         <img src={candy.image} className="image" />
                         <span className="card-title"> {candy.name} </span>
                       </div>
