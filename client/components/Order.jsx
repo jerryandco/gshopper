@@ -51,7 +51,7 @@ const Order = (props) => {
                                         })
                                     }
                                 </tbody>
-                            </table >
+                            </table>
                         </div>
                     )
                 }) : <div> You have no order history.  </div>
