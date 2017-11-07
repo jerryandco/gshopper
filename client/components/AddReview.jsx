@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter, NavLink, Link } from 'react-router-dom';
 import {postReviews} from '../store/reviews'
-
+import './AddReview.scss'
 class AddReview extends Component {
   constructor(props) {
     super(props);
@@ -31,16 +31,16 @@ class AddReview extends Component {
       <form onSubmit={this.handleSubmit}>
       <label>
        Stars :
-      <select name='stars'>
-      <option value='1'>1</option>
-      <option value='2'>2</option>
-      <option value='3'>3</option>
-      <option value='4'>4</option>
-      <option value='5'>5</option>
+      <select class='browser-default col 1' name='stars'>
+        <option value='1'>1</option>
+        <option value='2'>2</option>
+        <option value='3'>3</option>
+        <option value='4'>4</option>
+        <option value='5'>5</option>
       </select>
       </label>
       <textarea name='review'/>
-      <input type='submit' value="Submit your Review!" />
+      <button className='btn waves-effect waves-light' type='submit'> Submit Your Review! </button>
       </form>
       </div>
     )
