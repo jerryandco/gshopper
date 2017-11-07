@@ -28,7 +28,6 @@ class PutProduct extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    console.log('here');
     const updateCandy = {};
     if (this.state.name.length > 0) {
       updateCandy.name = this.state.name
