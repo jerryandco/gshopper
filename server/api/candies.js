@@ -52,7 +52,6 @@ router.put('/:id/', (req, res, next) => {
     returning: true,
   })
     .spread((row, updatedCandy) => {
-      console.log('inside');
       return Candy.findById(updatedCandy[0].id, {
         include: [Category]
       })
