@@ -30,7 +30,7 @@ class PutUser extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-     let userObj = {};
+    let userObj = {};
 
     if (this.state.firstname.length !== 0) {
       userObj.firstName = this.state.firstname;
@@ -88,8 +88,8 @@ class PutUser extends Component {
               Last Name:
             <input
                 type="text" name="lastname"
-                onChange={this.handleChange} />
-              placeholder={this.state.lastname}
+                onChange={this.handleChange}
+                placeholder={this.state.lastname} />
             </label>
             <label>
               Email:
@@ -104,7 +104,6 @@ class PutUser extends Component {
           <input
                 type="password" name="password"
                 onChange={this.handleChange} />
-              />
         </label>
             <input type="submit" value="Submit" />
           </form>
