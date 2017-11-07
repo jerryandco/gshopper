@@ -40,7 +40,7 @@ class Reviews extends Component {
     return (
       <div>
       <div> {this.averageRating(reviews)}</div>
-        <div> {reviews.map(review => ( <div key={review.id}>{review.review}  |  {this.starsRender(review.stars)}
+        <div> {reviews.map(review => ( <div key={review.id}>{review.review} {this.starsRender(review.stars)}
 
           <div>  {`- ${review.user.firstName}  ${review.user.lastName[0]}`}. </div>
           </div>
