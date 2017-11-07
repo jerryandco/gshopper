@@ -7,7 +7,7 @@ const DELETE_CANDY = 'DELETE_CANDY';
 const PUT_CANDY = 'PUT_CANDY';
 
 const initialState = {
-    allCandies: []
+  allCandies: []
 };
 
 const candiesAction = candies => ({ type: GET_CANDIES, candies })
@@ -25,8 +25,10 @@ export default function (state = initialState, action) {
       newState.allCandies = [...newState.allCandies, action.candy];
       return newState
     case PUT_CANDY:
-      var otherCandy = candies.filter(candy => candy.id !== action.candy.id);
-      return [action.candy, ...otherCandy];
+      newState.allCandies = newState.allCandies.map(candy => {
+        return +candy.id === +action.candy.id ? action.candy : candy
+      });
+      return newState;
     case DELETE_CANDY:
       newState.allCandies = newState.allCandies.filter(candy => +candy.id !== +action.id);
       return newState
@@ -86,9 +88,9 @@ export const postCandyThunk = (candy, categories) => {
 export const deleteCandyThunk = id => {
   return dispatch => {
     return axios.delete(`/api/candies/${id}`)
-      .then( () => {
-      const action = deleteCandyAction(id);
-      dispatch(action);
-    });
+      .then(() => {
+        const action = deleteCandyAction(id);
+        dispatch(action);
+      });
   };
 };

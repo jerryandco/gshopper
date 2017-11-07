@@ -13,6 +13,7 @@ import Cart from './components/Cart.jsx';
 import SingleCategory from './components/SingleCategory.jsx';
 import Home from './components/Home.jsx';
 import Order from './components/Order.jsx'
+import AddProduct from './components/AddProduct.js';
 import { fetchCategories } from './store/categories.js';
 import { fetchCandies } from './store/candies.js';
 import { fetchOrders } from './store/orders.js';
@@ -22,6 +23,7 @@ import Admin from './components/Admin.js';
 import PutOrder from './components/PutOrder.js';
 import PutProduct from './components/PutProduct.js';
 import PutUser from './components/PutUser.js';
+import PutCategory from './components/PutCategory.js';
 
 /**
  * COMPONENT
@@ -33,7 +35,7 @@ class Routes extends Component {
 
   render() {
     const { isLoggedIn } = this.props;
-
+    const { isAdmin } = this.props;
     return (
       <Router history={history}>
         <Main>
@@ -43,17 +45,33 @@ class Routes extends Component {
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
             {
-              isLoggedIn &&
-                <Switch>
-                  {/* Routes placed here are only available after logging in */}
-                  <Route path="/candies/:id" component={SingleCandy} />
-                  <Route path="/candies" component={Candies} />
-                  <Route path="/categories/:id" component={SingleCategory} />
-                  <Route path="/categories" component={Categories} />
-                  <Route path="/cart" component={Cart} />
-                  <Route path="/home" component={UserHome} />
-                  <Route path="/order" component={Order} />
-                </Switch>
+              (isLoggedIn && isAdmin) &&
+              <Switch>
+                <Route path="/candies/:id" component={SingleCandy} />
+                <Route path="/candies" component={Candies} />
+                <Route path="/categories/:id" component={SingleCategory} />
+                <Route path="/categories" component={Categories} />
+                <Route path="/cart" component={Cart} />
+                <Route path="/home" component={UserHome} />
+                <Route path="/order" component={Order} />
+                <Route exact path="/admin" component={Admin} />
+                <Route path="/admin/addproduct" component={AddProduct} />
+                <Route path="/admin/putproduct" component={PutProduct} />
+                <Route path="/admin/putcategories" component={PutCategory} />
+              </Switch>
+            }
+            {
+              (isLoggedIn && !isAdmin) &&
+              <Switch>
+                {/* Routes placed here are only available after logging in */}
+                <Route path="/candies/:id" component={SingleCandy} />
+                <Route path="/candies" component={Candies} />
+                <Route path="/categories/:id" component={SingleCategory} />
+                <Route path="/categories" component={Categories} />
+                <Route path="/cart" component={Cart} />
+                <Route path="/home" component={UserHome} />
+                <Route path="/order" component={Order} />
+              </Switch>
             }
             {/* Displays our Login component as a fallback */}
             {/* <Route component={Login} /> */}\
@@ -63,10 +81,10 @@ class Routes extends Component {
             <Route path="/categories" component={Categories} />
             <Route path="/cart" component={Cart} />
             <Route path="/putorder" component={PutUser} />
-            <Route path="/admin" component={Admin} />
+            {/*<Route path="/admin" component={Admin} />
             <Route path="/usersedit/:id" component={PutUser} />
             <Route path="/candiesedit/:id" component={PutProduct} />
-            <Route path="/ordersedit/:id" component={PutOrder} />
+          <Route path="/ordersedit/:id" component={PutOrder} /> */}
             {/*<Route path="/categoriesedit/:id" component={PutCategory} />*/}
           </Switch>
         </Main>
@@ -82,7 +100,8 @@ const mapState = state => {
   return {
     // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.id,
+    isAdmin: state.user.isAdmin
   };
 };
 
