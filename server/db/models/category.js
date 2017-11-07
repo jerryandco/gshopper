@@ -33,16 +33,8 @@ Category.updateCandy = function (id, detail) {
     return Category.update(detail, {
         where: {
             id
-        },
-        returning: true,
+        }
     })
-        .then(() => {
-            return Category.findById(
-                id
-                , {
-                    include: [Candy]
-                })
-        })
 }
 
 module.exports = Category;

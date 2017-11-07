@@ -29,7 +29,7 @@ export default function (state = initialState, action) {
       return newState
     case PUT_CATEGORY:
       newState.allCategories = newState.allCategories.map(category => {
-        return +action.category.id === category.id ? action.category : category
+        return +action.category.id === +category.id ? action.category : category
       })
       return newState;
     default:
