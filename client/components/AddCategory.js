@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { postCategoryThunk } from '../store';
 
+
 class AddCategory extends Component {
   constructor(props) {
     super(props);

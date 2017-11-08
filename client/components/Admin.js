@@ -53,11 +53,23 @@ const Admin = (props) => {
   // }
   return (
     <div>
-      <Link to="/admin/addproduct">Add Product</Link>
-      <br />
-      <Link to="/admin/putproduct">Change Product</Link>
-      <br />
-      <Link to="/admin/putcategories">Change categories</Link>
+      <ul>
+        <li>
+          <Link to="/admin/addproduct">Add Product</Link>
+        </li>
+        <br />
+        <li>
+          <Link to="/admin/putproduct">Change Product</Link>
+        </li>
+        <br />
+        <li>
+          <Link to="/admin/putcategories">Change categories</Link>
+        </li>
+        <br />
+        <li>
+          <Link to="/admin/putuser">Change User</Link>
+        </li>
+      </ul>
     </div>
   );
 }

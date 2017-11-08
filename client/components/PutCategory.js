@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { putCategoryThunk } from '../store';
+import './Admin.scss'
 
 class PutCategory extends Component {
   constructor(props) {
@@ -48,7 +49,7 @@ class PutCategory extends Component {
       <div>
         {this.props.categories &&
           <form onSubmit={this.handleSelect}>
-            <select name="categories">
+            <select className="browser-default" name="categories">
               {this.props.categories.map(category => {
                 return (<option value={category.id} key={category.name}>{category.name}</option>)
               })}
