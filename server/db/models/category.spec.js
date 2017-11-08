@@ -23,6 +23,18 @@ describe('Category model', () => {
       it('should be an instance of Category', () => {
         expect(softCandy).to.be.an.instanceOf(Category);
       })
+      it('should have a name', () =>{
+        expect(softCandy.name).to.equal('Healthy Candy')
+      })
+      it('should have a description', () =>{
+        expect(softCandy.description).to.equal('blah')
+      })
+      it('should have a image', () =>{
+        expect(softCandy.image).to.equal('google.com')
+      })
+      it('should have an automatic id', () =>{
+        expect(softCandy.id).to.not.equal(undefined || null)
+      })
 
     })
   })
