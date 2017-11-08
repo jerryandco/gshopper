@@ -19,18 +19,20 @@ class Candies extends Component {
         candy => candy.id === +candyId
       );
       return (
-        <div>
+
+        <div className='container'>
           <h1>{singleCandy.name}</h1>
-          <div className="all-candies" key="1">
+          <div className="row all-candies" key="1">
             <img src={singleCandy.image} className="singleCandy-image" />
-            <h3>{singleCandy.description}</h3>
-            <h3>Stock: {singleCandy.quantity}</h3>
-            <AddToCart item={singleCandy} />
-            <div> -------- </div>
-            <AddReview item={singleCandy} />
-            <Reviews item = {singleCandy} />
+            <h3 className='col s6'>{singleCandy.description}</h3>
+            <h3 className='col s2'>Stock: {singleCandy.quantity}</h3>
+            <AddToCart className='col s2'item={singleCandy} />
           </div>
+            <div> -------- </div>
+            <AddReview  item={singleCandy} />
+            <Reviews item = {singleCandy} />
         </div>
+
       );
     } else {
       return <div> loading </div>;

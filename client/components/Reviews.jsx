@@ -21,7 +21,7 @@ class Reviews extends Component {
     for (let i = 0; i < numStars; i++){
       starsArray[i] = true
     }
-    return starsArray.map(star => star ? '*'  : '')
+    return <i class='material-icons'> {starsArray.map(star => star ? 'star'  : 'star_border')}</i>
   }
 
   averageRating(reviews){

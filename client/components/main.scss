@@ -1,8 +1,13 @@
 .home-page {
+  background-color: lightcyan;
+  background: url('https://static.vecteezy.com/system/resources/previews/000/097/642/non_2x/fun-swirl-vector-background.jpg')
+    repeat;
 }
 
 nav {
   height: 11vh;
+  background: url('https://static.vecteezy.com/system/resources/previews/000/097/642/non_2x/fun-swirl-vector-background.jpg')
+    repeat;
 }
 
 #navbar > ul > li {
@@ -13,7 +18,13 @@ nav {
 #navbar > ul > li > a {
   margin: 0;
   height: 11vh;
-  width: 13.2vw;
+  width: 15vw;
+}
+
+@media only screen and (max-width: 500px) {
+  #navbar a {
+    width: 10%;
+  }
 }
 
 .home-list-item {
@@ -61,19 +72,13 @@ nav {
 }
 
 .login-list-item {
-  background: url('https://maxcdn.icons8.com/Android_L/PNG/512/User_Interface/login_rounded-512.png')
+  background: url('https://www.imca-int.com/wp-content/themes/imcaseventeen/img/imca-icons/login.svg')
     center no-repeat;
   background-size: 100% 100%;
 }
 
 .signup-list-item {
-  background: url('https://www.yocale.com/Content/images/login/signup-consumer-logo-black.png')
-    center no-repeat;
-  background-size: 100% 100%;
-}
-
-.admin-list-item {
-  background: url('http://meconstructionnews.com/wp-content/uploads/2016/05/Admin-logo.png')
+  background: url('https://www.dotstay.com/workspace/static/img/signupIcon.png')
     center no-repeat;
   background-size: 100% 100%;
 }
