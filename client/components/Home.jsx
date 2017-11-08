@@ -88,7 +88,7 @@ class Home extends Component {
         <h1>Featured Candy</h1>
         <div className="slider-candy row">
           {this.generateFeaturedList('candy').map(featCandy => (
-            <div className="col s4">
+            <div className="col s4 feature">
               <div key={featCandy.id}>
                 <NavLink to={`/candies/${featCandy.id}`}>
                   <p>{featCandy.name}</p>
