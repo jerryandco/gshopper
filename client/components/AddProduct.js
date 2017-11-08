@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { NavLink, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { postCandyThunk } from '../store/candies.js';
+import './Admin.scss'
 
 class AddProduct extends Component {
   constructor(props) {
@@ -104,7 +105,7 @@ class AddProduct extends Component {
           </label>
         </form>
         <form onSubmit={this.handleAdd}>
-          <select name="categories">
+          <select className='browser-default' name="categories">
             {this.props.categories && this.props.categories.filter(category => {
               return this.state.categories.indexOf(+category.id) === -1;
             }).map(category => {
@@ -143,7 +144,7 @@ class AddProduct extends Component {
         </label>
         {selectCategory.length > 0 &&
           <form onSubmit={this.handleRemove}>
-            <select name="categories">
+            <select className='browser-default' name="categories">
               {selectCategory.map(category => {
                 return (
                   <option key={category.name} value={category.id}>

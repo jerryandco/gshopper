@@ -9,7 +9,6 @@ export const Candies = props => {
     <div>
       {props.allCandies.length && (
         <div>
-          <h1>All Candy</h1>
           <Filter type={'candy'} />
         </div>
       )}

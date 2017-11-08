@@ -39,10 +39,10 @@ class Filter extends Component {
       return (
         <div className="filter-list">
           {this.props.type === 'candy' && (
-            <div>
-              <h4>Search For A Candy</h4>
+            <div className="individual-candy-container">
+              <h5>Search For A Candy</h5>
               <form>
-                <fieldset className="form-group">
+                <fieldset>
                   <input
                     type="text"
                     placeholder="Candy Name"

@@ -8,28 +8,6 @@ router.get('/', (req, res, next) => {
     .catch(next)
 })
 
-router.put('/current', (req, res, next) => {
-  req.user.update(req.body)
-    .then(user => {
-      req.user = user;
-      res.sendStatus(201);
-    })
-})
-
-router.put('/admin', (req, res, next) => {
-  User.update({
-    where: {
-      id: req.params.id
-    },
-    returning: true
-  })
-    .spread((row, updateUser) => {
-      return User.findById(updateUser[0].id)
-    })
-    .then(foundUser => res.json(foundUser))
-    .catch(next);
-})
-
 router.delete('/:id', (req, res, next) => {
   User.destroy({
     where: {
@@ -40,4 +18,19 @@ router.delete('/:id', (req, res, next) => {
       res.sendStatus(204);
     })
     .catch(next)
+})
+
+router.put('/:id', (req, res, next) => {
+  console.log(req.body);
+  User.update(req.body, {
+    where: {
+      id: req.params.id
+    },
+    returning: true
+  })
+    .spread((row, updateUser) => {
+      console.log(updateUser[0]);
+      res.json(updateUser[0]);
+    })
+    .catch(next);
 })
