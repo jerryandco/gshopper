@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter, NavLink } from 'react-router-dom';
 import AddToCart from './AddToCart.jsx';
+import './Filter.scss'
 
 class Filter extends Component {
   constructor(props) {
@@ -87,10 +88,10 @@ class Filter extends Component {
                 </fieldset>
               </form>
               {this.state.categoriesSearch.map(category => (
-                <div className="all-categories" key={category.id}>
+                <div className="all-categories z-depth-2" key={category.id}>
                   <NavLink to={`/categories/${category.id}`}>
                     <h2>{category.name}</h2>
-                    <img src={category.image} className="image" />
+                    <img src={category.image} className="image z-depth-5" />
                   </NavLink>
                   <h3>{category.description}</h3>
                 </div>
