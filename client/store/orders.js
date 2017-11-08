@@ -44,7 +44,7 @@ export const postOrderThunk = (order, candies) => {
       .then(updateOrder => {
         const action = postOrder(updateOrder);
         dispatch(action);
-        history.push(`/orders`);
+        history.push(`/order`);
       })
       .catch(console.error);
   };
