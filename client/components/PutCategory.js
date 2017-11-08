@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { putCategoryThunk } from '../store';
+import history from '../history';
 import './Admin.scss'
 
 class PutCategory extends Component {
@@ -40,7 +41,7 @@ class PutCategory extends Component {
     if (Object.keys(category).length > 0) {
       this.props.putCategory(category, this.state.selectCategory.id);
     } else {
-      alert('Nothing to update');
+      history.push('/admin');
     }
   }
 

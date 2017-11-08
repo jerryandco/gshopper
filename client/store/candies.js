@@ -60,6 +60,7 @@ export const putCandyThunk = candy => {
       .then(changedCandy => {
         const action = updateCandyAction(changedCandy);
         dispatch(action);
+        history.push(`/candies/${changedCandy.id}`);
       })
       .catch(err => console.error(err))
   }
@@ -79,7 +80,7 @@ export const postCandyThunk = (candy, categories) => {
       .then(createCandy => {
         const action = postCandyAction(createCandy);
         dispatch(action);
-        history.push('/');
+        history.push(`/candies/${createCandy.id}`);
       })
       .catch(console.error);
   };

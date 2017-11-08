@@ -69,6 +69,10 @@ const Admin = (props) => {
         <li>
           <Link to="/admin/putuser">Change User</Link>
         </li>
+        <br />
+        <li>
+          <Link to="/admin/putorder"> Change or Process Order</Link>
+        </li>
       </ul>
     </div>
   );

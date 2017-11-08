@@ -59,6 +59,7 @@ class Routes extends Component {
                 <Route path="/admin/putproduct" component={PutProduct} />
                 <Route path="/admin/putcategories" component={PutCategory} />
                 <Route path="/admin/putuser" component={PutUser} />
+                <Route path="/admin/putorder" component={PutOrder} />
                 </Switch>
             }
             {

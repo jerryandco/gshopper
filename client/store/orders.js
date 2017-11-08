@@ -1,4 +1,5 @@
 import axios from 'axios';
+import history from '../history';
 
 const GET_ORDERS = 'GET_ORDERS';
 const POST_ORDER = 'POST_ORDER';
@@ -43,8 +44,7 @@ export const postOrderThunk = (order, candies) => {
       .then(updateOrder => {
         const action = postOrder(updateOrder);
         dispatch(action);
-        //figure out history in future
-        // history.push(`/orders/${order.id}`);
+        history.push(`/orders`);
       })
       .catch(console.error);
   };
@@ -60,6 +60,7 @@ export const putOrderThunk = order => {
       .then(newOrder => {
         const action = putOrder(newOrder);
         dispatch(action);
+        history.push('/admin');
       })
       .catch(console.error);
   };
