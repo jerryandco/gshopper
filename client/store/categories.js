@@ -1,6 +1,5 @@
 import axios from 'axios';
 import history from '../history';
-//will we reroute?
 
 const GET_CATEGORIES = 'GET_CATEGORIES';
 const POST_CATEGORY = 'POST_CATEGORY';
@@ -57,7 +56,7 @@ export const postCategoryThunk = category => dispatch => {
     .post('/api/categories', category)
     .then(res => {
       dispatch(postCategory(res.data))
-      history.push(`/categories`);
+      history.push(`/categories/${res.data.id}`);
     })
     .catch(err =>
       console.error(`Creating category: ${category} unsuccessful`, err)
