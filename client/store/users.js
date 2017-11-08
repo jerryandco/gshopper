@@ -6,9 +6,9 @@ import history from '../history';
 /* -----------------    ACTION TYPES ------------------ */
 
 const GET_USERS = 'GET_USERS';
-const CREATE_USER= 'CREATE_USER';
+const CREATE_USER = 'CREATE_USER';
 const DELETE_USER = 'DELETE_USER';
-const UPDATE_USER= 'UPDATE_USER';
+const UPDATE_USER = 'UPDATE_USER';
 
 
 /* ------------   ACTION CREATORS     ------------------ */
@@ -17,7 +17,6 @@ const getUsersAction  = users => ({ type: GET_USERS, users });
 const createUserAction = user  => ({ type: CREATE_USER, user });
 const deleteUserAction = id    => ({ type: DELETE_USER, id });
 const updateUserAction = user  => ({ type: UPDATE_USER, user });
-
 
 
 /* ------------       REDUCER     ------------------ */
@@ -36,7 +35,7 @@ export default function (users = [], action) {
 
     case UPDATE_USER:
       return users.map(user => (
-        action.user.id === user.id ? action.user : user
+        +action.user.id === +user.id ? action.user : user
       ));
     default:
       return users;
@@ -67,7 +66,7 @@ export const createUserThunk = user => dispatch => {
 };
 
 export const putUserThunk = (user) => dispatch => {
-  axios.put(`/api/users/${id}`, user)
+  axios.put(`/api/users/${user.id}`, user)
        .then(res => {
          dispatch(updateUserAction(res.data));
        })

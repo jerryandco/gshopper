@@ -49,7 +49,7 @@ class PutCategory extends Component {
       <div>
         {this.props.categories &&
           <form onSubmit={this.handleSelect}>
-            <select className='browser-default' name="categories">
+            <select className="browser-default" name="categories">
               {this.props.categories.map(category => {
                 return (<option value={category.id} key={category.name}>{category.name}</option>)
               })}
