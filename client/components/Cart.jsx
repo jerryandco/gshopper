@@ -4,7 +4,7 @@ import { withRouter, NavLink, Link } from 'react-router-dom';
 import _ from 'lodash'
 import { fetchCandies, postOrderThunk } from '../store'
 
-class Cart extends Component {
+export class Cart extends Component {
 
   constructor() {
     super()

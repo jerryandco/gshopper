@@ -24,6 +24,7 @@ describe('Candies', () => {
 
   it('renders a single div containing all the data', () => {
     expect(candies.type()).to.equal('div');
+    expect(candies.children().length).to.equal(1)
   });
 
   it('uses the Filter component to render candy', () => {

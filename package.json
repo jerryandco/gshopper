@@ -37,6 +37,8 @@
     "express-session": "^1.15.1",
     "file-loader": "^0.11.2",
     "history": "^4.6.3",
+    "ignore-styles": "^5.0.1",
+    "jsdom": "^11.3.0",
     "morgan": "^1.8.1",
     "node-sass": "^4.5.3",
     "passport": "^0.3.2",
@@ -59,7 +61,6 @@
     "sass-loader": "^6.0.0",
     "sequelize": "^4.3.1",
     "socket.io": "^2.0.3",
-    "ignore-styles": "^5.0.1",
     "style-loader": "^0.13.1",
     "webpack": "^2.2.1",
     "webpack-livereload-plugin": "^1.0.0"

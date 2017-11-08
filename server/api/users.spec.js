@@ -13,10 +13,13 @@ describe('User routes', () => {
 
   describe('/api/users/', () => {
     const codysEmail = 'cody@puppybook.com'
-
+    const password = 'superHashedPassword'
+    const salt = 'superSecretSalt'
     beforeEach(() => {
       return User.create({
-        email: codysEmail
+        email: codysEmail,
+        password: password,
+        salt: salt
       })
     })
 
@@ -28,6 +31,15 @@ describe('User routes', () => {
           expect(res.body).to.be.an('array')
           expect(res.body[0].email).to.be.equal(codysEmail)
         })
+    })
+    it('does not return the password or salt', () => {
+      return request(app)
+      .get('/api/users')
+      .expect(200)
+      .then(res => {
+        expect(res.body[0].password).to.be.equal(undefined)
+        expect(res.body[0].salt).to.be.equal(undefined)
+      })
     })
   }) // end describe('/api/users')
 }) // end describe('User routes')
