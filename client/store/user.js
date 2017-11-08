@@ -36,6 +36,17 @@ export const auth = (email, password, method) => dispatch =>
     })
     .catch(error => dispatch(getUser({ error })));
 
+
+export const signUpAuth = (email, password, method, lastName, firstName) => dispatch =>
+  axios
+    .post(`/auth/${method}`, { email, password, lastName, firstName })
+    .then(res => {
+      dispatch(getUser(res.data));
+      history.push('/home');
+    })
+    .catch(error => dispatch(getUser({ error })));
+
+
 export const logout = () => dispatch =>
   axios
     .post('/auth/logout')
@@ -48,7 +59,7 @@ export const logout = () => dispatch =>
 /**
  * REDUCER
  */
-export default function(state = defaultUser, action) {
+export default function (state = defaultUser, action) {
   switch (action.type) {
     case GET_USER:
       return action.user;
