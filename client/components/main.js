@@ -19,7 +19,7 @@ const Main = (props) => {
   }
   const { children, handleClick, isLoggedIn, isAdmin } = props
   return (
-    <div className="home-page purple lighten-5">
+    <div className="home-page">
       {isLoggedIn ? (
         <nav className="purple lighten-5">
           <div className="nav-wrapper" id="navbar">
