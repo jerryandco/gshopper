@@ -73,5 +73,5 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   },
   ownProps
 });
-
+const _ = null;
 export default withRouter(connect(_, mapDispatchToProps)(PutUser));
