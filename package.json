@@ -59,6 +59,7 @@
     "sass-loader": "^6.0.0",
     "sequelize": "^4.3.1",
     "socket.io": "^2.0.3",
+    "ignore-styles": "^5.0.1",
     "style-loader": "^0.13.1",
     "webpack": "^2.2.1",
     "webpack-livereload-plugin": "^1.0.0"
@@ -72,7 +73,7 @@
     "eslint": "^4.10.0",
     "eslint-config-fullstack": "^3.0.0",
     "eslint-plugin-react": "^7.4.0",
-    "ignore-styles": "^5.0.1",
+    
     "mocha": "^3.3.0",
     "nodemon": "^1.12.1",
     "react-test-renderer": "^16.0.0",
