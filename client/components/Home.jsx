@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 //import PropTypes from 'prop-types'
 import { connect } from 'react-redux';
 import { withRouter, NavLink, Link } from 'react-router-dom';
-import store from '../store';
 import { fetchCandies } from '../store/candies.js';
 import { fetchCategories } from '../store/categories.js';
 import AddToCart from './AddToCart.jsx';
+import Slider from 'react-slick';
 import './Home.scss';
 
 class Home extends Component {
@@ -54,27 +54,51 @@ class Home extends Component {
   };
 
   render() {
+    const sliderSettings = {
+      infinite: true,
+      autoplay: true,
+      autoplaySpeed: 400,
+      speed: 1000,
+      slidesToShow: 2,
+      slidesToScroll: 1,
+      pauseOnHover: true,
+      centerMode: true,
+      nextArrow: <div />,
+      prevArrow: <div />
+    };
+
     return (
       <div className="container">
         <h1>Featured Categories</h1>
-        {this.generateFeaturedList('category').map(featCategory => (
-          <div className="feature categories" key={featCategory.id}>
-          <NavLink to={`/categories/${featCategory.id}`}>
-            <p>{featCategory.name}</p>
-            <img src={featCategory.image} className="featured-image" />
-            </NavLink>
-            <p>{featCategory.description}</p>
 
-          </div>
-        ))}
-        <div className="container">
-          <h1>Featured Candy</h1>
+        <div className="slider-category">
+          <Slider {...sliderSettings}>
+            {this.generateFeaturedList('category').map(featCategory => (
+              <div className="feature categories" key={featCategory.id}>
+                <NavLink to={`/categories/${featCategory.id}`}>
+                  <p>{featCategory.name}</p>
+                  <img src={featCategory.image} className="featured-image" />
+                </NavLink>
+                <p>{featCategory.description}</p>
+              </div>
+            ))}
+          </Slider>
+        </div>
+
+        <h1>Featured Candy</h1>
+        <div className="slider-candy row">
           {this.generateFeaturedList('candy').map(featCandy => (
-            <div className="feature" key={featCandy.id}>
-              <p>{featCandy.name}</p>
-              <img src={featCandy.image} className="featured-image" />
-              <p>{featCandy.description}</p>
-              <AddToCart item={featCandy} />
+            <div className="col s4">
+              <div key={featCandy.id}>
+                <NavLink to={`/candies/${featCandy.id}`}>
+                  <p>{featCandy.name}</p>
+                  <div className="img-container">
+                    <img src={featCandy.image} className="featured-image" />
+                  </div>
+                  <p>{featCandy.description}</p>
+                </NavLink>
+                <AddToCart item={featCandy} />
+              </div>
             </div>
           ))}
         </div>
