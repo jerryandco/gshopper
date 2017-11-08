@@ -1,5 +1,4 @@
-
- const userData = [
+const userData = [
   {
     firstName: 'Mitch',
     lastName: 'Hedburg',
@@ -62,7 +61,7 @@
   }
 ];
 
- const candyData = [
+const candyData = [
   {
     name: 'Cavendish Drops',
     price: 3,
@@ -285,85 +284,84 @@
   }
 ];
 
- const reviewsData = [
+const reviewsData = [
   {
     userId: 1,
     candyId: 1,
     review:
       "Oh my lord!!!!! These things drive me wild. I ate one, then two. Fell asleep. And they were gone! I thought... how??? But what'd I know, I was eating them while I was fast asleep @___@",
-      stars: 5
+    stars: 5
   },
   {
     userId: 2,
     candyId: 1,
-    review: "That guys is crazy, this candy is not so good",
+    review: 'That guys is crazy, this candy is not so good',
     stars: 1
-
   },
   {
     userId: 3,
     candyId: 1,
-    review:
-      "eh..",
+    review: 'eh..',
     stars: 2
   },
   {
     userId: 4,
     candyId: 1,
-    review:
-      "Tarts are great.",
+    review: 'Tarts are great.',
     stars: 4
   },
   {
     userId: 5,
     candyId: 1,
-    review:
-      "after i ate these i started seeing things, 1/7 would not eat",
+    review: 'after i ate these i started seeing things, 1/7 would not eat',
     stars: 1
-  },
+  }
 ];
 
- const categoriesData = [
+const categoriesData = [
   {
     name: 'Hard Candy',
-    description: 'Yeaa baby!'
+    description: 'Yeaa baby!',
+    image: '/images/fancyhardcandy.jpg'
   },
   {
     name: 'Soft Candy',
-    description: 'Also Yeaa baby!'
+    description: 'Also Yeaa baby!',
+    image: '/images/pinkmeringue.jpg'
   },
   {
     name: 'Chocolate Candy',
-    description: 'Yeaa baby Chocolate!'
+    description: 'Yeaa baby Chocolate!',
+    image: '/images/chocoloateabundance.jpg'
   },
   {
     name: 'Lollipops',
-    description: 'Owls love them!'
+    description: 'Owls love them!',
+    image: '/images/redgreenlolly.jpg'
   },
   {
     name: 'Baby Candy',
-    description: "Take it, it's easy!"
+    description: "Take it, it's easy!",
+    image: 'images/truffles1.jpg'
   },
   {
     name: 'Healthy Candy',
-    description: 'If you like this, then you might be weird!'
+    description: 'If you like this, then you might be weird!',
+    image: '/images/valentinesday1.jpg'
   }
 ];
 
-const candyCategoriesData = candyData.map(( candy, index, candyData ) => ({
-    candyId: index + 1,
-    categoryId: (Math.floor(Math.random() * 6) + 1 )
+const candyCategoriesData = candyData.map((candy, index, candyData) => ({
+  candyId: index + 1,
+  categoryId: Math.floor(Math.random() * 6) + 1
+}));
 
-}))
-
- const ordersData = [
+const ordersData = [
   {
     address: '112 Valhalla Drive, Zimbabwe',
     status: 'Created'
-
   }
 ];
-
 
 module.exports = {
   userData,
@@ -372,4 +370,4 @@ module.exports = {
   categoriesData,
   candyCategoriesData,
   ordersData
-}
+};
